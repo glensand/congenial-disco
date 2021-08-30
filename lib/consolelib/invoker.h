@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <functional>
 #include <string>
 #include <unordered_map>
 #include <memory>
@@ -26,12 +27,25 @@ namespace disco {
 		void invoke(const std::string& arguments);
 
 		template<typename T>
-		void create_function(std::string_view name, T&& functor);
+		void create_function(std::string_view name, T&& functor) {
+		    
+		}
+
+		template<typename TObject, typename TFunction>
+		void create_function(std::string_view name, TObject object, TFunction function) {
+		    
+		}
+
+		template<typename T>
+		void create_variable(std::string_view name, T& variable) {
+		    
+		}
 
 		invoker(const invoker&) = delete;
 		invoker& operator=(const invoker&) = delete;
 
 	private:
+
 		using function_ptr_t = std::unique_ptr<function*>;
 		using variable_ptr_t = std::unique_ptr<variable*>;
 

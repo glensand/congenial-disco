@@ -20,6 +20,10 @@ namespace disco {
 	{
 		using invoke_args_t = hope::flat_tuple<Ts...>;
 	public:
+
+		lambda_function(std::function<R(Ts...)>&& func)
+		    : m_function(std::move(func)){ }
+
 		using function::function;
 
 		virtual void invoke(std::string_view arguments) const override {
