@@ -9,10 +9,16 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 file(GLOB CL_HEADERS
     consolelib/*.h
+    consolelib/exception/*.h
+    consolelib/function/*.h
+    consolelib/variable/*.h
 )
 
 file(GLOB CL_SOURSES
     consolelib/*.cpp
+    consolelib/exception/*.cpp
+    consolelib/function/*.cpp
+    consolelib/variable/*.cpp
 )
 
 add_library(consolelib STATIC ${CL_HEADERS} ${CL_SOURSES})

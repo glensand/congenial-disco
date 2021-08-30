@@ -1,9 +1,40 @@
-#include "consolelib/invoker.h"
+#include "invoker.h"
+
+#include "consolelib/exception/already_exist.h"
+#include "consolelib/exception/not_exist.h"
 
 namespace disco {
 
-    void invoker::invoke(const std::string& arguments) {
+    invoker::~invoker() {
+        for (auto&& [name, function] : m_functions)
+            delete function;
 
+        for (auto&& [name, variable] : m_variables)
+            delete variable;
     }
 
+    void invoker::invoke(std::string_view arguments) {
+        auto&& name = parse<std::string_view>(arguments);
+        if(auto&& function_it = m_functions.find(name.data()); function_it != end(m_functions)) {
+            auto&& function = function_it->second;
+            function->invoke(arguments);
+        } else if(auto&& var_it = m_variables.find(name.data()); var_it != end(m_variables)) {
+            auto&& variable = var_it->second;
+            variable->apply(arguments);
+        }
+    }
+
+    void invoker::assert_variable_unique(std::string_view name) const {
+        if (exist(name))
+            throw already_exist(name.data());
+    }
+
+    void invoker::assert_variable_exist(std::string_view name) const {
+        if (!exist(name))
+            throw not_exist(name.data());
+    }
+
+    bool invoker::exist(std::string_view name) const noexcept {
+        return m_names.find(name) != std::cend(m_names);
+    }
 }

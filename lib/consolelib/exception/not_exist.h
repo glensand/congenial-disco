@@ -8,20 +8,13 @@
 
 #pragma once
 
-#include <string>
+#include "consolelib/exception/exception.h"
 
-namespace disco  {
+namespace disco {
 
-	class function
-	{
-	public:
-		virtual ~function() = default;
-		function() = default;
-
-		virtual void invoke(std::string_view arguments) const = 0;
-
-		function(const function&) = delete;
-		function& operator=(const function&) = delete;
-	};
+    class not_exist final : public exception {
+    public:
+        not_exist(const std::string& variable_name);
+    };
 
 }

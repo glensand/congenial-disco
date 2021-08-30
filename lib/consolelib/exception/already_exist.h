@@ -8,18 +8,13 @@
 
 #pragma once
 
-#include <string>
+#include "consolelib/exception/exception.h"
 
 namespace disco {
 
-    class exception {
+    class already_exist final : public exception {
     public:
-        exception(std::string what) noexcept;
-
-        const std::string& what() const noexcept;
-
-    private:
-        std::string m_what;
+        already_exist(const std::string& variable_name);
     };
 
 }

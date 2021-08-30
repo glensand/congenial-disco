@@ -9,9 +9,10 @@
 #pragma once
 
 #include <functional>
-#include "consolelib/function.h"
-#include "consolelib/exception.h"
 #include "hope/tuple/flat_tuple.h"
+
+#include "consolelib/parser.h"
+#include "consolelib/function/function.h"
 
 namespace disco {
 
@@ -33,16 +34,11 @@ namespace disco {
 
 	private:
 
-		template<typename T>
-		auto parse(std::string_view& arguments) {
-
-		}
-
 		invoke_args_t parse_arguments(std::string_view arguments) {
 			invoke_args_t invoke_args;
 			hope::for_each(invoke_args, [&](auto&& argument) {
 				using argument_t = std::decay_t<decltype(argument)>;
-				argument = parse<argument_t>();
+				argument = parse<argument_t>(arguments);
 			});
 			return invoke_args;
 		}

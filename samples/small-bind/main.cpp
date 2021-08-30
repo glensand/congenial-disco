@@ -6,27 +6,20 @@
  * this file. If not, please write to: bezborodoff.gleb@gmail.com, or visit : https://github.com/glensand/hope
  */
 
-#include "hope/fsm/fsm.h"
 #include <iostream>
 
-struct enabled final {};
-struct disabled final{};
-struct change_state final{};
+#include "consolelib/invoker.h"
 
 int main() {
-    auto fsm = hope::fsm::make<enabled, disabled>(
-        [](enabled, change_state) -> hope::fsm::transit_to<disabled> {
-            std::cout << "Transition: Enabled -> Disabled" << std::endl;
-            return {};
-        },
-        [](disabled, change_state) -> hope::fsm::transit_to<enabled> {
-            std::cout << "Transition: Disabled -> Enabled" << std::endl;
-            return {};
-        }
-        );
+    disco::invoker invoker;
+    invoker.create_function("call", [] { std::cout << "call"; });
+    invoker.create_function("invoke", [] { std::cout << "invoke"; });
 
-    fsm.on_event(change_state{});
-    fsm.on_event(change_state{});
+    int test_var;
+    invoker.create_variable("test_var", test_var);
+
+    invoker.invoke("test_var 1");
+    invoker.invoke("call");
 
 	return 0;
 } 
