@@ -25,6 +25,9 @@ namespace disco {
 		lambda_function(std::function<R(Ts...)>&& func)
 		    : m_function(std::move(func)){ }
 
+		lambda_function(const std::function<R(Ts...)>& func)
+			: m_function(func) { }
+
 		using function::function;
 
 		virtual void invoke(std::string_view arguments) const override {
@@ -33,8 +36,7 @@ namespace disco {
 		}
 
 	private:
-
-		invoke_args_t parse_arguments(std::string_view arguments) {
+		invoke_args_t parse_arguments(std::string_view arguments) const {
 			invoke_args_t invoke_args;
 			hope::for_each(invoke_args, [&](auto&& argument) {
 				using argument_t = std::decay_t<decltype(argument)>;
@@ -44,7 +46,7 @@ namespace disco {
 		}
 
 		template<std::size_t... Is>
-		void invoke(const invoke_args_t& args, std::index_sequence<Is...>) {
+		void invoke(const invoke_args_t& args, std::index_sequence<Is...>) const {
 			(void)m_function(args.template get<Is>()...);
 		}
 

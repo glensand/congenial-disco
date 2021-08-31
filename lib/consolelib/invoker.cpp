@@ -14,11 +14,12 @@ namespace disco {
     }
 
     void invoker::invoke(std::string_view arguments) {
-        auto&& name = parse<std::string_view>(arguments);
-        if(auto&& function_it = m_functions.find(name.data()); function_it != end(m_functions)) {
+        auto&& name_view = parse<std::string_view>(arguments);
+        auto name = std::string(name_view.data(), name_view.data() + name_view.size());
+        if(auto&& function_it = m_functions.find(name); function_it != end(m_functions)) {
             auto&& function = function_it->second;
             function->invoke(arguments);
-        } else if(auto&& var_it = m_variables.find(name.data()); var_it != end(m_variables)) {
+        } else if(auto&& var_it = m_variables.find(name); var_it != end(m_variables)) {
             auto&& variable = var_it->second;
             variable->apply(arguments);
         }

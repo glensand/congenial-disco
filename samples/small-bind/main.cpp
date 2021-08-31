@@ -9,25 +9,63 @@
 #include <iostream>
 
 #include "consolelib/invoker.h"
-#include "consolelib/parser.h"
+
+struct test_class final
+{
+    void do_void()
+    {
+        std::cout << "Do" << std::endl;
+    }
+
+    void do_string(std::string_view name)
+    {
+        std::cout << name << std::endl;
+    }
+};
+
+struct Functor final
+{
+    void operator()() const
+    {
+        
+    }
+};
+
+
+template<typename TReturn, typename TObj, typename TFunction, typename... Ts>
+auto create_impl(TObj* obj, TFunction&& function, hope::type_list<Ts...>) {
+    return std::function<TReturn(Ts...)> (
+        [=](const Ts&... args) { (*obj.*function)(args...); }
+    );
+}
+
+template<typename TObj, typename TFunction>
+auto create(TObj* obj, TFunction&& function) {
+    using traits_t = hope::function_traits<TFunction>;
+    return create_impl<traits_t::result_t>(obj, std::forward<TFunction>(function),
+        traits_t::arg_types
+    );
+}
 
 int main() {
-    //disco::invoker invoker;
-    //invoker.create_function("call", [] { std::cout << "call"; });
-    //invoker.create_function("invoke", [] { std::cout << "invoke"; });
+    disco::invoker invoker;
+    invoker.create_function("call", [] { std::cout << "call" << std::endl; });
+    invoker.create_function("invoke", [] { std::cout << "invoke" << std::endl; });
+    std::function func = [] {};
 
-    //int test_var;
-    //invoker.create_variable("test_var", test_var);
+    invoker.create_function("empty", func);
 
-    //invoker.invoke("test_var 1");
-    //invoker.invoke("call");
+    test_class obj;
+    invoker.create_function("do_void", &obj, &test_class::do_void);
+    invoker.create_function("do_string", &obj, &test_class::do_string);
 
-    std::string_view string_to_parse = "name 1.0 8";
-    auto&& name = disco::parse<std::string_view>(string_to_parse);
-    auto&& d_value = disco::parse<double>(string_to_parse);
-    auto&& i_value = disco::parse<int>(string_to_parse);
+    int test_var;
+    invoker.create_variable("test_var", test_var);
 
-    std::cout << "[" << name << "][" << d_value << "][" << i_value << "]" << std::endl;
+    invoker.invoke("test_var 1");
+    invoker.invoke("call");
+    invoker.invoke("do_void");
+    invoker.invoke("do_string GeorgeSand");
 
 	return 0;
 } 
