@@ -9,17 +9,25 @@
 #include <iostream>
 
 #include "consolelib/invoker.h"
+#include "consolelib/parser.h"
 
 int main() {
-    disco::invoker invoker;
-    invoker.create_function("call", [] { std::cout << "call"; });
-    invoker.create_function("invoke", [] { std::cout << "invoke"; });
+    //disco::invoker invoker;
+    //invoker.create_function("call", [] { std::cout << "call"; });
+    //invoker.create_function("invoke", [] { std::cout << "invoke"; });
 
-    int test_var;
-    invoker.create_variable("test_var", test_var);
+    //int test_var;
+    //invoker.create_variable("test_var", test_var);
 
-    invoker.invoke("test_var 1");
-    invoker.invoke("call");
+    //invoker.invoke("test_var 1");
+    //invoker.invoke("call");
+
+    std::string_view string_to_parse = "name 1.0 8";
+    auto&& name = disco::parse<std::string_view>(string_to_parse);
+    auto&& d_value = disco::parse<double>(string_to_parse);
+    auto&& i_value = disco::parse<int>(string_to_parse);
+
+    std::cout << "[" << name << "][" << d_value << "][" << i_value << "]" << std::endl;
 
 	return 0;
 } 

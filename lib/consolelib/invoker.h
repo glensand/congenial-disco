@@ -9,23 +9,25 @@
 #pragma once
 
 #include <functional>
-#include <string>
 #include <string_view>
 #include <map>
 #include <memory>
 #include <set>
 
+#include "consolelib/string_invoker.h"
 #include "consolelib/function/function_factory.h"
 #include "consolelib/variable/variable_instance.h"
 
 namespace disco {
 
-	class invoker final {
+	class invoker final : public string_invoker{
 	public:
 		~invoker();
 		invoker() = default;
 
-		void invoke(std::string_view arguments);
+		virtual void invoke(std::string_view arguments) override;
+
+		virtual std::vector<std::string_view> complete(std::string_view prefix) override;
 
 		template<typename... Ts>
 		void create_function(std::string_view name, Ts&&... args) {

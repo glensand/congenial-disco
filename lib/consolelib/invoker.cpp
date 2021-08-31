@@ -24,6 +24,12 @@ namespace disco {
         }
     }
 
+    std::vector<std::string_view> invoker::complete(std::string_view prefix) {
+        std::string firstAfterPrefix = prefix.data();
+        firstAfterPrefix.back() += 1; // next character
+        return { m_names.upper_bound(prefix), m_names.lower_bound(firstAfterPrefix) };
+    }
+
     void invoker::assert_variable_unique(std::string_view name) const {
         if (exist(name))
             throw already_exist(name.data());
