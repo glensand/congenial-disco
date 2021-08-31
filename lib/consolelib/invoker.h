@@ -20,9 +20,6 @@
 
 namespace disco {
 
-	class function;
-	class variable;
-
 	class invoker final {
 	public:
 		~invoker();
