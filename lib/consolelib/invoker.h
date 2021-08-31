@@ -20,15 +20,40 @@
 
 namespace disco {
 
+    /**
+	 * \brief Implementation of general invoker interface with additional functions to add executor of function or value changer
+	 */
 	class invoker final : public string_invoker{
 	public:
-		~invoker();
+
+		virtual ~invoker() override;
 		invoker() = default;
 
+		/**
+		* \brief Invokes function or change variable using given string
+		* Function or variable will be found by name. The name is the first parameter in given string;
+		* Call parameters might be separated with any known space separator
+		* To change variable call this function using this pattern: [variable_name] [new_value]
+		* To invoke registered function call it using this pattern: [function_name] [arg1 arg2 arg3 ...]
+		* If no one handler had not been found, function throws: not_exist exception
+		* On bad input throws bad_input
+		* \param arguments string to be processed
+		*/
 		virtual void invoke(std::string_view arguments) override;
 
+		/**
+		* \brief This method should be used such as "auto completion"
+		* \param prefix Prefix of the variable or function which has to be completed
+		* \return List of functions and variables which names has specified prefix
+		*/
 		virtual std::vector<std::string_view> complete(std::string_view prefix) override;
 
+        /**
+		 * \brief Adds function with specified parameters to the internal functions map
+		 * \param name The name of the function which should be use to call registered function
+		 * The name has to be unique
+		 * \param args Set of variables required for function creation
+		 */
 		template<typename... Ts>
 		void create_function(std::string_view name, Ts&&... args) {
 			assert_variable_unique(name);
@@ -38,6 +63,11 @@ namespace disco {
 			m_names.emplace(funcIt.first->first);
 		}
 
+        /**
+		 * \brief Adds variable changer to the inner variables map 
+		 * \param name The name of the variable, the name has to be unique
+		 * \param variable Reference to the variable
+		 */
 		template<typename T>
 		void create_variable(std::string_view name, T& variable) {
 			assert_variable_unique(name);

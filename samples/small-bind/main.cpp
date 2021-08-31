@@ -31,6 +31,9 @@ struct Functor final
     }
 };
 
+void just_empty_function() {
+    std::cout << "just_empty_function call" << std::endl;
+}
 
 template<typename TReturn, typename TObj, typename TFunction, typename... Ts>
 auto create_impl(TObj* obj, TFunction&& function, hope::type_list<Ts...>) {
@@ -47,13 +50,20 @@ auto create(TObj* obj, TFunction&& function) {
     );
 }
 
+template<typename R, typename... Ts>
+void deduce(R(Ts...))
+{
+    std::function<R(Ts...)> func(just_empty_function);
+}
+
 int main() {
     disco::invoker invoker;
+    invoker.create_function("empty_function", &just_empty_function);
     invoker.create_function("call", [] { std::cout << "call" << std::endl; });
     invoker.create_function("invoke", [] { std::cout << "invoke" << std::endl; });
     std::function func = [] {};
 
-    invoker.create_function("empty", func);
+    invoker.create_function("empty_lambda", func);
 
     test_class obj;
     invoker.create_function("do_void", &obj, &test_class::do_void);
@@ -66,6 +76,9 @@ int main() {
     invoker.invoke("call");
     invoker.invoke("do_void");
     invoker.invoke("do_string GeorgeSand");
+    invoker.invoke("empty_function");
+
+    deduce(just_empty_function);
 
 	return 0;
 } 

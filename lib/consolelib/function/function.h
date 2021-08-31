@@ -17,7 +17,7 @@ namespace disco  {
 		virtual ~function() = default;
 		function() = default;
 
-		virtual void invoke(std::string_view arguments) const = 0;
+		virtual void invoke(std::string_view arguments) = 0;
 
 		function(const function&) = delete;
 		function& operator=(const function&) = delete;

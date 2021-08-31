@@ -30,7 +30,7 @@ namespace disco {
 
 		using function::function;
 
-		virtual void invoke(std::string_view arguments) const override {
+		virtual void invoke(std::string_view arguments) override {
 			auto&& parsed_arguments = parse_arguments(arguments);
 			invoke(parsed_arguments, std::make_index_sequence<sizeof... (Ts)>{});
 		}
@@ -46,7 +46,7 @@ namespace disco {
 		}
 
 		template<std::size_t... Is>
-		void invoke(const invoke_args_t& args, std::index_sequence<Is...>) const {
+		void invoke(const invoke_args_t& args, std::index_sequence<Is...>) {
 			(void)m_function(args.template get<Is>()...);
 		}
 
