@@ -19,7 +19,7 @@ namespace disco {
 	template<typename R, typename... Ts>
 	class lambda_function final : public function
 	{
-		using invoke_args_t = hope::flat_tuple<Ts...>;
+		using invoke_args_t = hope::flat_tuple<std::decay_t<Ts>...>;
 	public:
 
 		lambda_function(std::function<R(Ts...)>&& func)
@@ -30,9 +30,22 @@ namespace disco {
 
 		using function::function;
 
-		virtual void invoke(std::string_view arguments) override {
+		virtual std::string invoke(std::string_view arguments) override {
+			std::string result;
 			auto&& parsed_arguments = parse_arguments(arguments);
-			invoke(parsed_arguments, std::make_index_sequence<sizeof... (Ts)>{});
+			if constexpr (std::is_same_v<R, void>)
+			{
+				invoke(parsed_arguments, std::make_index_sequence<sizeof... (Ts)>{});
+			}
+			else
+			{
+				auto&& call_result = invoke(parsed_arguments, std::make_index_sequence<sizeof... (Ts)>{});
+				if constexpr (std::is_convertible_v<R, std::string>)
+                    result = call_result;
+				else
+					result = std::to_string(call_result);
+			}
+			return result;
 		}
 
 	private:
@@ -46,8 +59,8 @@ namespace disco {
 		}
 
 		template<std::size_t... Is>
-		void invoke(const invoke_args_t& args, std::index_sequence<Is...>) {
-			(void)m_function(args.template get<Is>()...);
+		auto invoke(const invoke_args_t& args, std::index_sequence<Is...>) {
+			return m_function(args.template get<Is>()...);
 		}
 
 		std::function<R(Ts...)> m_function;

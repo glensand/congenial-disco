@@ -20,7 +20,7 @@ namespace disco  {
 		using callback_t = std::function<void(const TValue&)>;
 
 		virtual ~variable_instance() override = default;
-		explicit variable_instance(TValue& var,  callback_t&& callback = callback_t{})
+		explicit variable_instance(TValue& var,  callback_t&& callback)
 	        : m_variable(var)
 	        , m_callback(std::move(callback)){} 
 

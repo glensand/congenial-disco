@@ -29,11 +29,4 @@ namespace hope {
         static constexpr auto arity = sizeof...(Ts);
     };
 
-    template <typename TReturn, typename... Ts>
-    struct function_traits<TReturn(Ts...)> {
-        using result_t = TReturn;
-        static constexpr type_list<Ts...> arg_types;
-        static constexpr auto arity = sizeof...(Ts);
-    };
-
 }

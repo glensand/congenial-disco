@@ -30,16 +30,16 @@ namespace disco {
 		invoker() = default;
 
 		/**
-		* \brief Invokes function or change variable using given string
-		* Function or variable will be found by name. The name is the first parameter in given string;
-		* Call parameters might be separated with any known space separator
-		* To change variable call this function using this pattern: [variable_name] [new_value]
-		* To invoke registered function call it using this pattern: [function_name] [arg1 arg2 arg3 ...]
-		* If no one handler had not been found, function throws: not_exist exception
-		* On bad input throws bad_input
+		* \brief Invokes function or change variable using given string.
+		* Function or variable will be found by name. The name is the first parameter in given string.
+		* Call parameters might be separated with any known space separator.
+		* To change variable call this function using this pattern: [variable_name] [new_value].
+		* To invoke registered function call it using this pattern: [function_name] [arg1 arg2 arg3 ...].
+		* If no one handler had not been found, function throws: not_exist exception.
+		* On bad input throws bad_input.
 		* \param arguments string to be processed
 		*/
-		virtual void invoke(std::string_view arguments) override;
+		virtual std::string invoke(std::string_view arguments) override;
 
 		/**
 		* \brief This method should be used such as "auto completion"
@@ -67,12 +67,13 @@ namespace disco {
 		 * \brief Adds variable changer to the inner variables map 
 		 * \param name The name of the variable, the name has to be unique
 		 * \param variable Reference to the variable
+		 * \param callback Function will be called on each variable update, new value will be passed to the callie
 		 */
-		template<typename T>
-		void create_variable(std::string_view name, T& variable) {
+		template<typename T, typename TFunction = std::function<void(const T&)>>
+		void create_variable(std::string_view name, T& variable, TFunction&& callback = TFunction{ }) {
 			assert_variable_unique(name);
 			auto&& varIt = m_variables.emplace(name.data(), 
-				    new variable_instance(variable));
+				    new variable_instance(variable, std::move(callback)));
 
 			m_names.emplace(varIt.first->first);
 		}

@@ -56,11 +56,38 @@ void deduce(R(Ts...))
     std::function<R(Ts...)> func(just_empty_function);
 }
 
+template<typename TReturn, typename TFunction, typename... Ts>
+auto create_impl(TFunction&& function, hope::type_list<Ts...>) {
+    return std::function(
+        [=](const Ts&... args) { function(args...); }
+    );
+}
+
+template<typename TFunction>
+auto create(TFunction&& function) {
+    using traits_t = hope::function_traits<std::decay_t<TFunction>>;
+    traits_t trait;
+    auto arity = trait.arity;
+    traits_t::result_t return_v = "    ";
+    return create_impl<traits_t::result_t>(std::forward<TFunction>(function),
+        traits_t::arg_types
+        );
+}
+
+int compute_dummy(int a, int b)
+{
+    auto result = a + b;
+    std::cout << result << std::endl;
+    return result;
+}
+
 int main() {
     disco::invoker invoker;
     invoker.create_function("empty_function", &just_empty_function);
     invoker.create_function("call", [] { std::cout << "call" << std::endl; });
     invoker.create_function("invoke", [] { std::cout << "invoke" << std::endl; });
+    invoker.create_function("invoke_return_value", [] { return "invoke_return_value"; });
+    invoker.create_function("compute_dummy", compute_dummy);
     std::function func = [] {};
 
     invoker.create_function("empty_lambda", func);
@@ -77,8 +104,8 @@ int main() {
     invoker.invoke("do_void");
     invoker.invoke("do_string GeorgeSand");
     invoker.invoke("empty_function");
-
-    deduce(just_empty_function);
+    std::cout << invoker.invoke("compute_dummy 12, 1") << std::endl;
+    std::cout << invoker.invoke("invoke_return_value") << std::endl;
 
 	return 0;
 } 

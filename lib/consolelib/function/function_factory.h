@@ -34,7 +34,7 @@ namespace disco {
 		template<typename TFunction> 
 		static function* create(TFunction&& function) {
 			using traits_t = hope::function_traits<std::decay_t<TFunction>>; // function has to be decayed, cause native lambda type ([=]{}) has no operators
-			auto&& lambda = create_impl<traits_t::result_t>(std::forward<TFunction>(function),
+			auto&& lambda = create_impl(std::forward<TFunction>(function),
 				traits_t::arg_types);
 			return new lambda_function(std::move(lambda));
 		}
@@ -46,7 +46,7 @@ namespace disco {
 		 */
 		template<typename TReturn, typename... Ts>
 		static function* create(TReturn(*func)(Ts...)) {
-			auto&& lambda = create_impl<TReturn>(func, hope::type_list<Ts...>{});
+			auto&& lambda = create_impl(func, hope::type_list<Ts...>{});
 			return new lambda_function(std::move(lambda));
 		}
 
@@ -59,7 +59,7 @@ namespace disco {
 		template<typename TFunction, typename TObj>
 		static function* create(TObj* obj, TFunction&& function) {
 			using traits_t = hope::function_traits<TFunction>;
-			auto&& lambda = create_impl<traits_t::result_t>(obj, std::forward<TFunction>(function),
+			auto&& lambda = create_impl(obj, std::forward<TFunction>(function),
 				traits_t::arg_types
 			);
 			return new lambda_function(std::move(lambda));
@@ -76,17 +76,17 @@ namespace disco {
 		}
 
 	private:
-		template<typename TReturn, typename TObj, typename TFunction, typename... Ts>
+		template<typename TObj, typename TFunction, typename... Ts>
 		static auto create_impl(TObj* obj, TFunction&& function, hope::type_list<Ts...>) {
-			return std::function<TReturn(Ts...)>(
-				[=](const Ts&... args) { (*obj.*function)(args...); }
+			return std::function(
+				[=](const Ts&... args) { return (*obj.*function)(args...); }
 			);
 		}
 
-		template<typename TReturn, typename TFunction, typename... Ts>
+		template<typename TFunction, typename... Ts>
 		static auto create_impl(TFunction&& function, hope::type_list<Ts...>) {
-			return std::function<TReturn(Ts...)>(
-				[=](const Ts&... args) { function(args...); }
+			return std::function(
+				[=](const Ts&... args) { return function(args...); }
 			);
 		}
 	};

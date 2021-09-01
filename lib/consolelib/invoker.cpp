@@ -13,16 +13,19 @@ namespace disco {
             delete variable;
     }
 
-    void invoker::invoke(std::string_view arguments) {
+    std::string invoker::invoke(std::string_view arguments) {
+        std::string result;
         auto&& name_view = parse<std::string_view>(arguments);
         auto name = std::string(name_view.data(), name_view.data() + name_view.size());
         if(auto&& function_it = m_functions.find(name); function_it != end(m_functions)) {
             auto&& function = function_it->second;
-            function->invoke(arguments);
+            result = function->invoke(arguments);
         } else if(auto&& var_it = m_variables.find(name); var_it != end(m_variables)) {
             auto&& variable = var_it->second;
             variable->apply(arguments);
         }
+
+        return result;
     }
 
     std::vector<std::string_view> invoker::complete(std::string_view prefix) {

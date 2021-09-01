@@ -14,6 +14,7 @@ namespace disco  {
 
 	class variable {
 	public:
+
 		virtual ~variable() = default;
 		variable() = default;
 
