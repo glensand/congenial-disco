@@ -19,6 +19,10 @@ namespace disco  {
 
 		virtual std::string invoke(std::string_view arguments) = 0;
 
+		virtual std::string signature() const = 0;
+
+		virtual const std::string& description() const = 0;
+
 		function(const function&) = delete;
 		function& operator=(const function&) = delete;
 	};

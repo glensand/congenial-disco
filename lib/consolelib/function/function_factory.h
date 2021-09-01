@@ -29,50 +29,65 @@ namespace disco {
         /**
 		 * \brief Creates function object using passed lambda expression or functional object (operator() has to be declared)
 		 * \param function object to be used to create function wrapper
+		 * \param description Short explanation of reason d'etre of this the registered function
 		 * \return pointer to the function wrapper; NOTE: this object has to be manually deallocated 
 		 */
 		template<typename TFunction> 
-		static function* create(TFunction&& function) {
+		static function* create(TFunction&& function, std::string description = "") {
 			using traits_t = hope::function_traits<std::decay_t<TFunction>>; // function has to be decayed, cause native lambda type ([=]{}) has no operators
 			auto&& lambda = create_impl(std::forward<TFunction>(function),
 				traits_t::arg_types);
-			return new lambda_function(std::move(lambda));
+			return new lambda_function(std::move(lambda), std::move(description));
 		}
 
         /**
 		 * \brief Creates function object using pointer to function or pointer to static method of some class
 		 * \param func pointer to function or static method
+		 * \param description Short explanation of reason d'etre of this the registered function
 		 * \return pointer to the function wrapper; NOTE: this object has to be manually deallocated 
 		 */
 		template<typename TReturn, typename... Ts>
-		static function* create(TReturn(*func)(Ts...)) {
+		static function* create(TReturn(*func)(Ts...), std::string description = "") {
 			auto&& lambda = create_impl(func, hope::type_list<Ts...>{});
-			return new lambda_function(std::move(lambda));
+			return new lambda_function(std::move(lambda), std::move(description));
 		}
 
         /**
 		 * \brief Creates function object using pointer to instance of some class and specified method
 		 * \param function pointer to method to be called
+		 * \param description Short explanation of reason d'etre of this the registered function
 		 * \param obj instance of object of specified class
 		 * \return pointer to the function wrapper; NOTE: this object has to be manually deallocated 
 		 */
 		template<typename TFunction, typename TObj>
-		static function* create(TObj* obj, TFunction&& function) {
+		static function* create(TObj* obj, TFunction&& function, std::string description = "") {
 			using traits_t = hope::function_traits<TFunction>;
 			auto&& lambda = create_impl(obj, std::forward<TFunction>(function),
 				traits_t::arg_types
 			);
-			return new lambda_function(std::move(lambda));
+			return new lambda_function(std::move(lambda), std::move(description));
 		}
 
         /**
 		 * \brief Creates function object using specified std::function instance
-		 * \param function functor to be passed to thin wrapper 
+		 * \param function functor to be passed to thin wrapper
+		 * \param description Short explanation of reason d'etre of this the registered function
 		 * \return pointer to the function wrapper; NOTE: this object has to be manually deallocated 
 		 */
 		template<typename TSignature>
-		static function* create(const std::function<TSignature>& function) {
-			return new lambda_function(function);
+		static function* create(const std::function<TSignature>& function, std::string description = "") {
+			return new lambda_function(function, std::move(description));
+		}
+
+		/**
+	 * \brief Creates function object using specified std::function instance
+	 * \param function functor to be passed to thin wrapper
+	 * \param description Short explanation of reason d'etre of this the registered function
+	 * \return pointer to the function wrapper; NOTE: this object has to be manually deallocated
+	 */
+		template<typename TSignature>
+		static function* create(std::function<TSignature>&& function, std::string description = "") {
+			return new lambda_function(std::move(function), std::move(description));
 		}
 
 	private:

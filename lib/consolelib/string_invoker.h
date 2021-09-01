@@ -40,6 +40,14 @@ namespace disco {
 		 */
 		virtual std::vector<std::string_view> complete(std::string_view prefix) = 0;
 
+        /**
+		 * \brief Creates list of descriptions of the registered functions. Description format:
+		 * [name] : [signature]
+		 * signature format is : [return_type][(parameter types)]
+		 * \return List with descriptions of all registered functions 
+		 */
+		virtual std::vector<std::string> signatures() const = 0;
+
 		string_invoker(const string_invoker&) = delete;
 		string_invoker& operator=(const string_invoker&) = delete;
 		string_invoker(string_invoker&&) = delete;

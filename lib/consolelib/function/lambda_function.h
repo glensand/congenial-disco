@@ -22,11 +22,13 @@ namespace disco {
 		using invoke_args_t = hope::flat_tuple<std::decay_t<Ts>...>;
 	public:
 
-		lambda_function(std::function<R(Ts...)>&& func)
-		    : m_function(std::move(func)){ }
+		lambda_function(std::function<R(Ts...)>&& func, std::string description)
+		    : m_description(std::move(description))
+	        , m_function(std::move(func)){ }
 
-		lambda_function(const std::function<R(Ts...)>& func)
-			: m_function(func) { }
+		lambda_function(const std::function<R(Ts...)>& func, std::string description)
+			: m_description(std::move(description))
+			, m_function(func) { }
 
 		using function::function;
 
@@ -48,6 +50,27 @@ namespace disco {
 			return result;
 		}
 
+		virtual std::string signature() const override {
+			std::string result(typeid(R).name());
+			result.push_back('(');
+			if constexpr (size(hope::type_list<Ts...>{}) > 0)
+			{
+				const char* names[] = { typeid(Ts).name()... };
+				for (auto name : names)
+				{
+					result += name;
+					result += ", ";
+				}
+				result.resize(result.size() - 2);
+			}
+			result.push_back(')');
+			return result;
+		}
+
+		virtual const std::string& description() const override {
+			return m_description;
+		}
+
 	private:
 		invoke_args_t parse_arguments(std::string_view arguments) const {
 			invoke_args_t invoke_args;
@@ -63,6 +86,7 @@ namespace disco {
 			return m_function(args.template get<Is>()...);
 		}
 
+		std::string m_description;
 		std::function<R(Ts...)> m_function;
 	};
 

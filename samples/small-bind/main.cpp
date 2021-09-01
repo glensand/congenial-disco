@@ -107,5 +107,9 @@ int main() {
     std::cout << invoker.invoke("compute_dummy 12, 1") << std::endl;
     std::cout << invoker.invoke("invoke_return_value") << std::endl;
 
+    auto&& descriptions = invoker.signatures();
+    for (auto&& description : descriptions)
+        std::cout << description << std::endl;
+
 	return 0;
 } 

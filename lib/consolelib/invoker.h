@@ -23,7 +23,7 @@ namespace disco {
     /**
 	 * \brief Implementation of general invoker interface with additional functions to add executor of function or value changer
 	 */
-	class invoker final : public string_invoker{
+	class invoker final : public string_invoker {
 	public:
 
 		virtual ~invoker() override;
@@ -76,6 +76,23 @@ namespace disco {
 				    new variable_instance(variable, std::move(callback)));
 
 			m_names.emplace(varIt.first->first);
+		}
+
+		/**
+		* \brief Creates list of descriptions of the registered functions. Description format:
+		* [name] : [signature]
+		* signature format is : [return_type][(parameter types)]
+		* \return List with descriptions of all registered functions
+		*/
+		virtual std::vector<std::string> signatures() const override {
+			std::vector<std::string> description_list;
+			description_list.reserve(m_functions.size());
+			for(auto&& [name, function] : m_functions) {
+				description_list.emplace_back(
+					name + " : " + function->signature()
+				);
+			}
+			return description_list;
 		}
 
 		invoker(const invoker&) = delete;
