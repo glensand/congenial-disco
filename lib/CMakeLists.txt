@@ -12,6 +12,8 @@ file(GLOB CL_HEADERS
     consolelib/exception/*.h
     consolelib/function/*.h
     consolelib/variable/*.h
+    consolelib/common/*.h
+    consolelib/generator/*.h
 )
 
 file(GLOB CL_SOURSES
@@ -19,6 +21,7 @@ file(GLOB CL_SOURSES
     consolelib/exception/*.cpp
     consolelib/function/*.cpp
     consolelib/variable/*.cpp
+    consolelib/generator/*.cpp
 )
 
 add_library(consolelib STATIC ${CL_HEADERS} ${CL_SOURSES})

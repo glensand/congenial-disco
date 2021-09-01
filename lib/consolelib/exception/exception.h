@@ -9,11 +9,16 @@
 #pragma once
 
 #include <string>
+#include "consolelib/common/foundation.h"
 
 namespace disco {
 
     class exception {
     public:
+
+        DECLARE_NON_COPYABLE(exception);
+        DECLARE_EXPLICIT_DEFAULT_MOVABLE(exception);
+
         virtual ~exception() = default;
         exception(std::string what) noexcept;
 

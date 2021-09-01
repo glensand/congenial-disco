@@ -11,7 +11,8 @@
 #include <functional>
 #include "hope/tuple/flat_tuple.h"
 
-#include "consolelib/parser.h"
+#include "consolelib/generator/parser.h"
+#include "consolelib/generator/generator.h"
 #include "consolelib/function/function.h"
 
 namespace disco {
@@ -32,15 +33,20 @@ namespace disco {
 
 		using function::function;
 
+		// function implementation
+
+		/**
+		* \brief Tries to invoke internal function with given arguments, throws disco::bad_input if given sequence had not been parsed correctly
+		* \param arguments Input sequence with arguments to be parsed
+		* \return String representation of the return value of the function, return value has to be convertable to string, if internal function returns nothing,
+		* the result of operation is empty string
+		*/
 		virtual std::string invoke(std::string_view arguments) override {
 			std::string result;
 			auto&& parsed_arguments = parse_arguments(arguments);
-			if constexpr (std::is_same_v<R, void>)
-			{
+			if constexpr (std::is_same_v<R, void>) {
 				invoke(parsed_arguments, std::make_index_sequence<sizeof... (Ts)>{});
-			}
-			else
-			{
+			} else {
 				auto&& call_result = invoke(parsed_arguments, std::make_index_sequence<sizeof... (Ts)>{});
 				if constexpr (std::is_convertible_v<R, std::string>)
                     result = call_result;
@@ -50,24 +56,28 @@ namespace disco {
 			return result;
 		}
 
-		virtual std::string signature() const override {
-			std::string result(typeid(R).name());
-			result.push_back('(');
-			if constexpr (size(hope::type_list<Ts...>{}) > 0)
-			{
-				const char* names[] = { typeid(Ts).name()... };
-				for (auto name : names)
-				{
-					result += name;
-					result += ", ";
-				}
-				result.resize(result.size() - 2);
-			}
-			result.push_back(')');
-			return result;
+		/**
+		* \brief Converts type of return value to string_view
+		* \return String representation of the internal function call result
+		*/
+		virtual std::string_view return_type() const noexcept override {
+			return type_name<R>();
 		}
 
-		virtual const std::string& description() const override {
+		/**
+		* \brief Collect information of the types which have to be passed to the internal function
+		* \return List of the types of function arguments
+		*/
+		virtual std::vector<std::string_view> parameter_types() const override {
+			std::vector<std::string_view> types = { type_name<Ts>()... };
+			return types;
+		}
+
+		/**
+		* \brief Returns function description, the description (reason d'etre of the function)
+		* \return String with description
+		*/
+		virtual const std::string& description() const noexcept override {
 			return m_description;
 		}
 

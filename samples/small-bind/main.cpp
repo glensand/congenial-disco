@@ -8,7 +8,8 @@
 
 #include <iostream>
 
-#include "consolelib/invoker.h"
+#include "consolelib/string_invoker.h"
+#include "consolelib/name_completer.h"
 
 struct test_class final
 {
@@ -35,45 +36,6 @@ void just_empty_function() {
     std::cout << "just_empty_function call" << std::endl;
 }
 
-template<typename TReturn, typename TObj, typename TFunction, typename... Ts>
-auto create_impl(TObj* obj, TFunction&& function, hope::type_list<Ts...>) {
-    return std::function<TReturn(Ts...)> (
-        [=](const Ts&... args) { (*obj.*function)(args...); }
-    );
-}
-
-template<typename TObj, typename TFunction>
-auto create(TObj* obj, TFunction&& function) {
-    using traits_t = hope::function_traits<TFunction>;
-    return create_impl<traits_t::result_t>(obj, std::forward<TFunction>(function),
-        traits_t::arg_types
-    );
-}
-
-template<typename R, typename... Ts>
-void deduce(R(Ts...))
-{
-    std::function<R(Ts...)> func(just_empty_function);
-}
-
-template<typename TReturn, typename TFunction, typename... Ts>
-auto create_impl(TFunction&& function, hope::type_list<Ts...>) {
-    return std::function(
-        [=](const Ts&... args) { function(args...); }
-    );
-}
-
-template<typename TFunction>
-auto create(TFunction&& function) {
-    using traits_t = hope::function_traits<std::decay_t<TFunction>>;
-    traits_t trait;
-    auto arity = trait.arity;
-    traits_t::result_t return_v = "    ";
-    return create_impl<traits_t::result_t>(std::forward<TFunction>(function),
-        traits_t::arg_types
-        );
-}
-
 int compute_dummy(int a, int b)
 {
     auto result = a + b;
@@ -82,9 +44,12 @@ int compute_dummy(int a, int b)
 }
 
 int main() {
-    disco::invoker invoker;
+    disco::name_completer completer;
+    disco::string_invoker invoker([&](auto&& name) {completer.add_name(name); });
     invoker.create_function("empty_function", &just_empty_function);
     invoker.create_function("call", [] { std::cout << "call" << std::endl; });
+    invoker.create_function("call2", [] { std::cout << "call2" << std::endl; });
+    invoker.create_function("call3", [] { std::cout << "call3" << std::endl; });
     invoker.create_function("invoke", [] { std::cout << "invoke" << std::endl; });
     invoker.create_function("invoke_return_value", [] { return "invoke_return_value"; });
     invoker.create_function("compute_dummy", compute_dummy);
@@ -111,5 +76,9 @@ int main() {
     for (auto&& description : descriptions)
         std::cout << description << std::endl;
 
-	return 0;
+    auto&& call_completion = completer.complete("call");
+    for (auto&& name : call_completion)
+        std::cout << name << std::endl;
+
+	return 0;  // NOLINT(clang-diagnostic-misleading-indentation)
 } 
