@@ -1,5 +1,6 @@
 #include "function_proxy_impl.h"
 
+#include <string>
 #include "consolelib/function/function.h"
 
 namespace disco {
