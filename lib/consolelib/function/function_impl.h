@@ -18,16 +18,16 @@
 namespace disco {
 
 	template<typename R, typename... Ts>
-	class lambda_function final : public function
+	class function_impl final : public function
 	{
 		using invoke_args_t = hope::flat_tuple<std::decay_t<Ts>...>;
 	public:
 
-		lambda_function(std::function<R(Ts...)>&& func, std::string description)
+		function_impl(std::function<R(Ts...)>&& func, std::string description)
 		    : m_description(std::move(description))
 	        , m_function(std::move(func)){ }
 
-		lambda_function(const std::function<R(Ts...)>& func, std::string description)
+		function_impl(const std::function<R(Ts...)>& func, std::string description)
 			: m_description(std::move(description))
 			, m_function(func) { }
 

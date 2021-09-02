@@ -17,10 +17,10 @@ namespace disco {
 	/**
 	 * \brief Represent interface to word auto completer
 	 */
-	class name_completer final : completer {
+	class completer_impl final : completer {
 	public:
-		virtual ~name_completer() override = default;
-		name_completer() = default;
+		virtual ~completer_impl() override = default;
+		completer_impl() = default;
 
 		/**
 		 * \brief This method should be used such as "auto completion"
@@ -35,8 +35,8 @@ namespace disco {
 		 */
 		virtual void add_name(std::string_view name) override;
 
-		DECLARE_NON_COPYABLE(name_completer);
-		DECLARE_NON_MOVABLE(name_completer);
+		DECLARE_NON_COPYABLE(completer_impl);
+		DECLARE_NON_MOVABLE(completer_impl);
 
 	private:
 		std::set<std::string_view> m_names;

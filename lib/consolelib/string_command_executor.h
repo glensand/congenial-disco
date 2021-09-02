@@ -17,7 +17,7 @@
 #include "consolelib/invoker.h"
 #include "consolelib/storage.h"
 #include "consolelib/function/function_factory.h"
-#include "consolelib/variable/variable_instance.h"
+#include "consolelib/variable/variable_impl.h"
 
 namespace disco {
 
@@ -27,16 +27,16 @@ namespace disco {
     /**
 	 * \brief Implementation of general invoker interface with additional functions to add executor of function or value changer
 	 */
-	class string_invoker final : public invoker, public storage {
+	class string_command_executor final : public invoker, public storage {
 	public:
 
 		using on_new_name_added_callback_t = std::function<void(std::string_view)>;
 
-	    DECLARE_NON_COPYABLE(string_invoker);
-		DECLARE_NON_MOVABLE(string_invoker);
+	    DECLARE_NON_COPYABLE(string_command_executor);
+		DECLARE_NON_MOVABLE(string_command_executor);
 
-		virtual ~string_invoker() override;
-        explicit string_invoker(function_proxy* f_proxy, variable_proxy* v_proxy,
+		virtual ~string_command_executor() override;
+        explicit string_command_executor(function_proxy* f_proxy, variable_proxy* v_proxy,
 			on_new_name_added_callback_t&& callback = on_new_name_added_callback_t{ });
 
 		// invoker implementation
@@ -90,7 +90,7 @@ namespace disco {
 		void create_variable(std::string_view name, T& variable, TFunction&& callback = TFunction{ }) {
 			assert_variable_unique(name);
 			auto&& varIt = m_variables.emplace(name.data(), 
-				    new variable_instance(variable, std::move(callback)));
+				    new variable_impl(variable, std::move(callback)));
 			
 			fire_variable_added(varIt.first->first);
 		}

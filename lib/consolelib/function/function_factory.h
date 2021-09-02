@@ -9,7 +9,7 @@
 #pragma once
 
 #include "hope/function/function_traits.h"
-#include "consolelib/function/lambda_function.h"
+#include "consolelib/function/function_impl.h"
 
 namespace disco {
 
@@ -37,7 +37,7 @@ namespace disco {
 			using traits_t = hope::function_traits<std::decay_t<TFunction>>; // function has to be decayed, cause native lambda type ([=]{}) has no operators
 			auto&& lambda = create_impl(std::forward<TFunction>(function),
 				traits_t::arg_types);
-			return new lambda_function(std::move(lambda), std::move(description));
+			return new function_impl(std::move(lambda), std::move(description));
 		}
 
         	/**
@@ -49,7 +49,7 @@ namespace disco {
 		template<typename TReturn, typename... Ts>
 		static function* create(TReturn(*func)(Ts...), std::string description = "") {
 			auto&& lambda = create_impl(func, hope::type_list<Ts...>{});
-			return new lambda_function(std::move(lambda), std::move(description));
+			return new function_impl(std::move(lambda), std::move(description));
 		}
 
         	/**
@@ -65,7 +65,7 @@ namespace disco {
 			auto&& lambda = create_impl(obj, std::forward<TFunction>(function),
 				traits_t::arg_types
 			);
-			return new lambda_function(std::move(lambda), std::move(description));
+			return new function_impl(std::move(lambda), std::move(description));
 		}
 
         	/**
@@ -76,7 +76,7 @@ namespace disco {
 		 */
 		template<typename TSignature>
 		static function* create(const std::function<TSignature>& function, std::string description = "") {
-			return new lambda_function(function, std::move(description));
+			return new function_impl(function, std::move(description));
 		}
 
 		/**
@@ -87,7 +87,7 @@ namespace disco {
 	 	*/
 		template<typename TSignature>
 		static function* create(std::function<TSignature>&& function, std::string description = "") {
-			return new lambda_function(std::move(function), std::move(description));
+			return new function_impl(std::move(function), std::move(description));
 		}
 
 	private:

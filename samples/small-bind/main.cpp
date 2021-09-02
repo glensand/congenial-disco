@@ -8,8 +8,8 @@
 
 #include <iostream>
 
-#include "consolelib/string_invoker.h"
-#include "consolelib/name_completer.h"
+#include "consolelib/string_command_executor.h"
+#include "consolelib/completer_impl.h"
 #include "consolelib/variable/variable_proxy_impl.h"
 #include "consolelib/function/function_proxy_impl.h"
 
@@ -46,8 +46,8 @@ int compute_dummy(int a, int b)
 }
 
 int main() {
-    disco::name_completer completer;
-    disco::string_invoker invoker(new disco::function_proxy_impl, new disco::variable_proxy_impl,
+    disco::completer_impl completer;
+    disco::string_command_executor invoker(new disco::function_proxy_impl, new disco::variable_proxy_impl,
         [&](auto&& name) {completer.add_name(name); });
 
     invoker.create_function("empty_function", &just_empty_function);

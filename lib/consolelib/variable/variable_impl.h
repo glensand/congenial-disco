@@ -16,7 +16,7 @@
 namespace disco  {
 
 	template<typename TValue>
-	class variable_instance final : public variable {
+	class variable_impl final : public variable {
 	public:
 
 		using variable::variable;
@@ -24,9 +24,9 @@ namespace disco  {
 
 		using callback_t = std::function<void(const TValue&)>;
 
-		virtual ~variable_instance() override = default;
+		virtual ~variable_impl() override = default;
 
-		explicit variable_instance(TValue& var,  callback_t&& callback)
+		explicit variable_impl(TValue& var,  callback_t&& callback)
 	        : m_variable(var)
 	        , m_callback(std::move(callback)){} 
 
@@ -62,8 +62,8 @@ namespace disco  {
 			return type_name<TValue>();
 		}
 
-		DECLARE_NON_COPYABLE(variable_instance);
-		DECLARE_NON_MOVABLE(variable_instance);
+		DECLARE_NON_COPYABLE(variable_impl);
+		DECLARE_NON_MOVABLE(variable_impl);
 
 	private:
 
