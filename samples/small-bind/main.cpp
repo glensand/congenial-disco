@@ -86,5 +86,5 @@ int main() {
     for (auto&& name : call_completion)
         std::cout << name << std::endl;
 
-	return 0;  // NOLINT(clang-diagnostic-misleading-indentation)
+    return 0;  // NOLINT(clang-diagnostic-misleading-indentation)
 } 

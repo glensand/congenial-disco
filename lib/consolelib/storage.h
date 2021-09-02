@@ -16,24 +16,24 @@
 namespace disco {
 
     /**
-	 * \brief Interface for function and variable storage 
-	 */
-	class storage {
-	public:
-		virtual ~storage() = default;
-		storage() = default;
+     * \brief Interface for function and variable storage 
+     */
+    class storage {
+    public:
+        virtual ~storage() = default;
+        storage() = default;
 
         /**
-		 * \brief Creates list of descriptions of the registered functions and variables. Description format:
-		 * [name] : [signature]
-		 * signature format is : [return_type][(parameter types)]
-		 * Variable format is: [variable_type] [variable_name]
-		 * \return List with descriptions of all registered functions
-		 */
-		virtual std::vector<std::string> signatures() const = 0;
+         * \brief Creates list of descriptions of the registered functions and variables. Description format:
+         * [name] : [signature]
+         * signature format is : [return_type][(parameter types)]
+         * Variable format is: [variable_type] [variable_name]
+         * \return List with descriptions of all registered functions
+         */
+        virtual std::vector<std::string> signatures() const = 0;
 
-		DECLARE_NON_COPYABLE(storage);
-		DECLARE_NON_MOVABLE(storage);
-	};
+        DECLARE_NON_COPYABLE(storage);
+        DECLARE_NON_MOVABLE(storage);
+    };
 
 }

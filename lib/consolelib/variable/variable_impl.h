@@ -15,60 +15,60 @@
 
 namespace disco  {
 
-	template<typename TValue>
-	class variable_impl final : public variable {
-	public:
+    template<typename TValue>
+    class variable_impl final : public variable {
+    public:
 
-		using variable::variable;
-		using variable::operator=;
+        using variable::variable;
+        using variable::operator=;
 
-		using callback_t = std::function<void(const TValue&)>;
+        using callback_t = std::function<void(const TValue&)>;
 
-		virtual ~variable_impl() override = default;
+        virtual ~variable_impl() override = default;
 
-		explicit variable_impl(TValue& var,  callback_t&& callback)
-	        : m_variable(var)
-	        , m_callback(std::move(callback)){} 
+        explicit variable_impl(TValue& var,  callback_t&& callback)
+            : m_variable(var)
+            , m_callback(std::move(callback)){} 
 
-		/**
-		* \brief Tries to change variable name to given value. If input sequence could not been parsed correctly, threw disco::bad_input
-		* Calls registered function if variable were changed successfully, propagate new value to the callback
-		* \param arguments Input sequence containing new value of the variable
-		*/
-		virtual void set(std::string_view arguments) override {
-			auto&& value = parse<TValue>(arguments);
-			m_variable = value;
+        /**
+        * \brief Tries to change variable name to given value. If input sequence could not been parsed correctly, threw disco::bad_input
+        * Calls registered function if variable were changed successfully, propagate new value to the callback
+        * \param arguments Input sequence containing new value of the variable
+        */
+        virtual void set(std::string_view arguments) override {
+            auto&& value = parse<TValue>(arguments);
+            m_variable = value;
 
-			if (m_callback)
-				m_callback(m_variable);
-		}
+            if (m_callback)
+                m_callback(m_variable);
+        }
 
-		/**
-		* \brief Converts internal value to the string
-		* \return Containing value in string form
-		*/
-		virtual std::string get() const override {
-			if constexpr (std::is_convertible_v<TValue, std::string>)
-				return m_variable;
-			else
-				return std::to_string(m_variable);
-		}
+        /**
+        * \brief Converts internal value to the string
+        * \return Containing value in string form
+        */
+        virtual std::string get() const override {
+            if constexpr (std::is_convertible_v<TValue, std::string>)
+                return m_variable;
+            else
+                return std::to_string(m_variable);
+        }
 
-		/**
-		* \brief Provide conversion of the internal variable type to its string representation
-		* \return String representation of the variable type
-		*/
-		virtual std::string_view type() const noexcept override {
-			return type_name<TValue>();
-		}
+        /**
+        * \brief Provide conversion of the internal variable type to its string representation
+        * \return String representation of the variable type
+        */
+        virtual std::string_view type() const noexcept override {
+            return type_name<TValue>();
+        }
 
-		DECLARE_NON_COPYABLE(variable_impl);
-		DECLARE_NON_MOVABLE(variable_impl);
+        DECLARE_NON_COPYABLE(variable_impl);
+        DECLARE_NON_MOVABLE(variable_impl);
 
-	private:
+    private:
 
-		TValue& m_variable;
-		callback_t m_callback;
-	};
+        TValue& m_variable;
+        callback_t m_callback;
+    };
 
 }
