@@ -13,7 +13,7 @@
 
 namespace disco {
 
-    /**
+    	/**
 	 * \brief Utility class, used to create some sorts of functional object wrappers
 	 * Allowed function types are:
 	 * - pointer to member function, the object on which the method will be called is also required
@@ -26,7 +26,7 @@ namespace disco {
 		function_factory() = delete;
 		~function_factory() = delete;
 
-        /**
+        	/**
 		 * \brief Creates function object using passed lambda expression or functional object (operator() has to be declared)
 		 * \param function object to be used to create function wrapper
 		 * \param description Short explanation of reason d'etre of this the registered function
@@ -40,7 +40,7 @@ namespace disco {
 			return new lambda_function(std::move(lambda), std::move(description));
 		}
 
-        /**
+        	/**
 		 * \brief Creates function object using pointer to function or pointer to static method of some class
 		 * \param func pointer to function or static method
 		 * \param description Short explanation of reason d'etre of this the registered function
@@ -52,7 +52,7 @@ namespace disco {
 			return new lambda_function(std::move(lambda), std::move(description));
 		}
 
-        /**
+        	/**
 		 * \brief Creates function object using pointer to instance of some class and specified method
 		 * \param function pointer to method to be called
 		 * \param description Short explanation of reason d'etre of this the registered function
@@ -68,7 +68,7 @@ namespace disco {
 			return new lambda_function(std::move(lambda), std::move(description));
 		}
 
-        /**
+        	/**
 		 * \brief Creates function object using specified std::function instance
 		 * \param function functor to be passed to thin wrapper
 		 * \param description Short explanation of reason d'etre of this the registered function
@@ -80,11 +80,11 @@ namespace disco {
 		}
 
 		/**
-	 * \brief Creates function object using specified std::function instance
-	 * \param function functor to be passed to thin wrapper
-	 * \param description Short explanation of reason d'etre of this the registered function
-	 * \return pointer to the function wrapper; NOTE: this object has to be manually deallocated
-	 */
+	 	* \brief Creates function object using specified std::function instance
+	 	* \param function functor to be passed to thin wrapper
+	 	* \param description Short explanation of reason d'etre of this the registered function
+	 	* \return pointer to the function wrapper; NOTE: this object has to be manually deallocated
+	 	*/
 		template<typename TSignature>
 		static function* create(std::function<TSignature>&& function, std::string description = "") {
 			return new lambda_function(std::move(function), std::move(description));
