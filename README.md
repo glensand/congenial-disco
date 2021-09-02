@@ -6,4 +6,6 @@
 ![GitHub watchers](https://img.shields.io/github/watchers/glensand/congenial-disco?style=social)
 ![GitHub followers](https://img.shields.io/github/followers/glensand?style=social)
 
-small library to bind functions to theirs string analog
+Small library for binding functions and methods to strings
+Work in progress
+Readme coming soon
