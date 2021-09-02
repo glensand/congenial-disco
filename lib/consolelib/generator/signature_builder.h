@@ -22,8 +22,7 @@ namespace disco {
     class signature_builder final {
     public:
 
-        enum class build_policy : uint8_t
-        {
+        enum class build_policy : uint8_t {
             function,
             variable,
 
@@ -58,7 +57,7 @@ namespace disco {
         signature_builder& add_name(std::string_view name) noexcept;
 
         /**
-         * \brief Finalization method of the building procedure. After calling this method, each operation on builder object cases UB 
+         * \brief Finalization method of the building procedure. After calling this method, each operation on builder object causes UB 
          * \return Final signature
          */
         std::string get();
