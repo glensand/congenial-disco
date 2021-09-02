@@ -73,7 +73,9 @@ int main() {
     invoker.invoke("do_void");
     invoker.invoke("do_string GeorgeSand");
     invoker.invoke("empty_function");
-    std::cout << invoker.invoke("compute_dummy 12, 1") << std::endl;
+    invoker.invoke("compute_dummy 12, 1");
+    invoker.invoke("compute_dummy 12 1");
+    invoker.invoke("compute_dummy (12, 1)");
     std::cout << invoker.invoke("invoke_return_value") << std::endl;
 
     auto&& descriptions = invoker.signatures();

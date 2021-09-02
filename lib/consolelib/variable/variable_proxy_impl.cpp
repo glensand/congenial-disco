@@ -17,7 +17,7 @@ namespace disco{
 
     void variable_proxy_impl::trim(std::string_view& arguments, std::size_t equal_pos) {
         arguments = std::string_view(arguments.data() + equal_pos + 1, arguments.size() - equal_pos - 1);
-        while(detail::is_white_space(arguments.front()))
+        while(detail::is_delimiter(arguments.front()))
             arguments = std::string_view(arguments.data() + 1, arguments.size() - 1);
     }
 }

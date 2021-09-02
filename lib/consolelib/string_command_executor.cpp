@@ -37,6 +37,8 @@ namespace disco {
             result = m_function_proxy->apply(function_it->second, arguments);
         else if (auto&& var_it = m_variables.find(name); var_it != end(m_variables))
             result = m_variable_proxy->apply(var_it->second, arguments);
+        else
+            throw not_exist(name);
 
         return result;
     }

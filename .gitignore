@@ -138,3 +138,10 @@
 /out/build/x64-Debug/test/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.obj
 /out/build/x64-Debug/test/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj
 /out/build/x64-Debug/test/googletest-download/CMakeFiles/3.19.20122902-MSVC_2/CMakeSystem.cmake
+/*.json
+/out/build/x64-Debug/.cmake/api/v1/reply/*.json
+/out/build/x64-Debug/lib/CMakeFiles/consolelib.dir/consolelib/*.obj
+/out/build/x64-Debug/lib/CMakeFiles/consolelib.dir/consolelib/function/*.obj
+/out/build/x64-Debug/lib/CMakeFiles/consolelib.dir/consolelib/generator/*.obj
+/out/build/x64-Debug/lib/CMakeFiles/consolelib.dir/consolelib/variable/*.obj
+/out/build/x64-Debug/test/CMakeFiles/cllibtest.dir/*.obj

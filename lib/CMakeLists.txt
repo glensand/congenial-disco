@@ -27,3 +27,8 @@ file(GLOB CL_SOURSES
 add_library(consolelib STATIC ${CL_HEADERS} ${CL_SOURSES})
 target_include_directories(consolelib PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 target_include_directories(consolelib PUBLIC ../ext)
+
+INSTALL(TARGETS consolelib 
+        LIBRARY DESTINATION out/lib
+        PUBLIC_HEADER DESTINATION iut/include
+)

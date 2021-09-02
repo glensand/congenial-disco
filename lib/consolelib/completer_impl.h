@@ -17,7 +17,7 @@ namespace disco {
 	/**
 	 * \brief Represent interface to word auto completer
 	 */
-	class completer_impl final : completer {
+	class completer_impl final : public completer {
 	public:
 		virtual ~completer_impl() override = default;
 		completer_impl() = default;
