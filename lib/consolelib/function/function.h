@@ -11,6 +11,7 @@
 #include "consolelib/common/foundation.h"
 
 #include <string_view>
+#include <vector>
 
 namespace disco  {
 

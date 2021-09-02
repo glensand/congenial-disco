@@ -19,14 +19,20 @@ namespace disco  {
 		virtual ~variable() = default;
 		variable() = default;
 
-        	/**
+         /**
 		 * \brief Tries to change variable name to given value. If input sequence could not been parsed correctly, threw disco::bad_input
 		 * Calls registered function if variable were changed successfully, propagate new value to the callback 
 		 * \param arguments Input sequence containing new value of the variable
 		 */
-		virtual void apply(std::string_view arguments) = 0;
+        virtual void set(std::string_view arguments) = 0;
 
-        	/**
+        /**
+		 * \brief Converts internal value to the string 
+		 * \return Containing value in string form
+		 */
+		virtual std::string get() const = 0;
+
+         /**
 		 * \brief Provide conversion of the internal variable type to its string representation
 		 * \return String representation of the variable type
 		 */

@@ -10,6 +10,8 @@
 
 #include "consolelib/string_invoker.h"
 #include "consolelib/name_completer.h"
+#include "consolelib/variable/variable_proxy_impl.h"
+#include "consolelib/function/function_proxy_impl.h"
 
 struct test_class final
 {
@@ -45,7 +47,9 @@ int compute_dummy(int a, int b)
 
 int main() {
     disco::name_completer completer;
-    disco::string_invoker invoker([&](auto&& name) {completer.add_name(name); });
+    disco::string_invoker invoker(new disco::function_proxy_impl, new disco::variable_proxy_impl,
+        [&](auto&& name) {completer.add_name(name); });
+
     invoker.create_function("empty_function", &just_empty_function);
     invoker.create_function("call", [] { std::cout << "call" << std::endl; });
     invoker.create_function("call2", [] { std::cout << "call2" << std::endl; });
@@ -64,7 +68,7 @@ int main() {
     int test_var;
     invoker.create_variable("test_var", test_var);
 
-    invoker.invoke("test_var 1");
+    invoker.invoke("test_var = 1");
     invoker.invoke("call");
     invoker.invoke("do_void");
     invoker.invoke("do_string GeorgeSand");

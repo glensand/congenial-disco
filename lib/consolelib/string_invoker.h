@@ -21,6 +21,9 @@
 
 namespace disco {
 
+	class function_proxy;
+	class variable_proxy;
+
     /**
 	 * \brief Implementation of general invoker interface with additional functions to add executor of function or value changer
 	 */
@@ -33,7 +36,8 @@ namespace disco {
 		DECLARE_NON_MOVABLE(string_invoker);
 
 		virtual ~string_invoker() override;
-        explicit string_invoker(on_new_name_added_callback_t&& callback = on_new_name_added_callback_t{ });
+        explicit string_invoker(function_proxy* f_proxy, variable_proxy* v_proxy,
+			on_new_name_added_callback_t&& callback = on_new_name_added_callback_t{ });
 
 		// invoker implementation
 
@@ -97,12 +101,18 @@ namespace disco {
         void assert_variable_exist(std::string_view name) const;
         bool exist(std::string_view name) const noexcept;
 
+        static std::string function_signature(const std::string& name, function* func);
+        static std::string variable_signature(const std::string& name, variable* var);
+
 		template<typename TStorage>
 		static bool exist_in_storage(std::string_view name, const TStorage& storage);
 
 		on_new_name_added_callback_t m_new_name_added_callback;
 		std::map<std::string, function*> m_functions;
 		std::map<std::string, variable*> m_variables;
+
+		function_proxy* m_function_proxy;
+		variable_proxy* m_variable_proxy;
 	};
 
 }

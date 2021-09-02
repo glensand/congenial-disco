@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include "consolelib/common/foundation.h"
 #include "consolelib/variable/variable.h"
 #include "consolelib/generator/parser.h"
 #include "consolelib/generator/generator.h"
@@ -34,12 +35,23 @@ namespace disco  {
 		* Calls registered function if variable were changed successfully, propagate new value to the callback
 		* \param arguments Input sequence containing new value of the variable
 		*/
-		virtual void apply(std::string_view arguments) override {
+		virtual void set(std::string_view arguments) override {
 			auto&& value = parse<TValue>(arguments);
 			m_variable = value;
 
 			if (m_callback)
 				m_callback(m_variable);
+		}
+
+		/**
+		* \brief Converts internal value to the string
+		* \return Containing value in string form
+		*/
+		virtual std::string get() const override {
+			if constexpr (std::is_convertible_v<TValue, std::string>)
+				return m_variable;
+			else
+				return std::to_string(m_variable);
 		}
 
 		/**
@@ -50,7 +62,11 @@ namespace disco  {
 			return type_name<TValue>();
 		}
 
+		DECLARE_NON_COPYABLE(variable_instance);
+		DECLARE_NON_MOVABLE(variable_instance);
+
 	private:
+
 		TValue& m_variable;
 		callback_t m_callback;
 	};
