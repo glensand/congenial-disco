@@ -9,6 +9,7 @@
 #pragma once
 
 #include <string_view>
+#include <algorithm>
 #include <charconv>
 
 #include "consolelib/exception/bad_input.h"
