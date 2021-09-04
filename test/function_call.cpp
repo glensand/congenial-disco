@@ -115,8 +115,8 @@ TEST_F(ExecutorTest, StringFunction) {
     executor->create_function("call", string_function);
 
     executor->invoke("call new_value");
-    //const auto res_equal1 = string_function_val_changed._Equal("new_value");
-    //ASSERT_TRUE(res_equal1);
+    const auto res_equal1 = string_function_val_changed._Equal("new_value");
+    ASSERT_TRUE(res_equal1);
 
     executor->invoke("call(new_value3)");
     const auto res_equal2 = string_function_val_changed == "new_value3";
