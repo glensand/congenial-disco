@@ -35,7 +35,7 @@ namespace detail {
             throw disco::bad_input("Empty string");
 
         auto&& delimiter_it = std::find_if(begin(string), end(string), is_delimiter);
-        return delimiter_it == end(string) ? string.size() - 1 : std::size_t(distance(begin(string), delimiter_it));
+        return delimiter_it == end(string) ? string.size() - 1 : std::size_t(std::distance(begin(string), delimiter_it));
     }
 
     template<typename T>
