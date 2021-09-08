@@ -10,4 +10,4 @@ Small library. Helps invoke function by name. Work in progress.
 # Build
 - Clone repository: ``git clone https://github.com/glensand/congenial-disco``
 - Generate platform dependent project: ``cmake -S [root_clone/lib] -B [root_clone\install]``
-- Go to ``root_clone\install`` and run ``--build . --target install --config [Config]``. The ``Config`` parameter might be Release or Debug
+- Go to ``root_clone\install`` and run ``cmake --build . --target install --config [Config]``. The ``Config`` parameter might be Release or Debug
