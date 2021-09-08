@@ -5,7 +5,7 @@ project(consolelib)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/out)
 
 file(GLOB CL_HEADERS
     consolelib/*.h
@@ -28,7 +28,7 @@ add_library(consolelib STATIC ${CL_HEADERS} ${CL_SOURSES})
 target_include_directories(consolelib PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 target_include_directories(consolelib PUBLIC ../ext)
 
-INSTALL(TARGETS consolelib 
-        LIBRARY DESTINATION out/lib
-        PUBLIC_HEADER DESTINATION iut/include
-)
+set(CMAKE_INSTALL_DIRECTORY ${CMAKE_BINARY_DIR})
+
+INSTALL(DIRECTORY consolelib/ DESTINATION ${CMAKE_INSTALL_DIRECTORY}/include/consolelib
+        FILES_MATCHING PATTERN "*.h")
