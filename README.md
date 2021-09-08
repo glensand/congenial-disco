@@ -6,6 +6,8 @@
 ![GitHub watchers](https://img.shields.io/github/watchers/glensand/congenial-disco?style=social)
 ![GitHub followers](https://img.shields.io/github/followers/glensand?style=social)
 
-<p>Small library for binding functions and methods to strings</p>
-Work in progress.
-Readme coming soon.
+Small library. Helps invoke function by name. Work in progress.
+# Build
+- Clone repository: ``git clone https://github.com/glensand/congenial-disco``
+- Generate platform dependent project: ``cmake -S [root_clone/lib] -B [root_clone\install]``
+- Go to ``root_clone\install`` and run ``--build . --target install --config [Config]``. The ``Config`` parameter might be Release or Debug
