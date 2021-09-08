@@ -31,7 +31,7 @@ namespace disco {
 
     std::string string_command_executor::invoke(std::string_view arguments) {
         std::string result;
-        auto&& name_view = parse<std::string_view>(arguments);
+        auto&& name_view = parse_name(arguments);
         auto&& name = std::string(name_view.data(), name_view.data() + name_view.size());
         if (auto&& function_it = m_functions.find(name); function_it != end(m_functions))
             result = m_function_proxy->apply(function_it->second, arguments);

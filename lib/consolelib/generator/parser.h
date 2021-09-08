@@ -23,6 +23,11 @@ namespace detail {
         return std::string_view(" \t\n\f\r\v,();").find_first_of(c) != EndLine;
     };
 
+    constexpr
+    auto is_string_delimiter = [](const char c) noexcept {
+        return std::string_view("\"").find_first_of(c) != EndLine;
+    };
+
     inline
     void trim(std::string_view& arguments) {
         while (is_delimiter(arguments.front()))
@@ -46,7 +51,7 @@ namespace detail {
     }
 
     template<>
-    inline std::string_view parse<std::string_view> (std::string_view view) {
+    inline std::string_view parse<std::string_view>(std::string_view view) {
         return view;
     }
 
@@ -54,17 +59,48 @@ namespace detail {
     inline std::string parse<std::string>(std::string_view view) {
         return std::string(view.data(), view.size());
     }
+
+    template<typename T> 
+    T parse_value(std::string_view& arguments) {
+        trim(arguments);
+        auto&& distance = delimiter_position(arguments);
+        auto&& value = detail::parse<T>(std::string_view(arguments.data(), distance));
+        arguments = std::string_view(arguments.data() + distance + 1, arguments.size() - distance);
+        return value;
+    }
+
+    template<typename T>
+    T parse_string(std::string_view& arguments) {
+        trim(arguments);
+        if (arguments.empty() || arguments.front() != '"')
+            throw disco::bad_input("String has to have braces, like this \"You string\"");
+
+        auto&& delimiter_it = std::find_if(begin(arguments) + 1, end(arguments), is_string_delimiter);
+        if (delimiter_it == end(arguments))
+            throw disco::bad_input("String has to have braces, like this \"You string\"");
+
+        auto&& distance = std::distance(begin(arguments), delimiter_it);
+        auto value = T(arguments.data() + 1, distance - 1);
+        arguments = std::string_view(arguments.data() + distance + 1, arguments.size() - distance);
+        return value;
+    }
 }
 
 namespace disco  {
 
+    inline
+    std::string_view parse_name(std::string_view& arguments) {
+        return detail::parse_value<std::string_view>(arguments);
+    }
+
     template<typename T>
     T parse(std::string_view& arguments) {
-        detail::trim(arguments);
-        auto&& distance = detail::delimiter_position(arguments);
-        auto&& value = detail::parse<T>(std::string_view(arguments.data(), distance));
-        arguments = std::string_view(arguments.data() + distance + 1, arguments.size() - distance);
-        return value;
+        if constexpr (!std::is_same_v<std::string, T> && !std::is_same_v<std::string_view, T>) {
+            return detail::parse_value<T>(arguments);
+        }
+        else {
+            return detail::parse_string<T>(arguments);
+        }
     }
 
 }

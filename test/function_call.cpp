@@ -114,15 +114,45 @@ TEST_F(ExecutorTest, StringFunction) {
 
     executor->create_function("call", string_function);
 
-    executor->invoke("call new_value");
+    executor->invoke("call \"new_value\"");
     const auto res_equal1 = string_function_val_changed == "new_value";
     ASSERT_TRUE(res_equal1);
 
-    executor->invoke("call(new_value3)");
+    executor->invoke("call(\"new_value3\")");
     const auto res_equal2 = string_function_val_changed == "new_value3";
     ASSERT_TRUE(res_equal2);
 
-    executor->invoke("call new_value2;;");
+    executor->invoke("call \"new_value2\";;");
     const auto res_equal3 = string_function_val_changed == "new_value2";
     ASSERT_TRUE(res_equal3);
+
+    executor->invoke("call \"new value 2\";;");
+    const auto res_equal4 = string_function_val_changed == "new value 2";
+    ASSERT_TRUE(res_equal4);
 }
+
+TEST_F(ExecutorTest, IntStringIntFunction) {
+    std::string string_function_val_changed;
+    auto string_function = [&](int a, const std::string& val, int b) {
+        string_function_val_changed = val;
+    };
+
+    executor->create_function("call", string_function);
+
+    executor->invoke("call 0 \"new_value\" 0");
+    const auto res_equal1 = string_function_val_changed == "new_value";
+    ASSERT_TRUE(res_equal1);
+
+    executor->invoke("call(0, \"new_value3\", 0");
+    const auto res_equal2 = string_function_val_changed == "new_value3";
+    ASSERT_TRUE(res_equal2);
+
+    executor->invoke("call 1 \"new_value2\" 1;;");
+    const auto res_equal3 = string_function_val_changed == "new_value2";
+    ASSERT_TRUE(res_equal3);
+
+    executor->invoke("call 2 \"new value 2\" 10;;");
+    const auto res_equal4 = string_function_val_changed == "new value 2";
+    ASSERT_TRUE(res_equal4);
+}
+
