@@ -14,22 +14,6 @@ namespace {
         int_int_function_val2_changed = val2;
     }
 
-    class test_class_no_virtual_functions final{
-    public:
-        void void_function() const {}
-
-        void int_function(int val) {
-            int_function_value = val;
-        }
-
-        void string_function(const std::string& val) {
-            string_function_val = val;
-        }
-
-        std::string string_function_val;
-        int int_function_value = 0;
-    };
-
 }
 
 TEST_F(ExecutorTest, IntFunctionCallWithoutBraces) {

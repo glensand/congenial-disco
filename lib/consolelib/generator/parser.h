@@ -11,6 +11,8 @@
 #include <string_view>
 #include <algorithm>
 #include <charconv>
+#include <array>
+#include <algorithm>
 
 #include "consolelib/exception/bad_input.h"
 
@@ -58,6 +60,16 @@ namespace detail {
     template<>
     inline std::string parse<std::string>(std::string_view view) {
         return std::string(view.data(), view.size());
+    }
+
+    template<>
+    inline bool parse<bool>(std::string_view view) {
+        std::array<char, 10> lower_case; // assumed 10 chars is enough
+        std::transform(begin(view), end(view), begin(lower_case),
+            [](unsigned char c) { return std::tolower(c); }
+        );
+        auto&& view_lower_case = std::string_view(lower_case.data(), view.size());
+        return view_lower_case == "1" || view_lower_case == "true";
     }
 
     template<typename T> 
