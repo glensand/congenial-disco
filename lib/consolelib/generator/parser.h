@@ -42,7 +42,7 @@ namespace detail {
             throw disco::bad_input("Empty string");
 
         auto&& delimiter_it = std::find_if(begin(string), end(string), is_delimiter);
-        return delimiter_it == end(string) ? string.size() - 1 : std::size_t(std::distance(begin(string), delimiter_it));
+        return std::size_t(std::distance(begin(string), delimiter_it));
     }
 
     template<typename T>
@@ -74,7 +74,6 @@ namespace detail {
 
     template<typename T> 
     T parse_value(std::string_view& arguments) {
-        trim(arguments);
         auto&& distance = delimiter_position(arguments);
         auto&& value = detail::parse<T>(std::string_view(arguments.data(), distance));
         arguments = std::string_view(arguments.data() + distance + 1, arguments.size() - distance);
@@ -83,7 +82,6 @@ namespace detail {
 
     template<typename T>
     T parse_string(std::string_view& arguments) {
-        trim(arguments);
         if (arguments.empty() || arguments.front() != '"')
             throw disco::bad_input("String has to have braces, like this \"You string\"");
 
@@ -102,11 +100,13 @@ namespace disco  {
 
     inline
     std::string_view parse_name(std::string_view& arguments) {
+        detail::trim(arguments);
         return detail::parse_value<std::string_view>(arguments);
     }
 
     template<typename T>
     T parse(std::string_view& arguments) {
+        detail::trim(arguments);
         if constexpr (!std::is_same_v<std::string, T> && !std::is_same_v<std::string_view, T>) {
             return detail::parse_value<T>(arguments);
         }
