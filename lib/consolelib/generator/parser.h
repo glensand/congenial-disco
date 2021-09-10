@@ -48,7 +48,8 @@ namespace detail {
     template<typename T>
     T parse(std::string_view view) {
         T value;
-        std::from_chars(view.data(), view.data() + view.size(), value);
+        if (auto && [ptr, ec] = std::from_chars((const char*)view.data(), (const char*)view.data() + view.size(), value); ec != std::errc())
+            throw disco::bad_input(view.data());
         return value;
     }
 
