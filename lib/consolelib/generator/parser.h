@@ -48,8 +48,20 @@ namespace detail {
     template<typename T>
     T parse(std::string_view view) {
         T value;
+#if defined _MSC_VER
         if (auto && [ptr, ec] = std::from_chars((const char*)view.data(), (const char*)view.data() + view.size(), value); ec != std::errc())
             throw disco::bad_input(view.data());
+#else
+        if constexpr(std::is_same_v<int, T>)
+        {
+            if (auto && [ptr, ec] = std::from_chars((const char*)view.data(), (const char*)view.data() + view.size(), value); ec != std::errc())
+                throw disco::bad_input(view.data());
+        }
+        else
+        {
+            value = (T)atof(view.data());
+        }
+#endif
         return value;
     }
 

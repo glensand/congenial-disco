@@ -1,3 +1,4 @@
+project(clibtest)
 set(BINARY cllibtest)
 
 set(CMAKE_CXX_STANDARD 17)
