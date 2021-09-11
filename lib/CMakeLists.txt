@@ -26,8 +26,9 @@ file(GLOB CL_SOURSES
 
 add_library(consolelib STATIC ${CL_HEADERS} ${CL_SOURSES})
 target_include_directories(consolelib PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
-target_include_directories(consolelib PUBLIC ../ext)
+target_include_directories(consolelib PUBLIC PUBLIC ${HOPE_INCLUDE_DIR})
 
+add_dependencies(consolelib hope)
 set(CMAKE_INSTALL_DIRECTORY ${CMAKE_BINARY_DIR})
 
 INSTALL(DIRECTORY consolelib/ DESTINATION ${CMAKE_INSTALL_DIRECTORY}/include/consolelib
