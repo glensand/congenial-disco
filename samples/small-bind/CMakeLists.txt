@@ -15,5 +15,7 @@ file(GLOB SAMPLE_SOURSES
     *.cpp)
 
 add_executable(small_bind_sample ${SAMPLE_HEADERS} ${SAMPLE_SOURSES})
+add_dependencies(small_bind_sample hope)
+
+target_include_directories(small_bind_sample PUBLIC ${HOPE_INCLUDE_DIR})
 target_include_directories(small_bind_sample PUBLIC ../../lib)
-target_link_libraries(small_bind_sample consolelib)

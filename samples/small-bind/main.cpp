@@ -8,10 +8,10 @@
 
 #include <iostream>
 
-#include "consolelib/string_command_executor.h"
-#include "consolelib/completer_impl.h"
-#include "consolelib/variable/variable_proxy_impl.h"
-#include "consolelib/function/function_proxy_impl.h"
+#include "consolelib/string_command_executor.hpp"
+#include "consolelib/completer_impl.hpp"
+#include "consolelib/variable/variable_proxy_impl.hpp"
+#include "consolelib/function/function_proxy_impl.hpp"
 
 struct test_class final
 {

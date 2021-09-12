@@ -3,13 +3,14 @@
 
 #include "consolelib/exception/already_exist.h"
 #include "consolelib/exception/not_exist.h"
-#include "consolelib/generator/signature_builder.h"
-#include "consolelib/function/fuinction_proxy.h"
+#include "consolelib/generator/signature_builder.hpp"
+#include "consolelib/function/function_proxy.h"
 #include "consolelib/variable/variable_proxy.h"
 
 namespace disco {
 
     // disable resharper's shitty lightning ()_()
+    inline
     string_command_executor::~string_command_executor() {  // NOLINT(modernize-use-equals-default)
         for (auto&& [name, function] : m_functions)
             delete function;
@@ -21,7 +22,8 @@ namespace disco {
         delete m_variable_proxy;
     }
 
-    string_command_executor::string_command_executor(function_proxy* f_proxy, variable_proxy* v_proxy, 
+    inline
+    string_command_executor::string_command_executor(function_proxy* f_proxy, variable_proxy* v_proxy,
         on_new_name_added_callback_t&& callback) // NOLINT(cppcoreguidelines-pro-type-member-init)
         : m_new_name_added_callback(std::move(callback))
         , m_function_proxy(f_proxy)
@@ -29,6 +31,7 @@ namespace disco {
 
     }
 
+    inline
     std::string string_command_executor::invoke(std::string_view arguments) {
         std::string result;
         auto&& name_view = parse_name(arguments);
@@ -43,6 +46,7 @@ namespace disco {
         return result;
     }
 
+    inline
     std::vector<std::string> string_command_executor::signatures() const {
         std::vector<std::string> signature_list;
 
@@ -62,26 +66,31 @@ namespace disco {
         return signature_list;
     }
 
+    inline
     void string_command_executor::fire_variable_added(std::string_view name) const {
         if (m_new_name_added_callback)
             m_new_name_added_callback(name);
     }
 
+    inline
     void string_command_executor::assert_variable_unique(std::string_view name) const {
         if (exist(name))
             throw already_exist(name.data());
     }
 
+    inline
     void string_command_executor::assert_variable_exist(std::string_view name) const {
         if (!exist(name))
             throw not_exist(name.data());
     }
 
+    inline
     bool string_command_executor::exist(std::string_view name) const noexcept {
         return exist_in_storage(name, m_functions)
             || exist_in_storage(name, m_variables);
     }
 
+    inline
     std::string string_command_executor::function_signature(const std::string& name, function* func) {
         return signature_builder::create()
             .add_name(name)
@@ -90,6 +99,7 @@ namespace disco {
             .get();
     }
 
+    inline
     std::string string_command_executor::variable_signature(const std::string& name, variable* var) {
         return signature_builder::create(signature_builder::build_policy::variable)
             .add_return_type(var->type())

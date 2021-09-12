@@ -14,7 +14,9 @@ namespace disco {
 
     class already_exist final : public exception {
     public:
-        already_exist(const std::string& variable_name);
+        already_exist(const std::string& variable_name)
+        : exception("Variable or function with name {" + variable_name + " } already exists")
+        {}
     };
 
 }

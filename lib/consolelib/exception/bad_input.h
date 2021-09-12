@@ -14,7 +14,8 @@ namespace disco {
 
     class bad_input final : public exception {
     public:
-        bad_input(const std::string& input);
+        bad_input(const std::string& input)
+            : exception("Bad input string {" + input + " }"){}
     };
 
 }

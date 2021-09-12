@@ -5,6 +5,7 @@
 
 namespace disco{
 
+    inline
     std::string variable_proxy_impl::apply(variable* var, std::string_view arguments) const {
         if (auto&& pos = arguments.find('='); pos != std::string_view::npos) {
             trim(arguments, pos);
@@ -15,6 +16,7 @@ namespace disco{
         return var->get();
     }
 
+    inline
     void variable_proxy_impl::trim(std::string_view& arguments, std::size_t equal_pos) {
         arguments = std::string_view(arguments.data() + equal_pos + 1, arguments.size() - equal_pos - 1);
         while(detail::is_delimiter(arguments.front()))

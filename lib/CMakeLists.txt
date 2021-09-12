@@ -9,26 +9,24 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/out)
 
 file(GLOB CL_HEADERS
     consolelib/*.h
+    consolelib/*.hpp
     consolelib/exception/*.h
+    consolelib/exception/*.hpp
     consolelib/function/*.h
+    consolelib/function/*.hpp
     consolelib/variable/*.h
+    consolelib/variable/*.hpp
     consolelib/common/*.h
+    consolelib/common/*.hpp
     consolelib/generator/*.h
+    consolelib/generator/*.hpp
 )
 
-file(GLOB CL_SOURSES
-    consolelib/*.cpp
-    consolelib/exception/*.cpp
-    consolelib/function/*.cpp
-    consolelib/variable/*.cpp
-    consolelib/generator/*.cpp
-)
-
-add_library(consolelib STATIC ${CL_HEADERS} ${CL_SOURSES})
-target_include_directories(consolelib PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
-target_include_directories(consolelib PUBLIC PUBLIC ${HOPE_INCLUDE_DIR})
+add_library(consolelib INTERFACE ${CL_HEADERS})
+target_include_directories(consolelib INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
 
 add_dependencies(consolelib hope)
+
 set(CMAKE_INSTALL_DIRECTORY ${CMAKE_BINARY_DIR})
 
 INSTALL(DIRECTORY consolelib/ DESTINATION ${CMAKE_INSTALL_DIRECTORY}/include/consolelib

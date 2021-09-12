@@ -4,6 +4,7 @@
 
 namespace disco {
 
+    inline
     std::vector<std::string_view> completer_impl::complete(std::string_view prefix) {
         std::string firstAfterPrefix = prefix.data();
         firstAfterPrefix.back() += 1; // next character
@@ -14,6 +15,7 @@ namespace disco {
         return completions;
     }
 
+    inline
     void completer_impl::add_name(std::string_view name) {
         if (auto&& [_, added] = m_names.emplace(name); !added)
             throw already_exist(name.data());

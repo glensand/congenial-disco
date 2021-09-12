@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "consolelib/function/fuinction_proxy.h"
+#include "consolelib/function/function_proxy.h"
 
 #include <string_view>
 

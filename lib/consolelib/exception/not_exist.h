@@ -14,7 +14,8 @@ namespace disco {
 
     class not_exist final : public exception {
     public:
-        not_exist(const std::string& variable_name);
+        not_exist(const std::string& variable_name)
+            : exception("Variable or function with name {" + variable_name + " } not exists"){}
     };
 
 }

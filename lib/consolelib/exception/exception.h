@@ -20,9 +20,10 @@ namespace disco {
         DECLARE_EXPLICIT_DEFAULT_MOVABLE(exception);
 
         virtual ~exception() = default;
-        exception(std::string what) noexcept;
+        exception(std::string what) noexcept
+        : m_what(std::move(what)) {}
 
-        const std::string& what() const noexcept;
+        const std::string& what() const noexcept { return m_what; }
 
     private:
         std::string m_what;

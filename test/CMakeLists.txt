@@ -50,4 +50,6 @@ file(GLOB TEST_SOURSES
 
 add_executable(${BINARY} ${TEST_HEADERS} ${TEST_SOURSES})
 add_test(NAME ${BINARY} COMMAND ${BINARY})
-target_link_libraries(${BINARY} gtest_main consolelib)
+add_dependencies(${BINARY} hope)
+target_include_directories(${BINARY} PUBLIC ${HOPE_INCLUDE_DIR})
+target_link_libraries(${BINARY} gtest_main)
