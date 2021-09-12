@@ -19,6 +19,30 @@ namespace disco  {
 
     template<>
     inline
+    std::string_view type_name<int>() noexcept{
+        return "int";
+    }
+
+    template<>
+    inline
+    std::string_view type_name<float>() noexcept{
+        return "float";
+    }
+
+    template<>
+    inline
+    std::string_view type_name<bool>() noexcept{
+        return "bool";
+    }
+
+    template<>
+    inline
+    std::string_view type_name<double>() noexcept{
+        return "double";
+    }
+
+    template<>
+    inline
     std::string_view type_name<std::string>() noexcept {
         return "string";
     }

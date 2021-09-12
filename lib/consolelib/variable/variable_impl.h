@@ -17,6 +17,7 @@ namespace disco  {
 
     template<typename TValue>
     class variable_impl final : public variable {
+        using clear_t = std::decay_t<TValue>;
     public:
 
         using variable::variable;
@@ -48,8 +49,9 @@ namespace disco  {
         * \return Containing value in string form
         */
         virtual std::string get() const override {
-            if constexpr (std::is_convertible_v<TValue, std::string>)
-                return m_variable;
+            if constexpr (std::is_convertible_v<TValue, std::string>
+                    || std::is_same_v<clear_t , std::string_view>)
+                return m_variable.data(); // for some reasons is_convertable falls on string_view
             else
                 return std::to_string(m_variable);
         }

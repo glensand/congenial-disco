@@ -35,10 +35,18 @@ void test_value_parsing(TValue&& expected, std::string_view expected_in_string) 
     }
 }
 
-TEST(ParserTest, ParseString)
+TEST(ParserTest, ParseStringView)
 {
     auto&& to_parse = std::string_view("\"very long value string with strange symbols.;,\"");
     auto&& result = std::string_view("very long value string with strange symbols.;,");
+
+    test_value_parsing(result, to_parse);
+}
+
+TEST(ParserTest, ParseString)
+{
+    auto&& to_parse = std::string_view("\"very long value string with strange symbols.;,\"");
+    auto&& result = std::string("very long value string with strange symbols.;,");
 
     test_value_parsing(result, to_parse);
 }
