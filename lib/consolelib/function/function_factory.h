@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "hope/function/function_traits.h"
+#include "consolelib/core/function_traits.h"
 #include "consolelib/function/function_impl.h"
 
 namespace disco {
@@ -34,7 +34,7 @@ namespace disco {
          */
         template<typename TFunction> 
         static function* create(TFunction&& function, std::string description = "") {
-            using traits_t = hope::function_traits<std::decay_t<TFunction>>; // function has to be decayed, cause native lambda type ([=]{}) has no operators
+            using traits_t = core::function_traits<std::decay_t<TFunction>>; // function has to be decayed, cause native lambda type ([=]{}) has no operators
             auto&& lambda = create_impl(std::forward<TFunction>(function),
                 traits_t::arg_types);
             return new function_impl(std::move(lambda), std::move(description));
@@ -48,7 +48,7 @@ namespace disco {
          */
         template<typename TReturn, typename... Ts>
         static function* create(TReturn(*func)(Ts...), std::string description = "") {
-            auto&& lambda = create_impl(func, hope::type_list<Ts...>{});
+            auto&& lambda = create_impl(func, core::type_list<Ts...>{});
             return new function_impl(std::move(lambda), std::move(description));
         }
 
@@ -61,7 +61,7 @@ namespace disco {
          */
         template<typename TFunction, typename TObj>
         static function* create(TObj* obj, TFunction&& function, std::string description = "") {
-            using traits_t = hope::function_traits<TFunction>;
+            using traits_t = core::function_traits<TFunction>;
             auto&& lambda = create_impl(obj, std::forward<TFunction>(function),
                 traits_t::arg_types
             );
@@ -92,14 +92,14 @@ namespace disco {
 
     private:
         template<typename TObj, typename TFunction, typename... Ts>
-        static auto create_impl(TObj* obj, TFunction&& function, hope::type_list<Ts...>) {
+        static auto create_impl(TObj* obj, TFunction&& function, core::type_list<Ts...>) {
             return std::function(
                 [=](const Ts&... args) { return (*obj.*function)(args...); }
             );
         }
 
         template<typename TFunction, typename... Ts>
-        static auto create_impl(TFunction&& function, hope::type_list<Ts...>) {
+        static auto create_impl(TFunction&& function, core::type_list<Ts...>) {
             return std::function(
                 [=](const Ts&... args) { return function(args...); }
             );
