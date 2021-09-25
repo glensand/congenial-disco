@@ -9,8 +9,8 @@
 #pragma once
 
 #include <functional>
-#include "hope/tuple/flat_tuple.h"
 
+#include "consolelib/core/for_each.h"
 #include "consolelib/generator/parser.h"
 #include "consolelib/generator/generator.h"
 #include "consolelib/function/function.h"
@@ -20,7 +20,7 @@ namespace disco {
     template<typename R, typename... Ts>
     class function_impl final : public function
     {
-        using invoke_args_t = hope::flat_tuple<std::decay_t<Ts>...>;
+        using invoke_args_t = std::tuple<std::decay_t<Ts>...>;
     public:
 
         function_impl(std::function<R(Ts...)>&& func, std::string description)
@@ -84,7 +84,7 @@ namespace disco {
     private:
         invoke_args_t parse_arguments(std::string_view arguments) const {
             invoke_args_t invoke_args;
-            hope::for_each(invoke_args, [&](auto&& argument) {
+            core::for_each(invoke_args, [&](auto&& argument) {
                 using argument_t = std::decay_t<decltype(argument)>;
                 argument = parse<argument_t>(arguments);
             });
@@ -93,7 +93,7 @@ namespace disco {
 
         template<std::size_t... Is>
         auto invoke(const invoke_args_t& args, std::index_sequence<Is...>) {
-            return m_function(args.template get<Is>()...);
+            return m_function(std::get<Is>(args)...);
         }
 
         std::string m_description;

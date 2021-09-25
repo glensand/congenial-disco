@@ -26,10 +26,11 @@ namespace disco {
         * \brief Invokes function or change variable using given string.
         * Function or variable will be found by name. The name is the first parameter in given string.
         * Call parameters might be separated with any known space separator.
-        * To change variable call this function using this pattern: [variable_name] [new_value].
-        * To invoke registered function call it using this pattern: [function_name] [arg1 arg2 arg3 ...].
+        * To change variable call this function using this patter: [variable_name] [new_value].
+        * To invoke registered function call it using this patter: [function_name] [arg1 arg2 arg3 ...].
         * If no one handler had not been found, function throws: not_exist exception.
         * On bad input throws bad_input.
+         * \throws disco::not_exist
         * \param arguments string to be processed
         */
         virtual std::string invoke(std::string_view arguments) = 0;

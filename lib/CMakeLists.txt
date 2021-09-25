@@ -20,12 +20,11 @@ file(GLOB CL_HEADERS
     consolelib/common/*.hpp
     consolelib/generator/*.h
     consolelib/generator/*.hpp
+    consolelib/core/*.hpp
 )
 
 add_library(consolelib INTERFACE ${CL_HEADERS})
 target_include_directories(consolelib INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
-
-add_dependencies(consolelib hope)
 
 set(CMAKE_INSTALL_DIRECTORY ${CMAKE_BINARY_DIR})
 
