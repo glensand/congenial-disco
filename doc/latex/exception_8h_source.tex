@@ -1,0 +1,38 @@
+\hypertarget{exception_8h_source}{}\doxysection{exception.\+h}
+\label{exception_8h_source}\index{lib/consolelib/exception/exception.h@{lib/consolelib/exception/exception.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/* Copyright (C) 2021 Gleb Bezborodov -\/ All Rights Reserved}}
+\DoxyCodeLine{2 \textcolor{comment}{ * You may use, distribute and modify this code under the}}
+\DoxyCodeLine{3 \textcolor{comment}{ * terms of the MIT license.}}
+\DoxyCodeLine{4 \textcolor{comment}{ *}}
+\DoxyCodeLine{5 \textcolor{comment}{ * You should have received a copy of the MIT license with}}
+\DoxyCodeLine{6 \textcolor{comment}{ * this file. If not, please write to: bezborodoff.gleb@gmail.com, or visit : https://github.com/glensand/congenial-\/disco}}
+\DoxyCodeLine{7 \textcolor{comment}{ */}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{foundation_8h}{consolelib/common/foundation.h}}"{}}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{keyword}{namespace }disco \{}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16     \textcolor{keyword}{class }\mbox{\hyperlink{classdisco_1_1exception}{exception}} \{}
+\DoxyCodeLine{17     \textcolor{keyword}{public}:}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19         DECLARE\_NON\_COPYABLE(\mbox{\hyperlink{classdisco_1_1exception}{exception}});}
+\DoxyCodeLine{20         DECLARE\_EXPLICIT\_DEFAULT\_MOVABLE(\mbox{\hyperlink{classdisco_1_1exception}{exception}});}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22         \textcolor{keyword}{virtual} \mbox{\hyperlink{classdisco_1_1exception}{\string~exception}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{23         \mbox{\hyperlink{classdisco_1_1exception}{exception}}(std::string what) noexcept}
+\DoxyCodeLine{24         : m\_what(std::move(what)) \{\}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26         \textcolor{keyword}{const} std::string\& what() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \{ \textcolor{keywordflow}{return} m\_what; \}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28     \textcolor{keyword}{private}:}
+\DoxyCodeLine{29         std::string m\_what;}
+\DoxyCodeLine{30     \};}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 \}}
+
+\end{DoxyCode}

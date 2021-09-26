@@ -1,0 +1,94 @@
+\hypertarget{string__command__executor_8h_source}{}\doxysection{string\+\_\+command\+\_\+executor.\+h}
+\label{string__command__executor_8h_source}\index{lib/consolelib/string\_command\_executor.h@{lib/consolelib/string\_command\_executor.h}}
+\mbox{\hyperlink{string__command__executor_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/* Copyright (C) 2021 Gleb Bezborodov -\/ All Rights Reserved}}
+\DoxyCodeLine{2 \textcolor{comment}{ * You may use, distribute and modify this code under the}}
+\DoxyCodeLine{3 \textcolor{comment}{ * terms of the MIT license.}}
+\DoxyCodeLine{4 \textcolor{comment}{ *}}
+\DoxyCodeLine{5 \textcolor{comment}{ * You should have received a copy of the MIT license with}}
+\DoxyCodeLine{6 \textcolor{comment}{ * this file. If not, please write to: bezborodoff.gleb@gmail.com, or visit : https://github.com/glensand/congenial-\/disco}}
+\DoxyCodeLine{7 \textcolor{comment}{ */}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <functional>}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <string\_view>}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <map>}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <set>}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{invoker_8h}{consolelib/invoker.h}}"{}}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{storage_8h}{consolelib/storage.h}}"{}}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{function__factory_8h}{consolelib/function/function\_factory.h}}"{}}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{variable__impl_8h}{consolelib/variable/variable\_impl.h}}"{}}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \textcolor{keyword}{namespace }disco \{}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30     \textcolor{keyword}{class }function\_proxy;}
+\DoxyCodeLine{31     \textcolor{keyword}{class }variable\_proxy;}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{36     \textcolor{keyword}{class }\mbox{\hyperlink{classdisco_1_1string__command__executor}{string\_command\_executor}} final : \textcolor{keyword}{public} \mbox{\hyperlink{classdisco_1_1invoker}{invoker}}, \textcolor{keyword}{public} \mbox{\hyperlink{classdisco_1_1storage}{storage}} \{}
+\DoxyCodeLine{37     \textcolor{keyword}{public}:}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39         \textcolor{keyword}{using} on\_new\_name\_added\_callback\_t = std::function<void(std::string\_view)>;}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41         DECLARE\_NON\_COPYABLE(\mbox{\hyperlink{classdisco_1_1string__command__executor}{string\_command\_executor}});}
+\DoxyCodeLine{42         DECLARE\_NON\_MOVABLE(\mbox{\hyperlink{classdisco_1_1string__command__executor}{string\_command\_executor}});}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44         \textcolor{keyword}{virtual} \mbox{\hyperlink{classdisco_1_1string__command__executor}{\string~string\_command\_executor}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{45         \textcolor{keyword}{explicit} \mbox{\hyperlink{classdisco_1_1string__command__executor}{string\_command\_executor}}(\mbox{\hyperlink{classdisco_1_1function__proxy}{function\_proxy}}* f\_proxy, \mbox{\hyperlink{classdisco_1_1variable__proxy}{variable\_proxy}}* v\_proxy,}
+\DoxyCodeLine{46             on\_new\_name\_added\_callback\_t\&\& callback = on\_new\_name\_added\_callback\_t\{ \});}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48         \textcolor{comment}{// invoker implementation}}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{60         \textcolor{keyword}{virtual} std::string \mbox{\hyperlink{classdisco_1_1string__command__executor_ab0a14b38d5e750c861b6c824827a1898}{invoke}}(std::string\_view arguments) \textcolor{keyword}{override};}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62         \textcolor{comment}{// storage implementation}}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{70         \textcolor{keyword}{virtual} std::vector<std::string> \mbox{\hyperlink{classdisco_1_1string__command__executor_ad6078a32f56738025e09d1c90511269e}{signatures}}() \textcolor{keyword}{const override};}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72         \textcolor{comment}{// own section}}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{80         \textcolor{keyword}{template}<\textcolor{keyword}{typename}... Ts>}
+\DoxyCodeLine{81         \textcolor{keywordtype}{void} \mbox{\hyperlink{classdisco_1_1string__command__executor_affbf868c01c036a4fa6cfd0939690e9e}{create\_function}}(std::string\_view name, Ts\&\&... args) \{}
+\DoxyCodeLine{82             assert\_variable\_unique(name);}
+\DoxyCodeLine{83             \textcolor{keyword}{auto}\&\& funcIt = m\_functions.emplace(name.data(),}
+\DoxyCodeLine{84                     \mbox{\hyperlink{classdisco_1_1function__factory_a6d8eec2231bf5ceddf00d865e8539850}{function\_factory::create}}(std::forward<Ts>(args)...));}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86             fire\_variable\_added(funcIt.first-\/>first);}
+\DoxyCodeLine{87         \}}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{95         \textcolor{keyword}{template}<\textcolor{keyword}{typename} T, \textcolor{keyword}{typename} TFunction = std::function<\textcolor{keywordtype}{void}(const T\&)>>}
+\DoxyCodeLine{96         \textcolor{keywordtype}{void} \mbox{\hyperlink{classdisco_1_1string__command__executor_a5b9cc214c4ddf16c8ab86dea591b109e}{create\_variable}}(std::string\_view name, T\& \mbox{\hyperlink{classdisco_1_1variable}{variable}}, TFunction\&\& callback = TFunction\{ \}) \{}
+\DoxyCodeLine{97             assert\_variable\_unique(name);}
+\DoxyCodeLine{98             \textcolor{keyword}{auto}\&\& varIt = m\_variables.emplace(name.data(), }
+\DoxyCodeLine{99                     \textcolor{keyword}{new} \mbox{\hyperlink{classdisco_1_1variable__impl}{variable\_impl}}(\mbox{\hyperlink{classdisco_1_1variable}{variable}}, std::move(callback)));}
+\DoxyCodeLine{100             }
+\DoxyCodeLine{101             fire\_variable\_added(varIt.first-\/>first);}
+\DoxyCodeLine{102         \}}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104     \textcolor{keyword}{private}:}
+\DoxyCodeLine{105         \textcolor{keywordtype}{void} fire\_variable\_added(std::string\_view name) \textcolor{keyword}{const};}
+\DoxyCodeLine{106         \textcolor{keywordtype}{void} assert\_variable\_unique(std::string\_view name) \textcolor{keyword}{const};}
+\DoxyCodeLine{107         \textcolor{keywordtype}{void} assert\_variable\_exist(std::string\_view name) \textcolor{keyword}{const};}
+\DoxyCodeLine{108         \textcolor{keywordtype}{bool} exist(std::string\_view name) \textcolor{keyword}{const} \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110         \textcolor{keyword}{static} std::string function\_signature(\textcolor{keyword}{const} std::string\& name, \textcolor{keyword}{function}* func);}
+\DoxyCodeLine{111         \textcolor{keyword}{static} std::string variable\_signature(\textcolor{keyword}{const} std::string\& name, variable* var);}
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113         \textcolor{keyword}{template}<\textcolor{keyword}{typename} TStorage>}
+\DoxyCodeLine{114         \textcolor{keyword}{static} \textcolor{keywordtype}{bool} exist\_in\_storage(std::string\_view name, \textcolor{keyword}{const} TStorage\& storage);}
+\DoxyCodeLine{115 }
+\DoxyCodeLine{116         on\_new\_name\_added\_callback\_t m\_new\_name\_added\_callback;}
+\DoxyCodeLine{117         std::map<std::string, function*> m\_functions;}
+\DoxyCodeLine{118         std::map<std::string, variable*> m\_variables;}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120         function\_proxy* m\_function\_proxy;}
+\DoxyCodeLine{121         variable\_proxy* m\_variable\_proxy;}
+\DoxyCodeLine{122     \};}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{124 \}}
+\DoxyCodeLine{125 }
+
+\end{DoxyCode}

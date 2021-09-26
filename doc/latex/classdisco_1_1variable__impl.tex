@@ -1,0 +1,99 @@
+\hypertarget{classdisco_1_1variable__impl}{}\doxysection{disco\+::variable\+\_\+impl\texorpdfstring{$<$}{<} TValue \texorpdfstring{$>$}{>} Class Template Reference}
+\label{classdisco_1_1variable__impl}\index{disco::variable\_impl$<$ TValue $>$@{disco::variable\_impl$<$ TValue $>$}}
+Inheritance diagram for disco\+::variable\+\_\+impl\texorpdfstring{$<$}{<} TValue \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classdisco_1_1variable__impl}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classdisco_1_1variable__impl_a8ddec2c8673f049b200c798abd34800d}\label{classdisco_1_1variable__impl_a8ddec2c8673f049b200c798abd34800d}} 
+using {\bfseries callback\+\_\+t} = std\+::function$<$ void(const TValue \&)$>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classdisco_1_1variable__impl_ab29b02efd10b391f7e89717f4cf1022b}\label{classdisco_1_1variable__impl_ab29b02efd10b391f7e89717f4cf1022b}} 
+{\bfseries variable\+\_\+impl} (TValue \&var, callback\+\_\+t \&\&callback)
+\item 
+virtual void \mbox{\hyperlink{classdisco_1_1variable__impl_a2a589f94888e69a005c920bec6d91da1}{set}} (std\+::string\+\_\+view arguments) override
+\begin{DoxyCompactList}\small\item\em Tries to change variable name to given value. If input sequence could not been parsed correctly, threw \mbox{\hyperlink{classdisco_1_1bad__input}{disco\+::bad\+\_\+input}} Calls registered function if variable were changed successfully, propagate new value to the callback. \end{DoxyCompactList}\item 
+virtual std\+::string \mbox{\hyperlink{classdisco_1_1variable__impl_ac1194c8e8173ec3cc213343a427fbe85}{get}} () const override
+\begin{DoxyCompactList}\small\item\em Converts internal value to the string. \end{DoxyCompactList}\item 
+virtual std\+::string\+\_\+view \mbox{\hyperlink{classdisco_1_1variable__impl_a451bb0a547b55f6177dcb5e95d69e504}{type}} () const noexcept override
+\begin{DoxyCompactList}\small\item\em Provide conversion of the internal variable type to its string representation. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classdisco_1_1variable__impl_af508f4aab353e69c2f8fbb11802e0354}\label{classdisco_1_1variable__impl_af508f4aab353e69c2f8fbb11802e0354}} 
+{\bfseries DECLARE\+\_\+\+NON\+\_\+\+COPYABLE} (\mbox{\hyperlink{classdisco_1_1variable__impl}{variable\+\_\+impl}})
+\item 
+\mbox{\Hypertarget{classdisco_1_1variable__impl_aa5d75927f52412b509a26a5d32a8e41a}\label{classdisco_1_1variable__impl_aa5d75927f52412b509a26a5d32a8e41a}} 
+{\bfseries DECLARE\+\_\+\+NON\+\_\+\+MOVABLE} (\mbox{\hyperlink{classdisco_1_1variable__impl}{variable\+\_\+impl}})
+\item 
+\mbox{\Hypertarget{classdisco_1_1variable__impl_a40ee0ab679c7ae92c0540fb02227a5a4}\label{classdisco_1_1variable__impl_a40ee0ab679c7ae92c0540fb02227a5a4}} 
+{\bfseries variable} ()=default
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classdisco_1_1variable__impl_ac1194c8e8173ec3cc213343a427fbe85}\label{classdisco_1_1variable__impl_ac1194c8e8173ec3cc213343a427fbe85}} 
+\index{disco::variable\_impl$<$ TValue $>$@{disco::variable\_impl$<$ TValue $>$}!get@{get}}
+\index{get@{get}!disco::variable\_impl$<$ TValue $>$@{disco::variable\_impl$<$ TValue $>$}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily template$<$typename TValue $>$ \\
+virtual std\+::string \mbox{\hyperlink{classdisco_1_1variable__impl}{disco\+::variable\+\_\+impl}}$<$ TValue $>$\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Converts internal value to the string. 
+
+\begin{DoxyReturn}{Returns}
+Containing value in string form 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classdisco_1_1variable_a84d74c37e8b2769d24d32db2af73eddc}{disco\+::variable}}.
+
+\mbox{\Hypertarget{classdisco_1_1variable__impl_a2a589f94888e69a005c920bec6d91da1}\label{classdisco_1_1variable__impl_a2a589f94888e69a005c920bec6d91da1}} 
+\index{disco::variable\_impl$<$ TValue $>$@{disco::variable\_impl$<$ TValue $>$}!set@{set}}
+\index{set@{set}!disco::variable\_impl$<$ TValue $>$@{disco::variable\_impl$<$ TValue $>$}}
+\doxysubsubsection{\texorpdfstring{set()}{set()}}
+{\footnotesize\ttfamily template$<$typename TValue $>$ \\
+virtual void \mbox{\hyperlink{classdisco_1_1variable__impl}{disco\+::variable\+\_\+impl}}$<$ TValue $>$\+::set (\begin{DoxyParamCaption}\item[{std\+::string\+\_\+view}]{arguments }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Tries to change variable name to given value. If input sequence could not been parsed correctly, threw \mbox{\hyperlink{classdisco_1_1bad__input}{disco\+::bad\+\_\+input}} Calls registered function if variable were changed successfully, propagate new value to the callback. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em arguments} & Input sequence containing new value of the variable \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classdisco_1_1variable_a9ff86a25ff9921750f7c3145cb5f4ece}{disco\+::variable}}.
+
+\mbox{\Hypertarget{classdisco_1_1variable__impl_a451bb0a547b55f6177dcb5e95d69e504}\label{classdisco_1_1variable__impl_a451bb0a547b55f6177dcb5e95d69e504}} 
+\index{disco::variable\_impl$<$ TValue $>$@{disco::variable\_impl$<$ TValue $>$}!type@{type}}
+\index{type@{type}!disco::variable\_impl$<$ TValue $>$@{disco::variable\_impl$<$ TValue $>$}}
+\doxysubsubsection{\texorpdfstring{type()}{type()}}
+{\footnotesize\ttfamily template$<$typename TValue $>$ \\
+virtual std\+::string\+\_\+view \mbox{\hyperlink{classdisco_1_1variable__impl}{disco\+::variable\+\_\+impl}}$<$ TValue $>$\+::type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Provide conversion of the internal variable type to its string representation. 
+
+\begin{DoxyReturn}{Returns}
+String representation of the variable type 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classdisco_1_1variable_a8e5cd093f9677249653c0a1ea91b1aea}{disco\+::variable}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/consolelib/variable/\mbox{\hyperlink{variable__impl_8h}{variable\+\_\+impl.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,70 @@
+\hypertarget{for__each_8h}{}\doxysection{lib/consolelib/core/for\+\_\+each.h File Reference}
+\label{for__each_8h}\index{lib/consolelib/core/for\_each.h@{lib/consolelib/core/for\_each.h}}
+
+
+Implementation of the for\+\_\+each algorithm, works with standard tuple.  
+
+
+{\ttfamily \#include $<$tuple$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename TTuple , typename TFunction , std\+::size\+\_\+t... Is$>$ }\\void \mbox{\hyperlink{for__each_8h_a4f4395a9ca8af482d41ece7fbccd9ad7}{disco\+::core\+::detail\+::for\+\_\+each}} (std\+::index\+\_\+sequence$<$ Is... $>$, TTuple \&\&tuple, TFunction \&\&func)
+\item 
+{\footnotesize template$<$typename TFunction , typename... Ts$>$ }\\void \mbox{\hyperlink{for__each_8h_ae65fb4ae62ab411656906af1727e913a}{disco\+::core\+::for\+\_\+each}} (std\+::tuple$<$ Ts... $>$ \&tuple, TFunction \&\&func)
+\item 
+{\footnotesize template$<$typename TFunction , typename... Ts$>$ }\\void \mbox{\hyperlink{for__each_8h_a62c54d36b9bcfb76baadf5cd884413ee}{disco\+::core\+::for\+\_\+each}} (const std\+::tuple$<$ Ts... $>$ \&tuple, TFunction \&\&func)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of the for\+\_\+each algorithm, works with standard tuple. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{for__each_8h_a62c54d36b9bcfb76baadf5cd884413ee}\label{for__each_8h_a62c54d36b9bcfb76baadf5cd884413ee}} 
+\index{for\_each.h@{for\_each.h}!for\_each@{for\_each}}
+\index{for\_each@{for\_each}!for\_each.h@{for\_each.h}}
+\doxysubsubsection{\texorpdfstring{for\_each()}{for\_each()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename TFunction , typename... Ts$>$ \\
+void disco\+::core\+::for\+\_\+each (\begin{DoxyParamCaption}\item[{const std\+::tuple$<$ Ts... $>$ \&}]{tuple,  }\item[{TFunction \&\&}]{func }\end{DoxyParamCaption})}
+
+Constant variant of the for\+\_\+each function 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em TFunction} & Type of the function to be called \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em tuple} & The instance of the tuple on which the function will be called \\
+\hline
+{\em func} & The instance of the desired function \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{for__each_8h_a4f4395a9ca8af482d41ece7fbccd9ad7}\label{for__each_8h_a4f4395a9ca8af482d41ece7fbccd9ad7}} 
+\index{for\_each.h@{for\_each.h}!for\_each@{for\_each}}
+\index{for\_each@{for\_each}!for\_each.h@{for\_each.h}}
+\doxysubsubsection{\texorpdfstring{for\_each()}{for\_each()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename TTuple , typename TFunction , std\+::size\+\_\+t... Is$>$ \\
+void disco\+::core\+::detail\+::for\+\_\+each (\begin{DoxyParamCaption}\item[{std\+::index\+\_\+sequence$<$ Is... $>$}]{,  }\item[{TTuple \&\&}]{tuple,  }\item[{TFunction \&\&}]{func }\end{DoxyParamCaption})}
+
+Implementation of the for\+\_\+each function, calls given function with each argument of the given tuple \mbox{\Hypertarget{for__each_8h_ae65fb4ae62ab411656906af1727e913a}\label{for__each_8h_ae65fb4ae62ab411656906af1727e913a}} 
+\index{for\_each.h@{for\_each.h}!for\_each@{for\_each}}
+\index{for\_each@{for\_each}!for\_each.h@{for\_each.h}}
+\doxysubsubsection{\texorpdfstring{for\_each()}{for\_each()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename TFunction , typename... Ts$>$ \\
+void disco\+::core\+::for\+\_\+each (\begin{DoxyParamCaption}\item[{std\+::tuple$<$ Ts... $>$ \&}]{tuple,  }\item[{TFunction \&\&}]{func }\end{DoxyParamCaption})}
+
+Non constant variant of the for\+\_\+each function 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em TFunction} & Type of the function to be called \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em tuple} & The instance of the tuple on which the function will be called \\
+\hline
+{\em func} & The instance of the desired function \\
+\hline
+\end{DoxyParams}

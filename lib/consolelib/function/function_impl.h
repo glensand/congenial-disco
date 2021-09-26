@@ -6,6 +6,12 @@
  * this file. If not, please write to: bezborodoff.gleb@gmail.com, or visit : https://github.com/glensand/congenial-disco
  */
 
+/*! \defgroup <function> Function
+    @{
+    \file
+    \brief File contains implementation of the function interface.
+*/
+
 #pragma once
 
 #include <functional>
@@ -101,3 +107,5 @@ namespace disco {
     };
 
 }
+
+/*! @} */

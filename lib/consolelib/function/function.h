@@ -6,6 +6,12 @@
  * this file. If not, please write to: bezborodoff.gleb@gmail.com, or visit : https://github.com/glensand/congenial-disco
  */
 
+/*! \defgroup <function> Function
+    @{
+    \file
+    \brief File contains interface of the polymorphic functional object
+*/
+
 #pragma once
 
 #include "consolelib/common/foundation.h"
@@ -55,3 +61,5 @@ namespace disco  {
     };
 
 }
+
+/*! @} */

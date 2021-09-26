@@ -1,0 +1,150 @@
+\hypertarget{classdisco_1_1function__factory}{}\doxysection{disco\+::function\+\_\+factory Class Reference}
+\label{classdisco_1_1function__factory}\index{disco::function\_factory@{disco::function\_factory}}
+
+
+Utility class, used to create some sorts of functional object wrappers.  
+
+
+
+
+{\ttfamily \#include $<$function\+\_\+factory.\+h$>$}
+
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename TFunction $>$ }\\static \mbox{\hyperlink{classdisco_1_1function}{function}} $\ast$ \mbox{\hyperlink{classdisco_1_1function__factory_a6d8eec2231bf5ceddf00d865e8539850}{create}} (TFunction \&\&\mbox{\hyperlink{classdisco_1_1function}{function}}, std\+::string description=\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em Creates function object using passed lambda expression or functional object (operator() has to be declared) \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename TReturn , typename... Ts$>$ }\\static \mbox{\hyperlink{classdisco_1_1function}{function}} $\ast$ \mbox{\hyperlink{classdisco_1_1function__factory_a3e16ba378764163b024cd0d0245a182d}{create}} (TReturn($\ast$func)(Ts...), std\+::string description=\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em Creates function object using pointer to function or pointer to static method of some class. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename TFunction , typename TObj $>$ }\\static \mbox{\hyperlink{classdisco_1_1function}{function}} $\ast$ \mbox{\hyperlink{classdisco_1_1function__factory_aa48c069545b94422ef03a445f4a15b3a}{create}} (TObj $\ast$obj, TFunction \&\&\mbox{\hyperlink{classdisco_1_1function}{function}}, std\+::string description=\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em Creates function object using pointer to instance of some class and specified method. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename TSignature $>$ }\\static \mbox{\hyperlink{classdisco_1_1function}{function}} $\ast$ \mbox{\hyperlink{classdisco_1_1function__factory_a2032c072e6d6c8a01e33c2a449169ff9}{create}} (const std\+::function$<$ TSignature $>$ \&\mbox{\hyperlink{classdisco_1_1function}{function}}, std\+::string description=\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em Creates function object using specified std\+::function instance. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename TSignature $>$ }\\static \mbox{\hyperlink{classdisco_1_1function}{function}} $\ast$ \mbox{\hyperlink{classdisco_1_1function__factory_a33a9456fe17ba498434b8ee8b2eee823}{create}} (std\+::function$<$ TSignature $>$ \&\&\mbox{\hyperlink{classdisco_1_1function}{function}}, std\+::string description=\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em Creates function object using specified std\+::function instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Utility class, used to create some sorts of functional object wrappers. 
+
+Allowed function types are\+:
+\begin{DoxyItemize}
+\item pointer to member function, the object on which the method will be called is also required
+\item pointer to function or static method
+\item raw lambda function or functional object (operator() has to be declared)
+\item std\+::function$<$\+TSignature$>$ objects 
+\end{DoxyItemize}
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classdisco_1_1function__factory_a2032c072e6d6c8a01e33c2a449169ff9}\label{classdisco_1_1function__factory_a2032c072e6d6c8a01e33c2a449169ff9}} 
+\index{disco::function\_factory@{disco::function\_factory}!create@{create}}
+\index{create@{create}!disco::function\_factory@{disco::function\_factory}}
+\doxysubsubsection{\texorpdfstring{create()}{create()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily template$<$typename TSignature $>$ \\
+static \mbox{\hyperlink{classdisco_1_1function}{function}} $\ast$ disco\+::function\+\_\+factory\+::create (\begin{DoxyParamCaption}\item[{const std\+::function$<$ TSignature $>$ \&}]{function,  }\item[{std\+::string}]{description = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Creates function object using specified std\+::function instance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em function} & functor to be passed to thin wrapper \\
+\hline
+{\em description} & Short explanation of reason d\textquotesingle{}etre of this the registered function \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to the function wrapper; NOTE\+: this object has to be manually deallocated 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classdisco_1_1function__factory_a33a9456fe17ba498434b8ee8b2eee823}\label{classdisco_1_1function__factory_a33a9456fe17ba498434b8ee8b2eee823}} 
+\index{disco::function\_factory@{disco::function\_factory}!create@{create}}
+\index{create@{create}!disco::function\_factory@{disco::function\_factory}}
+\doxysubsubsection{\texorpdfstring{create()}{create()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily template$<$typename TSignature $>$ \\
+static \mbox{\hyperlink{classdisco_1_1function}{function}} $\ast$ disco\+::function\+\_\+factory\+::create (\begin{DoxyParamCaption}\item[{std\+::function$<$ TSignature $>$ \&\&}]{function,  }\item[{std\+::string}]{description = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Creates function object using specified std\+::function instance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em function} & functor to be passed to thin wrapper \\
+\hline
+{\em description} & Short explanation of reason d\textquotesingle{}etre of this the registered function \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to the function wrapper; NOTE\+: this object has to be manually deallocated 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classdisco_1_1function__factory_a6d8eec2231bf5ceddf00d865e8539850}\label{classdisco_1_1function__factory_a6d8eec2231bf5ceddf00d865e8539850}} 
+\index{disco::function\_factory@{disco::function\_factory}!create@{create}}
+\index{create@{create}!disco::function\_factory@{disco::function\_factory}}
+\doxysubsubsection{\texorpdfstring{create()}{create()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily template$<$typename TFunction $>$ \\
+static \mbox{\hyperlink{classdisco_1_1function}{function}} $\ast$ disco\+::function\+\_\+factory\+::create (\begin{DoxyParamCaption}\item[{TFunction \&\&}]{function,  }\item[{std\+::string}]{description = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Creates function object using passed lambda expression or functional object (operator() has to be declared) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em function} & object to be used to create function wrapper \\
+\hline
+{\em description} & Short explanation of reason d\textquotesingle{}etre of this the registered function \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to the function wrapper; NOTE\+: this object has to be manually deallocated 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classdisco_1_1function__factory_aa48c069545b94422ef03a445f4a15b3a}\label{classdisco_1_1function__factory_aa48c069545b94422ef03a445f4a15b3a}} 
+\index{disco::function\_factory@{disco::function\_factory}!create@{create}}
+\index{create@{create}!disco::function\_factory@{disco::function\_factory}}
+\doxysubsubsection{\texorpdfstring{create()}{create()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily template$<$typename TFunction , typename TObj $>$ \\
+static \mbox{\hyperlink{classdisco_1_1function}{function}} $\ast$ disco\+::function\+\_\+factory\+::create (\begin{DoxyParamCaption}\item[{TObj $\ast$}]{obj,  }\item[{TFunction \&\&}]{function,  }\item[{std\+::string}]{description = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Creates function object using pointer to instance of some class and specified method. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em function} & pointer to method to be called \\
+\hline
+{\em description} & Short explanation of reason d\textquotesingle{}etre of this the registered function \\
+\hline
+{\em obj} & instance of object of specified class \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to the function wrapper; NOTE\+: this object has to be manually deallocated 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classdisco_1_1function__factory_a3e16ba378764163b024cd0d0245a182d}\label{classdisco_1_1function__factory_a3e16ba378764163b024cd0d0245a182d}} 
+\index{disco::function\_factory@{disco::function\_factory}!create@{create}}
+\index{create@{create}!disco::function\_factory@{disco::function\_factory}}
+\doxysubsubsection{\texorpdfstring{create()}{create()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily template$<$typename TReturn , typename... Ts$>$ \\
+static \mbox{\hyperlink{classdisco_1_1function}{function}} $\ast$ disco\+::function\+\_\+factory\+::create (\begin{DoxyParamCaption}\item[{TReturn($\ast$)(Ts...)}]{func,  }\item[{std\+::string}]{description = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Creates function object using pointer to function or pointer to static method of some class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em func} & pointer to function or static method \\
+\hline
+{\em description} & Short explanation of reason d\textquotesingle{}etre of this the registered function \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to the function wrapper; NOTE\+: this object has to be manually deallocated 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/consolelib/function/\mbox{\hyperlink{function__factory_8h}{function\+\_\+factory.\+h}}\end{DoxyCompactItemize}

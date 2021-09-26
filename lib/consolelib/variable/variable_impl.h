@@ -6,6 +6,12 @@
  * this file. If not, please write to: bezborodoff.gleb@gmail.com, or visit : https://github.com/glensand/congenial-disco
  */
 
+/*! \defgroup <variable> Variable
+    @{
+    \file
+    \brief File contains declarations of the implementation of the variable polymorphic object.
+*/
+
 #pragma once
 
 #include "consolelib/common/foundation.h"
@@ -74,3 +80,5 @@ namespace disco  {
     };
 
 }
+
+/*! @} */

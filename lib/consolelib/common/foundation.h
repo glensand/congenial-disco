@@ -6,6 +6,12 @@
  * this file. If not, please write to: bezborodoff.gleb@gmail.com, or visit : https://github.com/glensand/congenial-disco
  */
 
+/*! \defgroup <common> Common
+    @{
+    \file
+    \brief Console library base definitions
+*/
+
 #pragma once
 
  /**
@@ -29,9 +35,11 @@
 #define DECLARE_EXPLICIT_DEFAULT_MOVABLE(Name) Name ( Name &&) = default; \
     Name & operator=( Name &&) = default
 
-  /**
-   * \brief Explicitly declares default copy - constructor and copy - assign operator
-   * \param Name Class name to be declared
-   */
+ /**
+ * \brief Explicitly declares default copy - constructor and copy - assign operator
+ * \param Name Class name to be declared
+ */
 #define DECLARE_EXPLICIT_DEFAULT_COPYABLE(Name) Name ( const Name &) = default; \
     Name & operator=( const Name &) = default
+
+/*! @} */

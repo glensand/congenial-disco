@@ -6,6 +6,13 @@
  * this file. If not, please write to: bezborodoff.gleb@gmail.com, or visit : https://github.com/glensand/congenial-disco
  */
 
+/*! \defgroup <invoker> Invoker
+    @{
+    \file
+    \brief interface of the string command executor, this class has to dispatch calls between stored functions
+    and variables.
+*/
+
 #pragma once
 
 #include <string>
@@ -40,3 +47,5 @@ namespace disco {
     };
 
 }
+
+/*! @} */

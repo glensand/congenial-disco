@@ -1,0 +1,63 @@
+\hypertarget{classdisco_1_1function__proxy}{}\doxysection{disco\+::function\+\_\+proxy Class Reference}
+\label{classdisco_1_1function__proxy}\index{disco::function\_proxy@{disco::function\_proxy}}
+
+
+Interface for helper class. The only one reason of existence of this interface is input parameters format. Proxy have to prepare input sequence to be processed by lambda wrapper. Proxy trim any of the following symbols\+: ;,()  
+
+
+
+
+{\ttfamily \#include $<$function\+\_\+proxy.\+h$>$}
+
+Inheritance diagram for disco\+::function\+\_\+proxy\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classdisco_1_1function__proxy}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual std\+::string \mbox{\hyperlink{classdisco_1_1function__proxy_af6283708272036c2e0aa6756aa46cb19}{apply}} (\mbox{\hyperlink{classdisco_1_1function}{function}} $\ast$func, std\+::string\+\_\+view arguments) const =0
+\begin{DoxyCompactList}\small\item\em Prepares passed arguments to the given function call, then tries to call function, throws \mbox{\hyperlink{classdisco_1_1bad__input}{disco\+::bad\+\_\+input}} if given sequence had not been parsed correctly. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classdisco_1_1function__proxy_a710218246e8d46649d1443351b31d4d9}\label{classdisco_1_1function__proxy_a710218246e8d46649d1443351b31d4d9}} 
+{\bfseries DECLARE\+\_\+\+NON\+\_\+\+COPYABLE} (\mbox{\hyperlink{classdisco_1_1function__proxy}{function\+\_\+proxy}})
+\item 
+\mbox{\Hypertarget{classdisco_1_1function__proxy_aa56a859c99a461d4815bd8df91020b99}\label{classdisco_1_1function__proxy_aa56a859c99a461d4815bd8df91020b99}} 
+{\bfseries DECLARE\+\_\+\+NON\+\_\+\+MOVABLE} (\mbox{\hyperlink{classdisco_1_1function__proxy}{function\+\_\+proxy}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interface for helper class. The only one reason of existence of this interface is input parameters format. Proxy have to prepare input sequence to be processed by lambda wrapper. Proxy trim any of the following symbols\+: ;,() 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classdisco_1_1function__proxy_af6283708272036c2e0aa6756aa46cb19}\label{classdisco_1_1function__proxy_af6283708272036c2e0aa6756aa46cb19}} 
+\index{disco::function\_proxy@{disco::function\_proxy}!apply@{apply}}
+\index{apply@{apply}!disco::function\_proxy@{disco::function\_proxy}}
+\doxysubsubsection{\texorpdfstring{apply()}{apply()}}
+{\footnotesize\ttfamily virtual std\+::string disco\+::function\+\_\+proxy\+::apply (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classdisco_1_1function}{function}} $\ast$}]{func,  }\item[{std\+::string\+\_\+view}]{arguments }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Prepares passed arguments to the given function call, then tries to call function, throws \mbox{\hyperlink{classdisco_1_1bad__input}{disco\+::bad\+\_\+input}} if given sequence had not been parsed correctly. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em func} & Function object to be called \\
+\hline
+{\em arguments} & Input sequence with arguments to be parsed \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+String representation of the return value of the function, return value has to be convertable to string, if internal function returns nothing, the result of operation is empty string 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classdisco_1_1function__proxy__impl_a704d945cbbbaad5b072c86fe767b4076}{disco\+::function\+\_\+proxy\+\_\+impl}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/consolelib/function/\mbox{\hyperlink{function__proxy_8h}{function\+\_\+proxy.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,134 @@
+\hypertarget{classdisco_1_1signature__builder}{}\doxysection{disco\+::signature\+\_\+builder Class Reference}
+\label{classdisco_1_1signature__builder}\index{disco::signature\_builder@{disco::signature\_builder}}
+
+
+Helper class to build signature of functions and variables.  
+
+
+
+
+{\ttfamily \#include $<$signature\+\_\+builder.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classdisco_1_1signature__builder_a6255b6a626412409860eae500208c8d5}\label{classdisco_1_1signature__builder_a6255b6a626412409860eae500208c8d5}} 
+enum class {\bfseries build\+\_\+policy} \+: uint8\+\_\+t \{ {\bfseries function}
+, {\bfseries variable}
+, {\bfseries count}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classdisco_1_1signature__builder}{signature\+\_\+builder}} \& \mbox{\hyperlink{classdisco_1_1signature__builder_a07f27058c5495b959639c8cbaecdec1a}{add\+\_\+return\+\_\+type}} (std\+::string\+\_\+view return\+\_\+type) noexcept
+\begin{DoxyCompactList}\small\item\em Adds string with return type name, or with name of the variable\textquotesingle{}s type. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdisco_1_1signature__builder}{signature\+\_\+builder}} \& \mbox{\hyperlink{classdisco_1_1signature__builder_af55f23ebb015e0abdaa8d8252042b165}{add\+\_\+parameters}} (std\+::vector$<$ std\+::string\+\_\+view $>$ \&\&parameters) noexcept
+\begin{DoxyCompactList}\small\item\em Add types of the parameters. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdisco_1_1signature__builder}{signature\+\_\+builder}} \& \mbox{\hyperlink{classdisco_1_1signature__builder_a0ffa75e88215fc8f939eb9f72d1a7377}{add\+\_\+name}} (std\+::string\+\_\+view name) noexcept
+\begin{DoxyCompactList}\small\item\em Add function or variable name. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classdisco_1_1signature__builder_a0a1a253168f7d59af0f98acf77c333d1}{get}} ()
+\begin{DoxyCompactList}\small\item\em Finalization method of the building procedure. After calling this method, each operation on builder object causes UB. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classdisco_1_1signature__builder_a25275425717d706fbac009cd0466af39}\label{classdisco_1_1signature__builder_a25275425717d706fbac009cd0466af39}} 
+{\bfseries DECLARE\+\_\+\+NON\+\_\+\+COPYABLE} (\mbox{\hyperlink{classdisco_1_1signature__builder}{signature\+\_\+builder}})
+\item 
+\mbox{\Hypertarget{classdisco_1_1signature__builder_a7b710e3011e69af06d7a8ce12c813cdb}\label{classdisco_1_1signature__builder_a7b710e3011e69af06d7a8ce12c813cdb}} 
+{\bfseries DECLARE\+\_\+\+NON\+\_\+\+MOVABLE} (\mbox{\hyperlink{classdisco_1_1signature__builder}{signature\+\_\+builder}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classdisco_1_1signature__builder}{signature\+\_\+builder}} \mbox{\hyperlink{classdisco_1_1signature__builder_a4661684db7f64a2bdfb9b8f1449f8d8f}{create}} (build\+\_\+policy policy=build\+\_\+policy\+::function) noexcept
+\begin{DoxyCompactList}\small\item\em Creates empty builder, this method is intended to be called on very beginning of the signature building. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Helper class to build signature of functions and variables. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classdisco_1_1signature__builder_a0ffa75e88215fc8f939eb9f72d1a7377}\label{classdisco_1_1signature__builder_a0ffa75e88215fc8f939eb9f72d1a7377}} 
+\index{disco::signature\_builder@{disco::signature\_builder}!add\_name@{add\_name}}
+\index{add\_name@{add\_name}!disco::signature\_builder@{disco::signature\_builder}}
+\doxysubsubsection{\texorpdfstring{add\_name()}{add\_name()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdisco_1_1signature__builder}{signature\+\_\+builder}} \& disco\+::signature\+\_\+builder\+::add\+\_\+name (\begin{DoxyParamCaption}\item[{std\+::string\+\_\+view}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Add function or variable name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & String with name to be added \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Self 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classdisco_1_1signature__builder_af55f23ebb015e0abdaa8d8252042b165}\label{classdisco_1_1signature__builder_af55f23ebb015e0abdaa8d8252042b165}} 
+\index{disco::signature\_builder@{disco::signature\_builder}!add\_parameters@{add\_parameters}}
+\index{add\_parameters@{add\_parameters}!disco::signature\_builder@{disco::signature\_builder}}
+\doxysubsubsection{\texorpdfstring{add\_parameters()}{add\_parameters()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdisco_1_1signature__builder}{signature\+\_\+builder}} \& disco\+::signature\+\_\+builder\+::add\+\_\+parameters (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::string\+\_\+view $>$ \&\&}]{parameters }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Add types of the parameters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parameters} & List with types, empty list is allowed but for what... ()\+\_\+() \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Self 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classdisco_1_1signature__builder_a07f27058c5495b959639c8cbaecdec1a}\label{classdisco_1_1signature__builder_a07f27058c5495b959639c8cbaecdec1a}} 
+\index{disco::signature\_builder@{disco::signature\_builder}!add\_return\_type@{add\_return\_type}}
+\index{add\_return\_type@{add\_return\_type}!disco::signature\_builder@{disco::signature\_builder}}
+\doxysubsubsection{\texorpdfstring{add\_return\_type()}{add\_return\_type()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdisco_1_1signature__builder}{signature\+\_\+builder}} \& disco\+::signature\+\_\+builder\+::add\+\_\+return\+\_\+type (\begin{DoxyParamCaption}\item[{std\+::string\+\_\+view}]{return\+\_\+type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Adds string with return type name, or with name of the variable\textquotesingle{}s type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em return\+\_\+type} & String to be added to the signature \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Self 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classdisco_1_1signature__builder_a4661684db7f64a2bdfb9b8f1449f8d8f}\label{classdisco_1_1signature__builder_a4661684db7f64a2bdfb9b8f1449f8d8f}} 
+\index{disco::signature\_builder@{disco::signature\_builder}!create@{create}}
+\index{create@{create}!disco::signature\_builder@{disco::signature\_builder}}
+\doxysubsubsection{\texorpdfstring{create()}{create()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdisco_1_1signature__builder}{signature\+\_\+builder}} disco\+::signature\+\_\+builder\+::create (\begin{DoxyParamCaption}\item[{build\+\_\+policy}]{policy = {\ttfamily build\+\_\+policy\+:\+:function} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [noexcept]}}
+
+
+
+Creates empty builder, this method is intended to be called on very beginning of the signature building. 
+
+\begin{DoxyReturn}{Returns}
+Empty builder instance 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classdisco_1_1signature__builder_a0a1a253168f7d59af0f98acf77c333d1}\label{classdisco_1_1signature__builder_a0a1a253168f7d59af0f98acf77c333d1}} 
+\index{disco::signature\_builder@{disco::signature\_builder}!get@{get}}
+\index{get@{get}!disco::signature\_builder@{disco::signature\_builder}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily std\+::string disco\+::signature\+\_\+builder\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Finalization method of the building procedure. After calling this method, each operation on builder object causes UB. 
+
+\begin{DoxyReturn}{Returns}
+Final signature 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+lib/consolelib/generator/\mbox{\hyperlink{signature__builder_8h}{signature\+\_\+builder.\+h}}\item 
+lib/consolelib/generator/signature\+\_\+builder.\+hpp\end{DoxyCompactItemize}

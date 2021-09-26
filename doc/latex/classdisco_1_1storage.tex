@@ -1,0 +1,56 @@
+\hypertarget{classdisco_1_1storage}{}\doxysection{disco\+::storage Class Reference}
+\label{classdisco_1_1storage}\index{disco::storage@{disco::storage}}
+
+
+Interface for function and variable storage.  
+
+
+
+
+{\ttfamily \#include $<$storage.\+h$>$}
+
+Inheritance diagram for disco\+::storage\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classdisco_1_1storage}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{classdisco_1_1storage_ae8da43373d8e66b4aafc00f1561a05d1}{signatures}} () const =0
+\begin{DoxyCompactList}\small\item\em Creates list of descriptions of the registered functions and variables. Description format\+: \mbox{[}name\mbox{]} \+: \mbox{[}signature\mbox{]} signature format is \+: \mbox{[}return\+\_\+type\mbox{]}\mbox{[}(parameter types)\mbox{]} Variable format is\+: \mbox{[}variable\+\_\+type\mbox{]} \mbox{[}variable\+\_\+name\mbox{]}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classdisco_1_1storage_a2d6453030af5bce46afbebb3497cdc94}\label{classdisco_1_1storage_a2d6453030af5bce46afbebb3497cdc94}} 
+{\bfseries DECLARE\+\_\+\+NON\+\_\+\+COPYABLE} (\mbox{\hyperlink{classdisco_1_1storage}{storage}})
+\item 
+\mbox{\Hypertarget{classdisco_1_1storage_a5f7ae3d6fed40911009160eb253d4e58}\label{classdisco_1_1storage_a5f7ae3d6fed40911009160eb253d4e58}} 
+{\bfseries DECLARE\+\_\+\+NON\+\_\+\+MOVABLE} (\mbox{\hyperlink{classdisco_1_1storage}{storage}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interface for function and variable storage. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classdisco_1_1storage_ae8da43373d8e66b4aafc00f1561a05d1}\label{classdisco_1_1storage_ae8da43373d8e66b4aafc00f1561a05d1}} 
+\index{disco::storage@{disco::storage}!signatures@{signatures}}
+\index{signatures@{signatures}!disco::storage@{disco::storage}}
+\doxysubsubsection{\texorpdfstring{signatures()}{signatures()}}
+{\footnotesize\ttfamily virtual std\+::vector$<$ std\+::string $>$ disco\+::storage\+::signatures (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Creates list of descriptions of the registered functions and variables. Description format\+: \mbox{[}name\mbox{]} \+: \mbox{[}signature\mbox{]} signature format is \+: \mbox{[}return\+\_\+type\mbox{]}\mbox{[}(parameter types)\mbox{]} Variable format is\+: \mbox{[}variable\+\_\+type\mbox{]} \mbox{[}variable\+\_\+name\mbox{]}. 
+
+\begin{DoxyReturn}{Returns}
+List with descriptions of all registered functions 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classdisco_1_1string__command__executor_ad6078a32f56738025e09d1c90511269e}{disco\+::string\+\_\+command\+\_\+executor}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/consolelib/\mbox{\hyperlink{storage_8h}{storage.\+h}}\end{DoxyCompactItemize}

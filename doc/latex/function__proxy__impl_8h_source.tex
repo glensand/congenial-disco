@@ -1,0 +1,35 @@
+\hypertarget{function__proxy__impl_8h_source}{}\doxysection{function\+\_\+proxy\+\_\+impl.\+h}
+\label{function__proxy__impl_8h_source}\index{lib/consolelib/function/function\_proxy\_impl.h@{lib/consolelib/function/function\_proxy\_impl.h}}
+\mbox{\hyperlink{function__proxy__impl_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/* Copyright (C) 2021 Gleb Bezborodov -\/ All Rights Reserved}}
+\DoxyCodeLine{2 \textcolor{comment}{ * You may use, distribute and modify this code under the}}
+\DoxyCodeLine{3 \textcolor{comment}{ * terms of the MIT license.}}
+\DoxyCodeLine{4 \textcolor{comment}{ *}}
+\DoxyCodeLine{5 \textcolor{comment}{ * You should have received a copy of the MIT license with}}
+\DoxyCodeLine{6 \textcolor{comment}{ * this file. If not, please write to: bezborodoff.gleb@gmail.com, or visit : https://github.com/glensand/congenial-\/disco}}
+\DoxyCodeLine{7 \textcolor{comment}{ */}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{function__proxy_8h}{consolelib/function/function\_proxy.h}}"{}}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <string\_view>}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{keyword}{namespace }disco  \{}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{27     \textcolor{keyword}{class }\mbox{\hyperlink{classdisco_1_1function__proxy__impl}{function\_proxy\_impl}} final : \textcolor{keyword}{public} \mbox{\hyperlink{classdisco_1_1function__proxy}{function\_proxy}}\{}
+\DoxyCodeLine{28     \textcolor{keyword}{public}:}
+\DoxyCodeLine{29         \textcolor{keyword}{virtual} \mbox{\hyperlink{classdisco_1_1function__proxy__impl}{\string~function\_proxy\_impl}}() \textcolor{keyword}{override} = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{30         \mbox{\hyperlink{classdisco_1_1function__proxy__impl}{function\_proxy\_impl}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{39         \textcolor{keyword}{virtual} std::string \mbox{\hyperlink{classdisco_1_1function__proxy__impl_a704d945cbbbaad5b072c86fe767b4076}{apply}}(\textcolor{keyword}{function}* func, std::string\_view arguments) \textcolor{keyword}{const override};}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41         DECLARE\_NON\_COPYABLE(\mbox{\hyperlink{classdisco_1_1function__proxy__impl}{function\_proxy\_impl}});}
+\DoxyCodeLine{42         DECLARE\_NON\_MOVABLE(\mbox{\hyperlink{classdisco_1_1function__proxy__impl}{function\_proxy\_impl}});}
+\DoxyCodeLine{43     \};}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 \}}
+\DoxyCodeLine{46 }
+
+\end{DoxyCode}

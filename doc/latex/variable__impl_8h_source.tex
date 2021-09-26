@@ -1,0 +1,70 @@
+\hypertarget{variable__impl_8h_source}{}\doxysection{variable\+\_\+impl.\+h}
+\label{variable__impl_8h_source}\index{lib/consolelib/variable/variable\_impl.h@{lib/consolelib/variable/variable\_impl.h}}
+\mbox{\hyperlink{variable__impl_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/* Copyright (C) 2021 Gleb Bezborodov -\/ All Rights Reserved}}
+\DoxyCodeLine{2 \textcolor{comment}{ * You may use, distribute and modify this code under the}}
+\DoxyCodeLine{3 \textcolor{comment}{ * terms of the MIT license.}}
+\DoxyCodeLine{4 \textcolor{comment}{ *}}
+\DoxyCodeLine{5 \textcolor{comment}{ * You should have received a copy of the MIT license with}}
+\DoxyCodeLine{6 \textcolor{comment}{ * this file. If not, please write to: bezborodoff.gleb@gmail.com, or visit : https://github.com/glensand/congenial-\/disco}}
+\DoxyCodeLine{7 \textcolor{comment}{ */}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{foundation_8h}{consolelib/common/foundation.h}}"{}}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{variable_8h}{consolelib/variable/variable.h}}"{}}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{parser_8h}{consolelib/generator/parser.h}}"{}}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{generator_8h}{consolelib/generator/generator.h}}"{}}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{keyword}{namespace }disco  \{}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24     \textcolor{keyword}{template}<\textcolor{keyword}{typename} TValue>}
+\DoxyCodeLine{25     \textcolor{keyword}{class }\mbox{\hyperlink{classdisco_1_1variable__impl}{variable\_impl}} final : \textcolor{keyword}{public} \mbox{\hyperlink{classdisco_1_1variable}{variable}} \{}
+\DoxyCodeLine{26         \textcolor{keyword}{using} clear\_t = std::decay\_t<TValue>;}
+\DoxyCodeLine{27     \textcolor{keyword}{public}:}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29         \textcolor{keyword}{using} variable::variable;}
+\DoxyCodeLine{30         \textcolor{keyword}{using} variable::operator=;}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32         \textcolor{keyword}{using} callback\_t = std::function<void(\textcolor{keyword}{const} TValue\&)>;}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34         \textcolor{keyword}{virtual} \mbox{\hyperlink{classdisco_1_1variable__impl}{\string~variable\_impl}}() \textcolor{keyword}{override} = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36         \textcolor{keyword}{explicit} \mbox{\hyperlink{classdisco_1_1variable__impl}{variable\_impl}}(TValue\& var,  callback\_t\&\& callback)}
+\DoxyCodeLine{37             : m\_variable(var)}
+\DoxyCodeLine{38             , m\_callback(std::move(callback))\{\} }
+\DoxyCodeLine{39 }
+\DoxyCodeLine{45         \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classdisco_1_1variable__impl_a2a589f94888e69a005c920bec6d91da1}{set}}(std::string\_view arguments)\textcolor{keyword}{ override }\{}
+\DoxyCodeLine{46             \textcolor{keyword}{auto}\&\& value = parse<TValue>(arguments);}
+\DoxyCodeLine{47             m\_variable = value;}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49             \textcolor{keywordflow}{if} (m\_callback)}
+\DoxyCodeLine{50                 m\_callback(m\_variable);}
+\DoxyCodeLine{51         \}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{57         \textcolor{keyword}{virtual} std::string \mbox{\hyperlink{classdisco_1_1variable__impl_ac1194c8e8173ec3cc213343a427fbe85}{get}}()\textcolor{keyword}{ const override }\{}
+\DoxyCodeLine{58             \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_convertible\_v<TValue, std::string>}
+\DoxyCodeLine{59                     || std::is\_same\_v<clear\_t , std::string\_view>)}
+\DoxyCodeLine{60                 \textcolor{keywordflow}{return} m\_variable.data(); \textcolor{comment}{// for some reasons is\_convertable falls on string\_view}}
+\DoxyCodeLine{61             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{62                 \textcolor{keywordflow}{return} std::to\_string(m\_variable);}
+\DoxyCodeLine{63         \}}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{69         \textcolor{keyword}{virtual} std::string\_view \mbox{\hyperlink{classdisco_1_1variable__impl_a451bb0a547b55f6177dcb5e95d69e504}{type}}() const noexcept\textcolor{keyword}{ override }\{}
+\DoxyCodeLine{70             \textcolor{keywordflow}{return} type\_name<TValue>();}
+\DoxyCodeLine{71         \}}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73         DECLARE\_NON\_COPYABLE(\mbox{\hyperlink{classdisco_1_1variable__impl}{variable\_impl}});}
+\DoxyCodeLine{74         DECLARE\_NON\_MOVABLE(\mbox{\hyperlink{classdisco_1_1variable__impl}{variable\_impl}});}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76     \textcolor{keyword}{private}:}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78         TValue\& m\_variable;}
+\DoxyCodeLine{79         callback\_t m\_callback;}
+\DoxyCodeLine{80     \};}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82 \}}
+\DoxyCodeLine{83 }
+
+\end{DoxyCode}

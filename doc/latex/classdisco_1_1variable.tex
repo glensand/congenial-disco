@@ -1,0 +1,84 @@
+\hypertarget{classdisco_1_1variable}{}\doxysection{disco\+::variable Class Reference}
+\label{classdisco_1_1variable}\index{disco::variable@{disco::variable}}
+Inheritance diagram for disco\+::variable\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classdisco_1_1variable}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classdisco_1_1variable_a9ff86a25ff9921750f7c3145cb5f4ece}{set}} (std\+::string\+\_\+view arguments)=0
+\begin{DoxyCompactList}\small\item\em Tries to change variable name to given value. If input sequence could not been parsed correctly, threw \mbox{\hyperlink{classdisco_1_1bad__input}{disco\+::bad\+\_\+input}} Calls registered function if variable were changed successfully, propagate new value to the callback. \end{DoxyCompactList}\item 
+virtual std\+::string \mbox{\hyperlink{classdisco_1_1variable_a84d74c37e8b2769d24d32db2af73eddc}{get}} () const =0
+\begin{DoxyCompactList}\small\item\em Converts internal value to the string. \end{DoxyCompactList}\item 
+virtual std\+::string\+\_\+view \mbox{\hyperlink{classdisco_1_1variable_a8e5cd093f9677249653c0a1ea91b1aea}{type}} () const noexcept=0
+\begin{DoxyCompactList}\small\item\em Provide conversion of the internal variable type to its string representation. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classdisco_1_1variable_ace0cd54d300aac21048c0a03a782bae5}\label{classdisco_1_1variable_ace0cd54d300aac21048c0a03a782bae5}} 
+{\bfseries DECLARE\+\_\+\+NON\+\_\+\+COPYABLE} (\mbox{\hyperlink{classdisco_1_1variable}{variable}})
+\item 
+\mbox{\Hypertarget{classdisco_1_1variable_ab5ff496b51e899bf494c2315d1376309}\label{classdisco_1_1variable_ab5ff496b51e899bf494c2315d1376309}} 
+{\bfseries DECLARE\+\_\+\+NON\+\_\+\+MOVABLE} (\mbox{\hyperlink{classdisco_1_1variable}{variable}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classdisco_1_1variable_a84d74c37e8b2769d24d32db2af73eddc}\label{classdisco_1_1variable_a84d74c37e8b2769d24d32db2af73eddc}} 
+\index{disco::variable@{disco::variable}!get@{get}}
+\index{get@{get}!disco::variable@{disco::variable}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily virtual std\+::string disco\+::variable\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Converts internal value to the string. 
+
+\begin{DoxyReturn}{Returns}
+Containing value in string form 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classdisco_1_1variable__impl_ac1194c8e8173ec3cc213343a427fbe85}{disco\+::variable\+\_\+impl$<$ TValue $>$}}.
+
+\mbox{\Hypertarget{classdisco_1_1variable_a9ff86a25ff9921750f7c3145cb5f4ece}\label{classdisco_1_1variable_a9ff86a25ff9921750f7c3145cb5f4ece}} 
+\index{disco::variable@{disco::variable}!set@{set}}
+\index{set@{set}!disco::variable@{disco::variable}}
+\doxysubsubsection{\texorpdfstring{set()}{set()}}
+{\footnotesize\ttfamily virtual void disco\+::variable\+::set (\begin{DoxyParamCaption}\item[{std\+::string\+\_\+view}]{arguments }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Tries to change variable name to given value. If input sequence could not been parsed correctly, threw \mbox{\hyperlink{classdisco_1_1bad__input}{disco\+::bad\+\_\+input}} Calls registered function if variable were changed successfully, propagate new value to the callback. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em arguments} & Input sequence containing new value of the variable \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classdisco_1_1variable__impl_a2a589f94888e69a005c920bec6d91da1}{disco\+::variable\+\_\+impl$<$ TValue $>$}}.
+
+\mbox{\Hypertarget{classdisco_1_1variable_a8e5cd093f9677249653c0a1ea91b1aea}\label{classdisco_1_1variable_a8e5cd093f9677249653c0a1ea91b1aea}} 
+\index{disco::variable@{disco::variable}!type@{type}}
+\index{type@{type}!disco::variable@{disco::variable}}
+\doxysubsubsection{\texorpdfstring{type()}{type()}}
+{\footnotesize\ttfamily virtual std\+::string\+\_\+view disco\+::variable\+::type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Provide conversion of the internal variable type to its string representation. 
+
+\begin{DoxyReturn}{Returns}
+String representation of the variable type 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classdisco_1_1variable__impl_a451bb0a547b55f6177dcb5e95d69e504}{disco\+::variable\+\_\+impl$<$ TValue $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/consolelib/variable/\mbox{\hyperlink{variable_8h}{variable.\+h}}\end{DoxyCompactItemize}

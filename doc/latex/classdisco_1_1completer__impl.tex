@@ -1,0 +1,83 @@
+\hypertarget{classdisco_1_1completer__impl}{}\doxysection{disco\+::completer\+\_\+impl Class Reference}
+\label{classdisco_1_1completer__impl}\index{disco::completer\_impl@{disco::completer\_impl}}
+
+
+Represent interface to word auto completer.  
+
+
+
+
+{\ttfamily \#include $<$completer\+\_\+impl.\+h$>$}
+
+Inheritance diagram for disco\+::completer\+\_\+impl\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classdisco_1_1completer__impl}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual std\+::vector$<$ std\+::string\+\_\+view $>$ \mbox{\hyperlink{classdisco_1_1completer__impl_ad0f78209abc696692e95c5195d4cdec1}{complete}} (std\+::string\+\_\+view prefix) override
+\begin{DoxyCompactList}\small\item\em This method should be used such as \char`\"{}auto completion\char`\"{}. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classdisco_1_1completer__impl_a896ebc7cfea109b5b43f6df7ceb27720}{add\+\_\+name}} (std\+::string\+\_\+view name) override
+\begin{DoxyCompactList}\small\item\em Adds given name to the internal storage. Throes \mbox{\hyperlink{classdisco_1_1already__exist}{disco\+::already\+\_\+exist}} exception if name had been added recently. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classdisco_1_1completer__impl_a7cf4e4091632d2b18a9a4f3ff75bbec7}\label{classdisco_1_1completer__impl_a7cf4e4091632d2b18a9a4f3ff75bbec7}} 
+{\bfseries DECLARE\+\_\+\+NON\+\_\+\+COPYABLE} (\mbox{\hyperlink{classdisco_1_1completer__impl}{completer\+\_\+impl}})
+\item 
+\mbox{\Hypertarget{classdisco_1_1completer__impl_a386c3be6482a890935cda4976fd8c030}\label{classdisco_1_1completer__impl_a386c3be6482a890935cda4976fd8c030}} 
+{\bfseries DECLARE\+\_\+\+NON\+\_\+\+MOVABLE} (\mbox{\hyperlink{classdisco_1_1completer__impl}{completer\+\_\+impl}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represent interface to word auto completer. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classdisco_1_1completer__impl_a896ebc7cfea109b5b43f6df7ceb27720}\label{classdisco_1_1completer__impl_a896ebc7cfea109b5b43f6df7ceb27720}} 
+\index{disco::completer\_impl@{disco::completer\_impl}!add\_name@{add\_name}}
+\index{add\_name@{add\_name}!disco::completer\_impl@{disco::completer\_impl}}
+\doxysubsubsection{\texorpdfstring{add\_name()}{add\_name()}}
+{\footnotesize\ttfamily void disco\+::completer\+\_\+impl\+::add\+\_\+name (\begin{DoxyParamCaption}\item[{std\+::string\+\_\+view}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Adds given name to the internal storage. Throes \mbox{\hyperlink{classdisco_1_1already__exist}{disco\+::already\+\_\+exist}} exception if name had been added recently. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name to be added to the storage \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classdisco_1_1completer_a1e07eca52d67209c913fc5d96c1bc367}{disco\+::completer}}.
+
+\mbox{\Hypertarget{classdisco_1_1completer__impl_ad0f78209abc696692e95c5195d4cdec1}\label{classdisco_1_1completer__impl_ad0f78209abc696692e95c5195d4cdec1}} 
+\index{disco::completer\_impl@{disco::completer\_impl}!complete@{complete}}
+\index{complete@{complete}!disco::completer\_impl@{disco::completer\_impl}}
+\doxysubsubsection{\texorpdfstring{complete()}{complete()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string\+\_\+view $>$ disco\+::completer\+\_\+impl\+::complete (\begin{DoxyParamCaption}\item[{std\+::string\+\_\+view}]{prefix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+This method should be used such as \char`\"{}auto completion\char`\"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em prefix} & Prefix of the variable or function which has to be completed \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+List of functions and variables which names has specified prefix 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classdisco_1_1completer_a35fa7b3e3922a9b2c36bf72e219dd31a}{disco\+::completer}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+lib/consolelib/\mbox{\hyperlink{completer__impl_8h}{completer\+\_\+impl.\+h}}\item 
+lib/consolelib/completer\+\_\+impl.\+hpp\end{DoxyCompactItemize}

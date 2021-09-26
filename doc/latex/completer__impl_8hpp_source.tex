@@ -1,0 +1,31 @@
+\hypertarget{completer__impl_8hpp_source}{}\doxysection{completer\+\_\+impl.\+hpp}
+\label{completer__impl_8hpp_source}\index{lib/consolelib/completer\_impl.hpp@{lib/consolelib/completer\_impl.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{comment}{// ReSharper disable CppClangTidyHicppExceptionBaseclass}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{completer__impl_8h}{completer\_impl.h}}"{}}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include "{}consolelib/exception/already\_exist.h"{}}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{keyword}{namespace }disco \{}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9     \textcolor{keyword}{inline}}
+\DoxyCodeLine{10     std::vector<std::string\_view> \mbox{\hyperlink{classdisco_1_1completer__impl_ad0f78209abc696692e95c5195d4cdec1}{completer\_impl::complete}}(std::string\_view prefix) \{}
+\DoxyCodeLine{11         std::string firstAfterPrefix = prefix.data();}
+\DoxyCodeLine{12         firstAfterPrefix.back() += 1; \textcolor{comment}{// next character}}
+\DoxyCodeLine{13         std::vector<std::string\_view> completions;}
+\DoxyCodeLine{14         \textcolor{keywordflow}{if} (\textcolor{keyword}{auto} \&\& self\_it = m\_names.find(prefix); self\_it != end(m\_names))}
+\DoxyCodeLine{15             completions.emplace\_back(prefix);}
+\DoxyCodeLine{16         completions.insert(end(completions), m\_names.upper\_bound(prefix), m\_names.lower\_bound(firstAfterPrefix));}
+\DoxyCodeLine{17         \textcolor{keywordflow}{return} completions;}
+\DoxyCodeLine{18     \}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20     \textcolor{keyword}{inline}}
+\DoxyCodeLine{21     \textcolor{keywordtype}{void} \mbox{\hyperlink{classdisco_1_1completer__impl_a896ebc7cfea109b5b43f6df7ceb27720}{completer\_impl::add\_name}}(std::string\_view name) \{}
+\DoxyCodeLine{22         \textcolor{keywordflow}{if} (\textcolor{keyword}{auto}\&\& [\_, added] = m\_names.emplace(name); !added)}
+\DoxyCodeLine{23             \textcolor{keywordflow}{throw} \mbox{\hyperlink{classdisco_1_1already__exist}{already\_exist}}(name.data());}
+\DoxyCodeLine{24     \}}
+\DoxyCodeLine{25 \}}
+
+\end{DoxyCode}

@@ -1,3 +1,5 @@
+#pragma once
+
 #include "function_proxy_impl.h"
 
 #include <string>

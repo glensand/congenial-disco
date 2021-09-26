@@ -1,0 +1,108 @@
+\hypertarget{group__common}{}\doxysection{\texorpdfstring{$>$}{>} Common}
+\label{group__common}\index{$>$ Common@{$>$ Common}}
+\doxysubsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{foundation_8h}{foundation.\+h}}
+\begin{DoxyCompactList}\small\item\em Console library base definitions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__common_ga0ef985382f5096fea0db8a8c5f7dd01e}{DECLARE\+\_\+\+NON\+\_\+\+MOVABLE}}(Name)
+\begin{DoxyCompactList}\small\item\em Explicitly deletes move -\/ assign operator and move constructor. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__common_ga30c64aa5c00e8097923b1a7ae8837da1}{DECLARE\+\_\+\+NON\+\_\+\+COPYABLE}}(Name)
+\begin{DoxyCompactList}\small\item\em Explicitly deletes copy -\/ assign operator and copy constructor. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__common_gab9ae266bfb7e5a22742d21a4ce2e8ed4}{DECLARE\+\_\+\+EXPLICIT\+\_\+\+DEFAULT\+\_\+\+MOVABLE}}(Name)
+\begin{DoxyCompactList}\small\item\em Explicitly declares default move -\/ constructor and move -\/ assign operator. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__common_ga76fd151951843f55d54c2c4f4fe44745}{DECLARE\+\_\+\+EXPLICIT\+\_\+\+DEFAULT\+\_\+\+COPYABLE}}(Name)
+\begin{DoxyCompactList}\small\item\em Explicitly declares default copy -\/ constructor and copy -\/ assign operator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group__common_ga76fd151951843f55d54c2c4f4fe44745}\label{group__common_ga76fd151951843f55d54c2c4f4fe44745}} 
+\index{$>$ Common@{$>$ Common}!DECLARE\_EXPLICIT\_DEFAULT\_COPYABLE@{DECLARE\_EXPLICIT\_DEFAULT\_COPYABLE}}
+\index{DECLARE\_EXPLICIT\_DEFAULT\_COPYABLE@{DECLARE\_EXPLICIT\_DEFAULT\_COPYABLE}!$>$ Common@{$>$ Common}}
+\doxysubsubsection{\texorpdfstring{DECLARE\_EXPLICIT\_DEFAULT\_COPYABLE}{DECLARE\_EXPLICIT\_DEFAULT\_COPYABLE}}
+{\footnotesize\ttfamily \#define DECLARE\+\_\+\+EXPLICIT\+\_\+\+DEFAULT\+\_\+\+COPYABLE(\begin{DoxyParamCaption}\item[{}]{Name }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    Name ( \textcolor{keyword}{const} Name \&) = \textcolor{keywordflow}{default}; \(\backslash\)}
+\DoxyCodeLine{    Name \& operator=( \textcolor{keyword}{const} Name \&) = \textcolor{keywordflow}{default}}
+
+\end{DoxyCode}
+
+
+Explicitly declares default copy -\/ constructor and copy -\/ assign operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & Class name to be declared \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__common_gab9ae266bfb7e5a22742d21a4ce2e8ed4}\label{group__common_gab9ae266bfb7e5a22742d21a4ce2e8ed4}} 
+\index{$>$ Common@{$>$ Common}!DECLARE\_EXPLICIT\_DEFAULT\_MOVABLE@{DECLARE\_EXPLICIT\_DEFAULT\_MOVABLE}}
+\index{DECLARE\_EXPLICIT\_DEFAULT\_MOVABLE@{DECLARE\_EXPLICIT\_DEFAULT\_MOVABLE}!$>$ Common@{$>$ Common}}
+\doxysubsubsection{\texorpdfstring{DECLARE\_EXPLICIT\_DEFAULT\_MOVABLE}{DECLARE\_EXPLICIT\_DEFAULT\_MOVABLE}}
+{\footnotesize\ttfamily \#define DECLARE\+\_\+\+EXPLICIT\+\_\+\+DEFAULT\+\_\+\+MOVABLE(\begin{DoxyParamCaption}\item[{}]{Name }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    Name ( Name \&\&) = \textcolor{keywordflow}{default}; \(\backslash\)}
+\DoxyCodeLine{    Name \& operator=( Name \&\&) = \textcolor{keywordflow}{default}}
+
+\end{DoxyCode}
+
+
+Explicitly declares default move -\/ constructor and move -\/ assign operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & Class name to be declared \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__common_ga30c64aa5c00e8097923b1a7ae8837da1}\label{group__common_ga30c64aa5c00e8097923b1a7ae8837da1}} 
+\index{$>$ Common@{$>$ Common}!DECLARE\_NON\_COPYABLE@{DECLARE\_NON\_COPYABLE}}
+\index{DECLARE\_NON\_COPYABLE@{DECLARE\_NON\_COPYABLE}!$>$ Common@{$>$ Common}}
+\doxysubsubsection{\texorpdfstring{DECLARE\_NON\_COPYABLE}{DECLARE\_NON\_COPYABLE}}
+{\footnotesize\ttfamily \#define DECLARE\+\_\+\+NON\+\_\+\+COPYABLE(\begin{DoxyParamCaption}\item[{}]{Name }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    Name(\textcolor{keyword}{const} Name \&) = \textcolor{keyword}{delete}; \(\backslash\)}
+\DoxyCodeLine{    Name \& operator=(\textcolor{keyword}{const} Name \&) = \textcolor{keyword}{delete}}
+
+\end{DoxyCode}
+
+
+Explicitly deletes copy -\/ assign operator and copy constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & Class name to be declared not copy constructable \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__common_ga0ef985382f5096fea0db8a8c5f7dd01e}\label{group__common_ga0ef985382f5096fea0db8a8c5f7dd01e}} 
+\index{$>$ Common@{$>$ Common}!DECLARE\_NON\_MOVABLE@{DECLARE\_NON\_MOVABLE}}
+\index{DECLARE\_NON\_MOVABLE@{DECLARE\_NON\_MOVABLE}!$>$ Common@{$>$ Common}}
+\doxysubsubsection{\texorpdfstring{DECLARE\_NON\_MOVABLE}{DECLARE\_NON\_MOVABLE}}
+{\footnotesize\ttfamily \#define DECLARE\+\_\+\+NON\+\_\+\+MOVABLE(\begin{DoxyParamCaption}\item[{}]{Name }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    Name ( Name \&\&) = \textcolor{keyword}{delete}; \(\backslash\)}
+\DoxyCodeLine{    Name \& operator=( Name \&\&) = \textcolor{keyword}{delete}}
+
+\end{DoxyCode}
+
+
+Explicitly deletes move -\/ assign operator and move constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & Class name to be declared not move constructable \\
+\hline
+\end{DoxyParams}

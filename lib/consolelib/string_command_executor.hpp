@@ -1,3 +1,5 @@
+#pragma once
+
 // ReSharper disable CppClangTidyHicppExceptionBaseclass
 #include "string_command_executor.h"
 

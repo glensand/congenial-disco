@@ -1,0 +1,125 @@
+\hypertarget{string__command__executor_8hpp_source}{}\doxysection{string\+\_\+command\+\_\+executor.\+hpp}
+\label{string__command__executor_8hpp_source}\index{lib/consolelib/string\_command\_executor.hpp@{lib/consolelib/string\_command\_executor.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{comment}{// ReSharper disable CppClangTidyHicppExceptionBaseclass}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{string__command__executor_8h}{string\_command\_executor.h}}"{}}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include "{}consolelib/exception/already\_exist.h"{}}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include "{}consolelib/exception/not\_exist.h"{}}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}consolelib/generator/signature\_builder.hpp"{}}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{function__proxy_8h}{consolelib/function/function\_proxy.h}}"{}}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{variable__proxy_8h}{consolelib/variable/variable\_proxy.h}}"{}}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{keyword}{namespace }disco \{}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14     \textcolor{comment}{// disable resharper's shitty lightning ()\_()}}
+\DoxyCodeLine{15     \textcolor{keyword}{inline}}
+\DoxyCodeLine{16     string\_command\_executor::\string~string\_command\_executor() \{  \textcolor{comment}{// NOLINT(modernize-\/use-\/equals-\/default)}}
+\DoxyCodeLine{17         \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\&\& [name, \textcolor{keyword}{function}] : m\_functions)}
+\DoxyCodeLine{18             \textcolor{keyword}{delete} \textcolor{keyword}{function};}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20         \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\&\& [name, variable] : m\_variables)}
+\DoxyCodeLine{21             \textcolor{keyword}{delete} variable;}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23         \textcolor{keyword}{delete} m\_function\_proxy;}
+\DoxyCodeLine{24         \textcolor{keyword}{delete} m\_variable\_proxy;}
+\DoxyCodeLine{25     \}}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27     \textcolor{keyword}{inline}}
+\DoxyCodeLine{28     string\_command\_executor::string\_command\_executor(function\_proxy* f\_proxy, variable\_proxy* v\_proxy,}
+\DoxyCodeLine{29         on\_new\_name\_added\_callback\_t\&\& callback) \textcolor{comment}{// NOLINT(cppcoreguidelines-\/pro-\/type-\/member-\/init)}}
+\DoxyCodeLine{30         : m\_new\_name\_added\_callback(std::move(callback))}
+\DoxyCodeLine{31         , m\_function\_proxy(f\_proxy)}
+\DoxyCodeLine{32         , m\_variable\_proxy(v\_proxy) \{}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34     \}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36     \textcolor{keyword}{inline}}
+\DoxyCodeLine{37     std::string string\_command\_executor::invoke(std::string\_view arguments) \{}
+\DoxyCodeLine{38         std::string result;}
+\DoxyCodeLine{39         \textcolor{keyword}{auto}\&\& name\_view = parse\_name(arguments);}
+\DoxyCodeLine{40         \textcolor{keyword}{auto}\&\& name = std::string(name\_view.data(), name\_view.data() + name\_view.size());}
+\DoxyCodeLine{41         \textcolor{keywordflow}{if} (\textcolor{keyword}{auto}\&\& function\_it = m\_functions.find(name); function\_it != end(m\_functions))}
+\DoxyCodeLine{42             result = m\_function\_proxy-\/>apply(function\_it-\/>second, arguments);}
+\DoxyCodeLine{43         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\textcolor{keyword}{auto}\&\& var\_it = m\_variables.find(name); var\_it != end(m\_variables))}
+\DoxyCodeLine{44             result = m\_variable\_proxy-\/>apply(var\_it-\/>second, arguments);}
+\DoxyCodeLine{45         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{46             \textcolor{keywordflow}{throw} \mbox{\hyperlink{classdisco_1_1not__exist}{not\_exist}}(name);}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48         \textcolor{keywordflow}{return} result;}
+\DoxyCodeLine{49     \}}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51     \textcolor{keyword}{inline}}
+\DoxyCodeLine{52     std::vector<std::string> string\_command\_executor::signatures()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{53         std::vector<std::string> signature\_list;}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55         \textcolor{comment}{// collect information about registered functions}}
+\DoxyCodeLine{56         \textcolor{keywordflow}{for}(\textcolor{keyword}{auto}\&\& [name, \textcolor{keyword}{function}] : m\_functions) \{}
+\DoxyCodeLine{57             signature\_list.emplace\_back(}
+\DoxyCodeLine{58                function\_signature(name, \textcolor{keyword}{function})}
+\DoxyCodeLine{59             );}
+\DoxyCodeLine{60         \}}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62         \textcolor{comment}{// collect information about registered variables}}
+\DoxyCodeLine{63         \textcolor{keywordflow}{for}(\textcolor{keyword}{auto}\&\& [name, \mbox{\hyperlink{classdisco_1_1variable}{variable}}] : m\_variables) \{}
+\DoxyCodeLine{64             signature\_list.emplace\_back(}
+\DoxyCodeLine{65                variable\_signature(name, \mbox{\hyperlink{classdisco_1_1variable}{variable}})}
+\DoxyCodeLine{66             );}
+\DoxyCodeLine{67         \}}
+\DoxyCodeLine{68         \textcolor{keywordflow}{return} signature\_list;}
+\DoxyCodeLine{69     \}}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71     \textcolor{keyword}{inline}}
+\DoxyCodeLine{72     \textcolor{keywordtype}{void} string\_command\_executor::fire\_variable\_added(std::string\_view name)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{73         \textcolor{keywordflow}{if} (m\_new\_name\_added\_callback)}
+\DoxyCodeLine{74             m\_new\_name\_added\_callback(name);}
+\DoxyCodeLine{75     \}}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77     \textcolor{keyword}{inline}}
+\DoxyCodeLine{78     \textcolor{keywordtype}{void} string\_command\_executor::assert\_variable\_unique(std::string\_view name)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{79         \textcolor{keywordflow}{if} (exist(name))}
+\DoxyCodeLine{80             \textcolor{keywordflow}{throw} already\_exist(name.data());}
+\DoxyCodeLine{81     \}}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83     \textcolor{keyword}{inline}}
+\DoxyCodeLine{84     \textcolor{keywordtype}{void} string\_command\_executor::assert\_variable\_exist(std::string\_view name)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{85         \textcolor{keywordflow}{if} (!exist(name))}
+\DoxyCodeLine{86             \textcolor{keywordflow}{throw} not\_exist(name.data());}
+\DoxyCodeLine{87     \}}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89     \textcolor{keyword}{inline}}
+\DoxyCodeLine{90     \textcolor{keywordtype}{bool} string\_command\_executor::exist(std::string\_view name) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \{}
+\DoxyCodeLine{91         \textcolor{keywordflow}{return} exist\_in\_storage(name, m\_functions)}
+\DoxyCodeLine{92             || exist\_in\_storage(name, m\_variables);}
+\DoxyCodeLine{93     \}}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95     \textcolor{keyword}{inline}}
+\DoxyCodeLine{96     std::string string\_command\_executor::function\_signature(\textcolor{keyword}{const} std::string\& name, \textcolor{keyword}{function}* func) \{}
+\DoxyCodeLine{97         \textcolor{keywordflow}{return} signature\_builder::create()}
+\DoxyCodeLine{98             .add\_name(name)}
+\DoxyCodeLine{99             .add\_parameters(func-\/>parameter\_types())}
+\DoxyCodeLine{100             .add\_return\_type(func-\/>return\_type())}
+\DoxyCodeLine{101             .get();}
+\DoxyCodeLine{102     \}}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104     \textcolor{keyword}{inline}}
+\DoxyCodeLine{105     std::string string\_command\_executor::variable\_signature(\textcolor{keyword}{const} std::string\& name, variable* var) \{}
+\DoxyCodeLine{106         \textcolor{keywordflow}{return} signature\_builder::create(signature\_builder::build\_policy::variable)}
+\DoxyCodeLine{107             .add\_return\_type(var-\/>type())}
+\DoxyCodeLine{108             .add\_name(name)}
+\DoxyCodeLine{109             .get();}
+\DoxyCodeLine{110     \}}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{112     \textcolor{keyword}{template} <\textcolor{keyword}{typename} TStorage>}
+\DoxyCodeLine{113     \textcolor{keywordtype}{bool} string\_command\_executor::exist\_in\_storage(std::string\_view name, \textcolor{keyword}{const} TStorage\& storage) \{}
+\DoxyCodeLine{114         \textcolor{keyword}{auto}\&\& it = std::find\_if(begin(storage), end(storage), [=](\textcolor{keyword}{auto}\&\& record) \{}
+\DoxyCodeLine{115             \textcolor{keywordflow}{return} name == record.first;}
+\DoxyCodeLine{116         \});}
+\DoxyCodeLine{117         \textcolor{keywordflow}{return} end(storage) != it;}
+\DoxyCodeLine{118     \}}
+\DoxyCodeLine{119 \}}
+
+\end{DoxyCode}

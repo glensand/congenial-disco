@@ -1,0 +1,129 @@
+\hypertarget{classdisco_1_1string__command__executor}{}\doxysection{disco\+::string\+\_\+command\+\_\+executor Class Reference}
+\label{classdisco_1_1string__command__executor}\index{disco::string\_command\_executor@{disco::string\_command\_executor}}
+
+
+Implementation of general invoker interface with additional functions to add executor of function or value changer.  
+
+
+
+
+{\ttfamily \#include $<$string\+\_\+command\+\_\+executor.\+h$>$}
+
+Inheritance diagram for disco\+::string\+\_\+command\+\_\+executor\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classdisco_1_1string__command__executor}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classdisco_1_1string__command__executor_a9bd91dbb9e599c3c4b7f617d85339acd}\label{classdisco_1_1string__command__executor_a9bd91dbb9e599c3c4b7f617d85339acd}} 
+using {\bfseries on\+\_\+new\+\_\+name\+\_\+added\+\_\+callback\+\_\+t} = std\+::function$<$ void(std\+::string\+\_\+view)$>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classdisco_1_1string__command__executor_a36955ffe9c5428a400b63aac55cc4d2d}\label{classdisco_1_1string__command__executor_a36955ffe9c5428a400b63aac55cc4d2d}} 
+{\bfseries DECLARE\+\_\+\+NON\+\_\+\+COPYABLE} (\mbox{\hyperlink{classdisco_1_1string__command__executor}{string\+\_\+command\+\_\+executor}})
+\item 
+\mbox{\Hypertarget{classdisco_1_1string__command__executor_abe100d2df928a0c0132aa630dc45ff35}\label{classdisco_1_1string__command__executor_abe100d2df928a0c0132aa630dc45ff35}} 
+{\bfseries DECLARE\+\_\+\+NON\+\_\+\+MOVABLE} (\mbox{\hyperlink{classdisco_1_1string__command__executor}{string\+\_\+command\+\_\+executor}})
+\item 
+\mbox{\Hypertarget{classdisco_1_1string__command__executor_a588d901a07cb1edd868bce359bcda9fd}\label{classdisco_1_1string__command__executor_a588d901a07cb1edd868bce359bcda9fd}} 
+{\bfseries string\+\_\+command\+\_\+executor} (\mbox{\hyperlink{classdisco_1_1function__proxy}{function\+\_\+proxy}} $\ast$f\+\_\+proxy, \mbox{\hyperlink{classdisco_1_1variable__proxy}{variable\+\_\+proxy}} $\ast$v\+\_\+proxy, on\+\_\+new\+\_\+name\+\_\+added\+\_\+callback\+\_\+t \&\&callback=on\+\_\+new\+\_\+name\+\_\+added\+\_\+callback\+\_\+t\{ \})
+\item 
+virtual std\+::string \mbox{\hyperlink{classdisco_1_1string__command__executor_ab0a14b38d5e750c861b6c824827a1898}{invoke}} (std\+::string\+\_\+view arguments) override
+\begin{DoxyCompactList}\small\item\em Invokes function or change variable using given string. Function or variable will be found by name. The name is the first parameter in given string. Call parameters might be separated with any known space separator. To change variable call this function using this pattern\+: \mbox{[}variable\+\_\+name\mbox{]} \mbox{[}new\+\_\+value\mbox{]}. To invoke registered function call it using this pattern\+: \mbox{[}function\+\_\+name\mbox{]} \mbox{[}arg1 arg2 arg3 ...\mbox{]}. If no one handler had not been found, function throws\+: \mbox{\hyperlink{classdisco_1_1not__exist}{not\+\_\+exist}} exception. On bad input throws \mbox{\hyperlink{classdisco_1_1bad__input}{bad\+\_\+input}}. \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{classdisco_1_1string__command__executor_ad6078a32f56738025e09d1c90511269e}{signatures}} () const override
+\begin{DoxyCompactList}\small\item\em Creates list of descriptions of the registered functions. Description format\+: \mbox{[}name\mbox{]} \+: \mbox{[}signature\mbox{]} signature format is \+: \mbox{[}return\+\_\+type\mbox{]}\mbox{[}(parameter types)\mbox{]}. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename... Ts$>$ }\\void \mbox{\hyperlink{classdisco_1_1string__command__executor_affbf868c01c036a4fa6cfd0939690e9e}{create\+\_\+function}} (std\+::string\+\_\+view name, Ts \&\&... args)
+\begin{DoxyCompactList}\small\item\em Adds function with specified parameters to the internal functions map. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T , typename TFunction  = std\+::function$<$void(const T\&)$>$$>$ }\\void \mbox{\hyperlink{classdisco_1_1string__command__executor_a5b9cc214c4ddf16c8ab86dea591b109e}{create\+\_\+variable}} (std\+::string\+\_\+view name, T \&\mbox{\hyperlink{classdisco_1_1variable}{variable}}, TFunction \&\&callback=TFunction\{ \})
+\begin{DoxyCompactList}\small\item\em Adds variable changer to the inner variables map. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of general invoker interface with additional functions to add executor of function or value changer. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classdisco_1_1string__command__executor_affbf868c01c036a4fa6cfd0939690e9e}\label{classdisco_1_1string__command__executor_affbf868c01c036a4fa6cfd0939690e9e}} 
+\index{disco::string\_command\_executor@{disco::string\_command\_executor}!create\_function@{create\_function}}
+\index{create\_function@{create\_function}!disco::string\_command\_executor@{disco::string\_command\_executor}}
+\doxysubsubsection{\texorpdfstring{create\_function()}{create\_function()}}
+{\footnotesize\ttfamily template$<$typename... Ts$>$ \\
+void disco\+::string\+\_\+command\+\_\+executor\+::create\+\_\+function (\begin{DoxyParamCaption}\item[{std\+::string\+\_\+view}]{name,  }\item[{Ts \&\&...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Adds function with specified parameters to the internal functions map. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the function which should be use to call registered function The name has to be unique \\
+\hline
+{\em args} & Set of variables required for function creation \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classdisco_1_1string__command__executor_a5b9cc214c4ddf16c8ab86dea591b109e}\label{classdisco_1_1string__command__executor_a5b9cc214c4ddf16c8ab86dea591b109e}} 
+\index{disco::string\_command\_executor@{disco::string\_command\_executor}!create\_variable@{create\_variable}}
+\index{create\_variable@{create\_variable}!disco::string\_command\_executor@{disco::string\_command\_executor}}
+\doxysubsubsection{\texorpdfstring{create\_variable()}{create\_variable()}}
+{\footnotesize\ttfamily template$<$typename T , typename TFunction  = std\+::function$<$void(const T\&)$>$$>$ \\
+void disco\+::string\+\_\+command\+\_\+executor\+::create\+\_\+variable (\begin{DoxyParamCaption}\item[{std\+::string\+\_\+view}]{name,  }\item[{T \&}]{variable,  }\item[{TFunction \&\&}]{callback = {\ttfamily TFunction\{~\}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Adds variable changer to the inner variables map. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the variable, the name has to be unique \\
+\hline
+{\em variable} & Reference to the variable \\
+\hline
+{\em callback} & Function will be called on each variable update, new value will be passed to the callie \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classdisco_1_1string__command__executor_ab0a14b38d5e750c861b6c824827a1898}\label{classdisco_1_1string__command__executor_ab0a14b38d5e750c861b6c824827a1898}} 
+\index{disco::string\_command\_executor@{disco::string\_command\_executor}!invoke@{invoke}}
+\index{invoke@{invoke}!disco::string\_command\_executor@{disco::string\_command\_executor}}
+\doxysubsubsection{\texorpdfstring{invoke()}{invoke()}}
+{\footnotesize\ttfamily std\+::string disco\+::string\+\_\+command\+\_\+executor\+::invoke (\begin{DoxyParamCaption}\item[{std\+::string\+\_\+view}]{arguments }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Invokes function or change variable using given string. Function or variable will be found by name. The name is the first parameter in given string. Call parameters might be separated with any known space separator. To change variable call this function using this pattern\+: \mbox{[}variable\+\_\+name\mbox{]} \mbox{[}new\+\_\+value\mbox{]}. To invoke registered function call it using this pattern\+: \mbox{[}function\+\_\+name\mbox{]} \mbox{[}arg1 arg2 arg3 ...\mbox{]}. If no one handler had not been found, function throws\+: \mbox{\hyperlink{classdisco_1_1not__exist}{not\+\_\+exist}} exception. On bad input throws \mbox{\hyperlink{classdisco_1_1bad__input}{bad\+\_\+input}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em arguments} & string to be processed \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classdisco_1_1invoker_ade4826ec47bebf54257de69ddcd76e5c}{disco\+::invoker}}.
+
+\mbox{\Hypertarget{classdisco_1_1string__command__executor_ad6078a32f56738025e09d1c90511269e}\label{classdisco_1_1string__command__executor_ad6078a32f56738025e09d1c90511269e}} 
+\index{disco::string\_command\_executor@{disco::string\_command\_executor}!signatures@{signatures}}
+\index{signatures@{signatures}!disco::string\_command\_executor@{disco::string\_command\_executor}}
+\doxysubsubsection{\texorpdfstring{signatures()}{signatures()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ disco\+::string\+\_\+command\+\_\+executor\+::signatures (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Creates list of descriptions of the registered functions. Description format\+: \mbox{[}name\mbox{]} \+: \mbox{[}signature\mbox{]} signature format is \+: \mbox{[}return\+\_\+type\mbox{]}\mbox{[}(parameter types)\mbox{]}. 
+
+\begin{DoxyReturn}{Returns}
+List with descriptions of all registered functions 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classdisco_1_1storage_ae8da43373d8e66b4aafc00f1561a05d1}{disco\+::storage}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+lib/consolelib/\mbox{\hyperlink{string__command__executor_8h}{string\+\_\+command\+\_\+executor.\+h}}\item 
+lib/consolelib/string\+\_\+command\+\_\+executor.\+hpp\end{DoxyCompactItemize}

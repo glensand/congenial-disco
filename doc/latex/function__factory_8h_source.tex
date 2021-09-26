@@ -1,0 +1,77 @@
+\hypertarget{function__factory_8h_source}{}\doxysection{function\+\_\+factory.\+h}
+\label{function__factory_8h_source}\index{lib/consolelib/function/function\_factory.h@{lib/consolelib/function/function\_factory.h}}
+\mbox{\hyperlink{function__factory_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/* Copyright (C) 2021 Gleb Bezborodov -\/ All Rights Reserved}}
+\DoxyCodeLine{2 \textcolor{comment}{ * You may use, distribute and modify this code under the}}
+\DoxyCodeLine{3 \textcolor{comment}{ * terms of the MIT license.}}
+\DoxyCodeLine{4 \textcolor{comment}{ *}}
+\DoxyCodeLine{5 \textcolor{comment}{ * You should have received a copy of the MIT license with}}
+\DoxyCodeLine{6 \textcolor{comment}{ * this file. If not, please write to: bezborodoff.gleb@gmail.com, or visit : https://github.com/glensand/congenial-\/disco}}
+\DoxyCodeLine{7 \textcolor{comment}{ */}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{function__traits_8h}{consolelib/core/function\_traits.h}}"{}}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{function__impl_8h}{consolelib/function/function\_impl.h}}"{}}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{keyword}{namespace }disco \{}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{32     \textcolor{keyword}{class }\mbox{\hyperlink{classdisco_1_1function__factory}{function\_factory}} final \{}
+\DoxyCodeLine{33     \textcolor{keyword}{public}:}
+\DoxyCodeLine{34         \mbox{\hyperlink{classdisco_1_1function__factory}{function\_factory}}() = \textcolor{keyword}{delete};}
+\DoxyCodeLine{35         \mbox{\hyperlink{classdisco_1_1function__factory}{\string~function\_factory}}() = \textcolor{keyword}{delete};}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{43         \textcolor{keyword}{template}<\textcolor{keyword}{typename} TFunction> }
+\DoxyCodeLine{44         \textcolor{keyword}{static} \textcolor{keyword}{function}* \mbox{\hyperlink{classdisco_1_1function__factory_a6d8eec2231bf5ceddf00d865e8539850}{create}}(TFunction\&\& \textcolor{keyword}{function}, std::string description = \textcolor{stringliteral}{"{}"{}}) \{}
+\DoxyCodeLine{45             \textcolor{keyword}{using} traits\_t = \mbox{\hyperlink{structdisco_1_1core_1_1function__traits}{core::function\_traits<std::decay\_t<TFunction>}}>; \textcolor{comment}{// function has to be decayed, cause native lambda type ([=]\{\}) has no operators}}
+\DoxyCodeLine{46             \textcolor{keyword}{auto}\&\& lambda = create\_impl(std::forward<TFunction>(\textcolor{keyword}{function}),}
+\DoxyCodeLine{47                 traits\_t::arg\_types);}
+\DoxyCodeLine{48             \textcolor{keywordflow}{return} \textcolor{keyword}{new} \mbox{\hyperlink{classdisco_1_1function__impl}{function\_impl}}(std::move(lambda), std::move(description));}
+\DoxyCodeLine{49         \}}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{57         \textcolor{keyword}{template}<\textcolor{keyword}{typename} TReturn, \textcolor{keyword}{typename}... Ts>}
+\DoxyCodeLine{58         \textcolor{keyword}{static} \textcolor{keyword}{function}* \mbox{\hyperlink{classdisco_1_1function__factory_a3e16ba378764163b024cd0d0245a182d}{create}}(TReturn(*func)(Ts...), std::string description = \textcolor{stringliteral}{"{}"{}}) \{}
+\DoxyCodeLine{59             \textcolor{keyword}{auto}\&\& lambda = create\_impl(func, \mbox{\hyperlink{structdisco_1_1core_1_1type__list}{core::type\_list<Ts...>}}\{\});}
+\DoxyCodeLine{60             \textcolor{keywordflow}{return} \textcolor{keyword}{new} \mbox{\hyperlink{classdisco_1_1function__impl}{function\_impl}}(std::move(lambda), std::move(description));}
+\DoxyCodeLine{61         \}}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{70         \textcolor{keyword}{template}<\textcolor{keyword}{typename} TFunction, \textcolor{keyword}{typename} TObj>}
+\DoxyCodeLine{71         \textcolor{keyword}{static} \textcolor{keyword}{function}* \mbox{\hyperlink{classdisco_1_1function__factory_aa48c069545b94422ef03a445f4a15b3a}{create}}(TObj* obj, TFunction\&\& \textcolor{keyword}{function}, std::string description = \textcolor{stringliteral}{"{}"{}}) \{}
+\DoxyCodeLine{72             \textcolor{keyword}{using} traits\_t = \mbox{\hyperlink{structdisco_1_1core_1_1function__traits}{core::function\_traits<TFunction>}};}
+\DoxyCodeLine{73             \textcolor{keyword}{auto}\&\& lambda = create\_impl(obj, std::forward<TFunction>(\textcolor{keyword}{function}),}
+\DoxyCodeLine{74                 traits\_t::arg\_types}
+\DoxyCodeLine{75             );}
+\DoxyCodeLine{76             \textcolor{keywordflow}{return} \textcolor{keyword}{new} \mbox{\hyperlink{classdisco_1_1function__impl}{function\_impl}}(std::move(lambda), std::move(description));}
+\DoxyCodeLine{77         \}}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{85         \textcolor{keyword}{template}<\textcolor{keyword}{typename} TSignature>}
+\DoxyCodeLine{86         \textcolor{keyword}{static} \textcolor{keyword}{function}* \mbox{\hyperlink{classdisco_1_1function__factory_a2032c072e6d6c8a01e33c2a449169ff9}{create}}(\textcolor{keyword}{const} std::function<TSignature>\& \textcolor{keyword}{function}, std::string description = \textcolor{stringliteral}{"{}"{}}) \{}
+\DoxyCodeLine{87             \textcolor{keywordflow}{return} \textcolor{keyword}{new} \mbox{\hyperlink{classdisco_1_1function__impl}{function\_impl}}(\textcolor{keyword}{function}, std::move(description));}
+\DoxyCodeLine{88         \}}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{96         \textcolor{keyword}{template}<\textcolor{keyword}{typename} TSignature>}
+\DoxyCodeLine{97         \textcolor{keyword}{static} \textcolor{keyword}{function}* \mbox{\hyperlink{classdisco_1_1function__factory_a33a9456fe17ba498434b8ee8b2eee823}{create}}(std::function<TSignature>\&\& \textcolor{keyword}{function}, std::string description = \textcolor{stringliteral}{"{}"{}}) \{}
+\DoxyCodeLine{98             \textcolor{keywordflow}{return} \textcolor{keyword}{new} \mbox{\hyperlink{classdisco_1_1function__impl}{function\_impl}}(std::move(\textcolor{keyword}{function}), std::move(description));}
+\DoxyCodeLine{99         \}}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101     \textcolor{keyword}{private}:}
+\DoxyCodeLine{102         \textcolor{keyword}{template}<\textcolor{keyword}{typename} TObj, \textcolor{keyword}{typename} TFunction, \textcolor{keyword}{typename}... Ts>}
+\DoxyCodeLine{103         \textcolor{keyword}{static} \textcolor{keyword}{auto} create\_impl(TObj* obj, TFunction\&\& \textcolor{keyword}{function}, \mbox{\hyperlink{structdisco_1_1core_1_1type__list}{core::type\_list<Ts...>}}) \{}
+\DoxyCodeLine{104             \textcolor{keywordflow}{return} std::function(}
+\DoxyCodeLine{105                 [=](\textcolor{keyword}{const} Ts\&... args) \{ \textcolor{keywordflow}{return} (*obj.*\textcolor{keyword}{function})(args...); \}}
+\DoxyCodeLine{106             );}
+\DoxyCodeLine{107         \}}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{109         \textcolor{keyword}{template}<\textcolor{keyword}{typename} TFunction, \textcolor{keyword}{typename}... Ts>}
+\DoxyCodeLine{110         \textcolor{keyword}{static} \textcolor{keyword}{auto} create\_impl(TFunction\&\& \textcolor{keyword}{function}, core::type\_list<Ts...>) \{}
+\DoxyCodeLine{111             \textcolor{keywordflow}{return} std::function(}
+\DoxyCodeLine{112                 [=](\textcolor{keyword}{const} Ts\&... args) \{ \textcolor{keywordflow}{return} \textcolor{keyword}{function}(args...); \}}
+\DoxyCodeLine{113             );}
+\DoxyCodeLine{114         \}}
+\DoxyCodeLine{115     \};}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{117 \}}
+\DoxyCodeLine{118 }
+
+\end{DoxyCode}

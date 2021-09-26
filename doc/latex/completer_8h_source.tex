@@ -1,0 +1,38 @@
+\hypertarget{completer_8h_source}{}\doxysection{completer.\+h}
+\label{completer_8h_source}\index{lib/consolelib/completer.h@{lib/consolelib/completer.h}}
+\mbox{\hyperlink{completer_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/* Copyright (C) 2021 Gleb Bezborodov -\/ All Rights Reserved}}
+\DoxyCodeLine{2 \textcolor{comment}{ * You may use, distribute and modify this code under the}}
+\DoxyCodeLine{3 \textcolor{comment}{ * terms of the MIT license.}}
+\DoxyCodeLine{4 \textcolor{comment}{ *}}
+\DoxyCodeLine{5 \textcolor{comment}{ * You should have received a copy of the MIT license with}}
+\DoxyCodeLine{6 \textcolor{comment}{ * this file. If not, please write to: bezborodoff.gleb@gmail.com, or visit : https://github.com/glensand/congenial-\/disco}}
+\DoxyCodeLine{7 \textcolor{comment}{ */}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <string\_view>}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{foundation_8h}{consolelib/common/foundation.h}}"{}}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{keyword}{namespace }disco \{}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{27     \textcolor{keyword}{class }\mbox{\hyperlink{classdisco_1_1completer}{completer}} \{}
+\DoxyCodeLine{28     \textcolor{keyword}{public}:}
+\DoxyCodeLine{29         \textcolor{keyword}{virtual} \mbox{\hyperlink{classdisco_1_1completer}{\string~completer}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{30         \mbox{\hyperlink{classdisco_1_1completer}{completer}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{37         \textcolor{keyword}{virtual} std::vector<std::string\_view> \mbox{\hyperlink{classdisco_1_1completer_a35fa7b3e3922a9b2c36bf72e219dd31a}{complete}}(std::string\_view prefix) = 0;}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{43         \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classdisco_1_1completer_a1e07eca52d67209c913fc5d96c1bc367}{add\_name}}(std::string\_view name) = 0;}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45         DECLARE\_NON\_COPYABLE(\mbox{\hyperlink{classdisco_1_1completer}{completer}});}
+\DoxyCodeLine{46         DECLARE\_NON\_MOVABLE(\mbox{\hyperlink{classdisco_1_1completer}{completer}});}
+\DoxyCodeLine{47     \};}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49 \}}
+\DoxyCodeLine{50 }
+
+\end{DoxyCode}

@@ -1,0 +1,118 @@
+\hypertarget{classdisco_1_1function}{}\doxysection{disco\+::function Class Reference}
+\label{classdisco_1_1function}\index{disco::function@{disco::function}}
+
+
+General interface to function wrappers, provides easy ways to call function with string parameters. And accessor to internal function\textquotesingle{}s signature elements (such as return\textquotesingle{}s value type, parameters types)  
+
+
+
+
+{\ttfamily \#include $<$function.\+h$>$}
+
+Inheritance diagram for disco\+::function\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classdisco_1_1function}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual std\+::string \mbox{\hyperlink{classdisco_1_1function_a2b48397ec30f3d792455f3242bd12328}{invoke}} (std\+::string\+\_\+view arguments)=0
+\begin{DoxyCompactList}\small\item\em Tries to invoke internal function with given arguments, throws \mbox{\hyperlink{classdisco_1_1bad__input}{disco\+::bad\+\_\+input}} if given sequence had not been parsed correctly. \end{DoxyCompactList}\item 
+virtual std\+::string\+\_\+view \mbox{\hyperlink{classdisco_1_1function_ad9bcfcfa8ef2727b1e61bddde6fba90f}{return\+\_\+type}} () const noexcept=0
+\begin{DoxyCompactList}\small\item\em Converts type of return value to string\+\_\+view. \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ std\+::string\+\_\+view $>$ \mbox{\hyperlink{classdisco_1_1function_afc8067a2688f9ac3a5e97548ad055dcf}{parameter\+\_\+types}} () const =0
+\begin{DoxyCompactList}\small\item\em Collect information of the types which have to be passed to the internal function. \end{DoxyCompactList}\item 
+virtual const std\+::string \& \mbox{\hyperlink{classdisco_1_1function_aace1c39ffc94627a7d5a69e76abfb15f}{description}} () const noexcept=0
+\begin{DoxyCompactList}\small\item\em Returns function description, the description (reason d\textquotesingle{}etre of the function) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classdisco_1_1function_ac36b0697160e20a05cd7800f93d29f4a}\label{classdisco_1_1function_ac36b0697160e20a05cd7800f93d29f4a}} 
+{\bfseries DECLARE\+\_\+\+NON\+\_\+\+COPYABLE} (\mbox{\hyperlink{classdisco_1_1function}{function}})
+\item 
+\mbox{\Hypertarget{classdisco_1_1function_a4de3d292556d8e810d3be0b22f5f49b7}\label{classdisco_1_1function_a4de3d292556d8e810d3be0b22f5f49b7}} 
+{\bfseries DECLARE\+\_\+\+NON\+\_\+\+MOVABLE} (\mbox{\hyperlink{classdisco_1_1function}{function}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+General interface to function wrappers, provides easy ways to call function with string parameters. And accessor to internal function\textquotesingle{}s signature elements (such as return\textquotesingle{}s value type, parameters types) 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classdisco_1_1function_aace1c39ffc94627a7d5a69e76abfb15f}\label{classdisco_1_1function_aace1c39ffc94627a7d5a69e76abfb15f}} 
+\index{disco::function@{disco::function}!description@{description}}
+\index{description@{description}!disco::function@{disco::function}}
+\doxysubsubsection{\texorpdfstring{description()}{description()}}
+{\footnotesize\ttfamily virtual const std\+::string \& disco\+::function\+::description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Returns function description, the description (reason d\textquotesingle{}etre of the function) 
+
+\begin{DoxyReturn}{Returns}
+String with description 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classdisco_1_1function__impl_a0a6a2fff44f6ad9702a6f604bbfcdacd}{disco\+::function\+\_\+impl$<$ R, Ts $>$}}.
+
+\mbox{\Hypertarget{classdisco_1_1function_a2b48397ec30f3d792455f3242bd12328}\label{classdisco_1_1function_a2b48397ec30f3d792455f3242bd12328}} 
+\index{disco::function@{disco::function}!invoke@{invoke}}
+\index{invoke@{invoke}!disco::function@{disco::function}}
+\doxysubsubsection{\texorpdfstring{invoke()}{invoke()}}
+{\footnotesize\ttfamily virtual std\+::string disco\+::function\+::invoke (\begin{DoxyParamCaption}\item[{std\+::string\+\_\+view}]{arguments }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Tries to invoke internal function with given arguments, throws \mbox{\hyperlink{classdisco_1_1bad__input}{disco\+::bad\+\_\+input}} if given sequence had not been parsed correctly. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em arguments} & Input sequence with arguments to be parsed \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+String representation of the return value of the function, return value has to be convertable to string, if internal function returns nothing, the result of operation is empty string 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classdisco_1_1function__impl_aec7e01e5c217ab55408a988f6f65c312}{disco\+::function\+\_\+impl$<$ R, Ts $>$}}.
+
+\mbox{\Hypertarget{classdisco_1_1function_afc8067a2688f9ac3a5e97548ad055dcf}\label{classdisco_1_1function_afc8067a2688f9ac3a5e97548ad055dcf}} 
+\index{disco::function@{disco::function}!parameter\_types@{parameter\_types}}
+\index{parameter\_types@{parameter\_types}!disco::function@{disco::function}}
+\doxysubsubsection{\texorpdfstring{parameter\_types()}{parameter\_types()}}
+{\footnotesize\ttfamily virtual std\+::vector$<$ std\+::string\+\_\+view $>$ disco\+::function\+::parameter\+\_\+types (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Collect information of the types which have to be passed to the internal function. 
+
+\begin{DoxyReturn}{Returns}
+List of the types of function arguments 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classdisco_1_1function__impl_a9d32c42f9ec24ab6bde3b5ffd0950fe7}{disco\+::function\+\_\+impl$<$ R, Ts $>$}}.
+
+\mbox{\Hypertarget{classdisco_1_1function_ad9bcfcfa8ef2727b1e61bddde6fba90f}\label{classdisco_1_1function_ad9bcfcfa8ef2727b1e61bddde6fba90f}} 
+\index{disco::function@{disco::function}!return\_type@{return\_type}}
+\index{return\_type@{return\_type}!disco::function@{disco::function}}
+\doxysubsubsection{\texorpdfstring{return\_type()}{return\_type()}}
+{\footnotesize\ttfamily virtual std\+::string\+\_\+view disco\+::function\+::return\+\_\+type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Converts type of return value to string\+\_\+view. 
+
+\begin{DoxyReturn}{Returns}
+String representation of the internal function call result 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classdisco_1_1function__impl_afdc7fbe36f05e3d8c5865d6116925a83}{disco\+::function\+\_\+impl$<$ R, Ts $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/consolelib/function/\mbox{\hyperlink{function_8h}{function.\+h}}\end{DoxyCompactItemize}

@@ -1,3 +1,5 @@
+#pragma once
+
 #include "variable_proxy_impl.h"
 
 #include "consolelib/variable/variable.h"

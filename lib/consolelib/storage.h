@@ -6,6 +6,12 @@
  * this file. If not, please write to: bezborodoff.gleb@gmail.com, or visit : https://github.com/glensand/congenial-disco
  */
 
+/*! \defgroup <invoker> Invoker
+    @{
+    \file
+    \brief interface of the function's and variable's storage;
+*/
+
 #pragma once
 
 #include "consolelib/common/foundation.h"
@@ -37,3 +43,5 @@ namespace disco {
     };
 
 }
+
+/*! @} */

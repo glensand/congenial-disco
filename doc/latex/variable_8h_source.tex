@@ -1,0 +1,39 @@
+\hypertarget{variable_8h_source}{}\doxysection{variable.\+h}
+\label{variable_8h_source}\index{lib/consolelib/variable/variable.h@{lib/consolelib/variable/variable.h}}
+\mbox{\hyperlink{variable_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/* Copyright (C) 2021 Gleb Bezborodov -\/ All Rights Reserved}}
+\DoxyCodeLine{2 \textcolor{comment}{ * You may use, distribute and modify this code under the}}
+\DoxyCodeLine{3 \textcolor{comment}{ * terms of the MIT license.}}
+\DoxyCodeLine{4 \textcolor{comment}{ *}}
+\DoxyCodeLine{5 \textcolor{comment}{ * You should have received a copy of the MIT license with}}
+\DoxyCodeLine{6 \textcolor{comment}{ * this file. If not, please write to: bezborodoff.gleb@gmail.com, or visit : https://github.com/glensand/congenial-\/disco}}
+\DoxyCodeLine{7 \textcolor{comment}{ */}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <string\_view>}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{foundation_8h}{consolelib/common/foundation.h}}"{}}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{keyword}{namespace }disco  \{}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22     \textcolor{keyword}{class }\mbox{\hyperlink{classdisco_1_1variable}{variable}} \{}
+\DoxyCodeLine{23     \textcolor{keyword}{public}:}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25         \textcolor{keyword}{virtual} \mbox{\hyperlink{classdisco_1_1variable}{\string~variable}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{26         \mbox{\hyperlink{classdisco_1_1variable}{variable}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{33         \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classdisco_1_1variable_a9ff86a25ff9921750f7c3145cb5f4ece}{set}}(std::string\_view arguments) = 0;}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{39         \textcolor{keyword}{virtual} std::string \mbox{\hyperlink{classdisco_1_1variable_a84d74c37e8b2769d24d32db2af73eddc}{get}}() \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{45         \textcolor{keyword}{virtual} std::string\_view \mbox{\hyperlink{classdisco_1_1variable_a8e5cd093f9677249653c0a1ea91b1aea}{type}}() const noexcept = 0;}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47         DECLARE\_NON\_COPYABLE(\mbox{\hyperlink{classdisco_1_1variable}{variable}});}
+\DoxyCodeLine{48         DECLARE\_NON\_MOVABLE(\mbox{\hyperlink{classdisco_1_1variable}{variable}});}
+\DoxyCodeLine{49     \};}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51 \}}
+\DoxyCodeLine{52 }
+
+\end{DoxyCode}

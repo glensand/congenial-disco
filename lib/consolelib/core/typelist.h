@@ -6,11 +6,21 @@
  * this file. If not, please write to: bezborodoff.gleb@gmail.com, or visit : https://github.com/glensand/congenial-disco
  */
 
+/*! \defgroup <core> Core
+    @{
+*/
+
 #pragma once
 
 namespace disco::core {
 
+    /**
+     * Naive implementation of the type_list;
+     * @tparam Ts
+     */
     template<typename... Ts>
     struct type_list final {};
 
 }
+
+/*! @} */

@@ -6,6 +6,12 @@
  * this file. If not, please write to: bezborodoff.gleb@gmail.com, or visit : https://github.com/glensand/congenial-disco
  */
 
+/*! \defgroup <function> Function
+    @{
+    \file
+    \brief Declaration of the function proxy implementation.
+*/
+
 #pragma once
 
 #include "consolelib/function/function_proxy.h"
@@ -37,3 +43,5 @@ namespace disco  {
     };
 
 }
+
+/*! @} */

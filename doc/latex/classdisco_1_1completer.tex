@@ -1,0 +1,82 @@
+\hypertarget{classdisco_1_1completer}{}\doxysection{disco\+::completer Class Reference}
+\label{classdisco_1_1completer}\index{disco::completer@{disco::completer}}
+
+
+Represent interface to word auto completer.  
+
+
+
+
+{\ttfamily \#include $<$completer.\+h$>$}
+
+Inheritance diagram for disco\+::completer\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classdisco_1_1completer}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual std\+::vector$<$ std\+::string\+\_\+view $>$ \mbox{\hyperlink{classdisco_1_1completer_a35fa7b3e3922a9b2c36bf72e219dd31a}{complete}} (std\+::string\+\_\+view prefix)=0
+\begin{DoxyCompactList}\small\item\em This method should be used such as \char`\"{}auto completion\char`\"{}. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classdisco_1_1completer_a1e07eca52d67209c913fc5d96c1bc367}{add\+\_\+name}} (std\+::string\+\_\+view name)=0
+\begin{DoxyCompactList}\small\item\em Adds given name to the internal storage. Throes \mbox{\hyperlink{classdisco_1_1already__exist}{disco\+::already\+\_\+exist}} exception if name had been added recently. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classdisco_1_1completer_a108bd3067c59807f3929fa5e811b75f5}\label{classdisco_1_1completer_a108bd3067c59807f3929fa5e811b75f5}} 
+{\bfseries DECLARE\+\_\+\+NON\+\_\+\+COPYABLE} (\mbox{\hyperlink{classdisco_1_1completer}{completer}})
+\item 
+\mbox{\Hypertarget{classdisco_1_1completer_a0c557b0dc8ea4baf1968f2496a700137}\label{classdisco_1_1completer_a0c557b0dc8ea4baf1968f2496a700137}} 
+{\bfseries DECLARE\+\_\+\+NON\+\_\+\+MOVABLE} (\mbox{\hyperlink{classdisco_1_1completer}{completer}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represent interface to word auto completer. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classdisco_1_1completer_a1e07eca52d67209c913fc5d96c1bc367}\label{classdisco_1_1completer_a1e07eca52d67209c913fc5d96c1bc367}} 
+\index{disco::completer@{disco::completer}!add\_name@{add\_name}}
+\index{add\_name@{add\_name}!disco::completer@{disco::completer}}
+\doxysubsubsection{\texorpdfstring{add\_name()}{add\_name()}}
+{\footnotesize\ttfamily virtual void disco\+::completer\+::add\+\_\+name (\begin{DoxyParamCaption}\item[{std\+::string\+\_\+view}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Adds given name to the internal storage. Throes \mbox{\hyperlink{classdisco_1_1already__exist}{disco\+::already\+\_\+exist}} exception if name had been added recently. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name to be added to the storage \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classdisco_1_1completer__impl_a896ebc7cfea109b5b43f6df7ceb27720}{disco\+::completer\+\_\+impl}}.
+
+\mbox{\Hypertarget{classdisco_1_1completer_a35fa7b3e3922a9b2c36bf72e219dd31a}\label{classdisco_1_1completer_a35fa7b3e3922a9b2c36bf72e219dd31a}} 
+\index{disco::completer@{disco::completer}!complete@{complete}}
+\index{complete@{complete}!disco::completer@{disco::completer}}
+\doxysubsubsection{\texorpdfstring{complete()}{complete()}}
+{\footnotesize\ttfamily virtual std\+::vector$<$ std\+::string\+\_\+view $>$ disco\+::completer\+::complete (\begin{DoxyParamCaption}\item[{std\+::string\+\_\+view}]{prefix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+This method should be used such as \char`\"{}auto completion\char`\"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em prefix} & Prefix of the variable or function which has to be completed \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+List of functions and variables which names has specified prefix 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classdisco_1_1completer__impl_ad0f78209abc696692e95c5195d4cdec1}{disco\+::completer\+\_\+impl}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/consolelib/\mbox{\hyperlink{completer_8h}{completer.\+h}}\end{DoxyCompactItemize}

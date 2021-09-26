@@ -1,3 +1,5 @@
+#pragma once
+
 // ReSharper disable CppClangTidyHicppExceptionBaseclass
 #include "completer_impl.h"
 #include "consolelib/exception/already_exist.h"

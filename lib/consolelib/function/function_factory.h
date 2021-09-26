@@ -6,6 +6,13 @@
  * this file. If not, please write to: bezborodoff.gleb@gmail.com, or visit : https://github.com/glensand/congenial-disco
  */
 
+/*! \defgroup <function> Function
+    @{
+    \file
+    \brief File contains utility class that intended to convert all possible variants of the functions to general
+    polymorphic interface; This interface allows to call function and pass parameters as strings.
+*/
+
 #pragma once
 
 #include "consolelib/core/function_traits.h"
@@ -13,8 +20,9 @@
 
 namespace disco {
 
-        /**
+     /**
      * \brief Utility class, used to create some sorts of functional object wrappers
+     *
      * Allowed function types are:
      * - pointer to member function, the object on which the method will be called is also required
      * - pointer to function or static method
@@ -26,7 +34,7 @@ namespace disco {
         function_factory() = delete;
         ~function_factory() = delete;
 
-            /**
+         /**
          * \brief Creates function object using passed lambda expression or functional object (operator() has to be declared)
          * \param function object to be used to create function wrapper
          * \param description Short explanation of reason d'etre of this the registered function
@@ -107,3 +115,5 @@ namespace disco {
     };
 
 }
+
+/*! @} */

@@ -1,0 +1,63 @@
+\hypertarget{classdisco_1_1invoker}{}\doxysection{disco\+::invoker Class Reference}
+\label{classdisco_1_1invoker}\index{disco::invoker@{disco::invoker}}
+
+
+Interface to string function invoker.  
+
+
+
+
+{\ttfamily \#include $<$invoker.\+h$>$}
+
+Inheritance diagram for disco\+::invoker\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classdisco_1_1invoker}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual std\+::string \mbox{\hyperlink{classdisco_1_1invoker_ade4826ec47bebf54257de69ddcd76e5c}{invoke}} (std\+::string\+\_\+view arguments)=0
+\begin{DoxyCompactList}\small\item\em Invokes function or change variable using given string. Function or variable will be found by name. The name is the first parameter in given string. Call parameters might be separated with any known space separator. To change variable call this function using this patter\+: \mbox{[}variable\+\_\+name\mbox{]} \mbox{[}new\+\_\+value\mbox{]}. To invoke registered function call it using this patter\+: \mbox{[}function\+\_\+name\mbox{]} \mbox{[}arg1 arg2 arg3 ...\mbox{]}. If no one handler had not been found, function throws\+: \mbox{\hyperlink{classdisco_1_1not__exist}{not\+\_\+exist}} exception. On bad input throws \mbox{\hyperlink{classdisco_1_1bad__input}{bad\+\_\+input}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classdisco_1_1invoker_a77566c976c554a404569c03b64af1157}\label{classdisco_1_1invoker_a77566c976c554a404569c03b64af1157}} 
+{\bfseries DECLARE\+\_\+\+NON\+\_\+\+COPYABLE} (\mbox{\hyperlink{classdisco_1_1invoker}{invoker}})
+\item 
+\mbox{\Hypertarget{classdisco_1_1invoker_abe93b2b32d18570ddfb8f296f4e73234}\label{classdisco_1_1invoker_abe93b2b32d18570ddfb8f296f4e73234}} 
+{\bfseries DECLARE\+\_\+\+NON\+\_\+\+MOVABLE} (\mbox{\hyperlink{classdisco_1_1invoker}{invoker}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interface to string function invoker. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classdisco_1_1invoker_ade4826ec47bebf54257de69ddcd76e5c}\label{classdisco_1_1invoker_ade4826ec47bebf54257de69ddcd76e5c}} 
+\index{disco::invoker@{disco::invoker}!invoke@{invoke}}
+\index{invoke@{invoke}!disco::invoker@{disco::invoker}}
+\doxysubsubsection{\texorpdfstring{invoke()}{invoke()}}
+{\footnotesize\ttfamily virtual std\+::string disco\+::invoker\+::invoke (\begin{DoxyParamCaption}\item[{std\+::string\+\_\+view}]{arguments }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Invokes function or change variable using given string. Function or variable will be found by name. The name is the first parameter in given string. Call parameters might be separated with any known space separator. To change variable call this function using this patter\+: \mbox{[}variable\+\_\+name\mbox{]} \mbox{[}new\+\_\+value\mbox{]}. To invoke registered function call it using this patter\+: \mbox{[}function\+\_\+name\mbox{]} \mbox{[}arg1 arg2 arg3 ...\mbox{]}. If no one handler had not been found, function throws\+: \mbox{\hyperlink{classdisco_1_1not__exist}{not\+\_\+exist}} exception. On bad input throws \mbox{\hyperlink{classdisco_1_1bad__input}{bad\+\_\+input}}. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classdisco_1_1not__exist}{disco\+::not\+\_\+exist}}} & \\
+\hline
+\end{DoxyExceptions}
+
+\begin{DoxyParams}{Parameters}
+{\em arguments} & string to be processed \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classdisco_1_1string__command__executor_ab0a14b38d5e750c861b6c824827a1898}{disco\+::string\+\_\+command\+\_\+executor}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/consolelib/\mbox{\hyperlink{invoker_8h}{invoker.\+h}}\end{DoxyCompactItemize}

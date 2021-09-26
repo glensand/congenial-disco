@@ -1,0 +1,28 @@
+\hypertarget{already__exist_8h_source}{}\doxysection{already\+\_\+exist.\+h}
+\label{already__exist_8h_source}\index{lib/consolelib/exception/already\_exist.h@{lib/consolelib/exception/already\_exist.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/* Copyright (C) 2021 Gleb Bezborodov -\/ All Rights Reserved}}
+\DoxyCodeLine{2 \textcolor{comment}{ * You may use, distribute and modify this code under the}}
+\DoxyCodeLine{3 \textcolor{comment}{ * terms of the MIT license.}}
+\DoxyCodeLine{4 \textcolor{comment}{ *}}
+\DoxyCodeLine{5 \textcolor{comment}{ * You should have received a copy of the MIT license with}}
+\DoxyCodeLine{6 \textcolor{comment}{ * this file. If not, please write to: bezborodoff.gleb@gmail.com, or visit : https://github.com/glensand/congenial-\/disco}}
+\DoxyCodeLine{7 \textcolor{comment}{ */}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include "{}consolelib/exception/exception.h"{}}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{keyword}{namespace }disco \{}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15     \textcolor{keyword}{class }\mbox{\hyperlink{classdisco_1_1already__exist}{already\_exist}} final : \textcolor{keyword}{public} \mbox{\hyperlink{classdisco_1_1exception}{exception}} \{}
+\DoxyCodeLine{16     \textcolor{keyword}{public}:}
+\DoxyCodeLine{17         \mbox{\hyperlink{classdisco_1_1already__exist}{already\_exist}}(\textcolor{keyword}{const} std::string\& variable\_name)}
+\DoxyCodeLine{18         : \mbox{\hyperlink{classdisco_1_1exception}{exception}}(\textcolor{stringliteral}{"{}Variable or function with name \{"{}} + variable\_name + \textcolor{stringliteral}{"{} \} already exists"{}})}
+\DoxyCodeLine{19         \{\}}
+\DoxyCodeLine{20     \};}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \}}
+
+\end{DoxyCode}

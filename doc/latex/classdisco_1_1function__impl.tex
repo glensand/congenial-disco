@@ -1,0 +1,113 @@
+\hypertarget{classdisco_1_1function__impl}{}\doxysection{disco\+::function\+\_\+impl\texorpdfstring{$<$}{<} R, Ts \texorpdfstring{$>$}{>} Class Template Reference}
+\label{classdisco_1_1function__impl}\index{disco::function\_impl$<$ R, Ts $>$@{disco::function\_impl$<$ R, Ts $>$}}
+Inheritance diagram for disco\+::function\+\_\+impl\texorpdfstring{$<$}{<} R, Ts \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classdisco_1_1function__impl}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classdisco_1_1function__impl_a440432192d4b4b051c4c864154caa882}\label{classdisco_1_1function__impl_a440432192d4b4b051c4c864154caa882}} 
+{\bfseries function\+\_\+impl} (std\+::function$<$ R(Ts...)$>$ \&\&func, std\+::string \mbox{\hyperlink{classdisco_1_1function__impl_a0a6a2fff44f6ad9702a6f604bbfcdacd}{description}})
+\item 
+\mbox{\Hypertarget{classdisco_1_1function__impl_ad1f8e83e1168d433f250ebcd1af192aa}\label{classdisco_1_1function__impl_ad1f8e83e1168d433f250ebcd1af192aa}} 
+{\bfseries function\+\_\+impl} (const std\+::function$<$ R(Ts...)$>$ \&func, std\+::string \mbox{\hyperlink{classdisco_1_1function__impl_a0a6a2fff44f6ad9702a6f604bbfcdacd}{description}})
+\item 
+virtual std\+::string \mbox{\hyperlink{classdisco_1_1function__impl_aec7e01e5c217ab55408a988f6f65c312}{invoke}} (std\+::string\+\_\+view arguments) override
+\begin{DoxyCompactList}\small\item\em Tries to invoke internal function with given arguments, throws \mbox{\hyperlink{classdisco_1_1bad__input}{disco\+::bad\+\_\+input}} if given sequence had not been parsed correctly. \end{DoxyCompactList}\item 
+virtual std\+::string\+\_\+view \mbox{\hyperlink{classdisco_1_1function__impl_afdc7fbe36f05e3d8c5865d6116925a83}{return\+\_\+type}} () const noexcept override
+\begin{DoxyCompactList}\small\item\em Converts type of return value to string\+\_\+view. \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ std\+::string\+\_\+view $>$ \mbox{\hyperlink{classdisco_1_1function__impl_a9d32c42f9ec24ab6bde3b5ffd0950fe7}{parameter\+\_\+types}} () const override
+\begin{DoxyCompactList}\small\item\em Collect information of the types which have to be passed to the internal function. \end{DoxyCompactList}\item 
+virtual const std\+::string \& \mbox{\hyperlink{classdisco_1_1function__impl_a0a6a2fff44f6ad9702a6f604bbfcdacd}{description}} () const noexcept override
+\begin{DoxyCompactList}\small\item\em Returns function description, the description (reason d\textquotesingle{}etre of the function) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classdisco_1_1function__impl_a3146c112bca58072b7f934038092549b}\label{classdisco_1_1function__impl_a3146c112bca58072b7f934038092549b}} 
+{\bfseries function} ()=default
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classdisco_1_1function__impl_a0a6a2fff44f6ad9702a6f604bbfcdacd}\label{classdisco_1_1function__impl_a0a6a2fff44f6ad9702a6f604bbfcdacd}} 
+\index{disco::function\_impl$<$ R, Ts $>$@{disco::function\_impl$<$ R, Ts $>$}!description@{description}}
+\index{description@{description}!disco::function\_impl$<$ R, Ts $>$@{disco::function\_impl$<$ R, Ts $>$}}
+\doxysubsubsection{\texorpdfstring{description()}{description()}}
+{\footnotesize\ttfamily template$<$typename R , typename... Ts$>$ \\
+virtual const std\+::string \& \mbox{\hyperlink{classdisco_1_1function__impl}{disco\+::function\+\_\+impl}}$<$ R, Ts $>$\+::description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Returns function description, the description (reason d\textquotesingle{}etre of the function) 
+
+\begin{DoxyReturn}{Returns}
+String with description 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classdisco_1_1function_aace1c39ffc94627a7d5a69e76abfb15f}{disco\+::function}}.
+
+\mbox{\Hypertarget{classdisco_1_1function__impl_aec7e01e5c217ab55408a988f6f65c312}\label{classdisco_1_1function__impl_aec7e01e5c217ab55408a988f6f65c312}} 
+\index{disco::function\_impl$<$ R, Ts $>$@{disco::function\_impl$<$ R, Ts $>$}!invoke@{invoke}}
+\index{invoke@{invoke}!disco::function\_impl$<$ R, Ts $>$@{disco::function\_impl$<$ R, Ts $>$}}
+\doxysubsubsection{\texorpdfstring{invoke()}{invoke()}}
+{\footnotesize\ttfamily template$<$typename R , typename... Ts$>$ \\
+virtual std\+::string \mbox{\hyperlink{classdisco_1_1function__impl}{disco\+::function\+\_\+impl}}$<$ R, Ts $>$\+::invoke (\begin{DoxyParamCaption}\item[{std\+::string\+\_\+view}]{arguments }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Tries to invoke internal function with given arguments, throws \mbox{\hyperlink{classdisco_1_1bad__input}{disco\+::bad\+\_\+input}} if given sequence had not been parsed correctly. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em arguments} & Input sequence with arguments to be parsed \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+String representation of the return value of the function, return value has to be convertable to string, if internal function returns nothing, the result of operation is empty string 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classdisco_1_1function_a2b48397ec30f3d792455f3242bd12328}{disco\+::function}}.
+
+\mbox{\Hypertarget{classdisco_1_1function__impl_a9d32c42f9ec24ab6bde3b5ffd0950fe7}\label{classdisco_1_1function__impl_a9d32c42f9ec24ab6bde3b5ffd0950fe7}} 
+\index{disco::function\_impl$<$ R, Ts $>$@{disco::function\_impl$<$ R, Ts $>$}!parameter\_types@{parameter\_types}}
+\index{parameter\_types@{parameter\_types}!disco::function\_impl$<$ R, Ts $>$@{disco::function\_impl$<$ R, Ts $>$}}
+\doxysubsubsection{\texorpdfstring{parameter\_types()}{parameter\_types()}}
+{\footnotesize\ttfamily template$<$typename R , typename... Ts$>$ \\
+virtual std\+::vector$<$ std\+::string\+\_\+view $>$ \mbox{\hyperlink{classdisco_1_1function__impl}{disco\+::function\+\_\+impl}}$<$ R, Ts $>$\+::parameter\+\_\+types (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Collect information of the types which have to be passed to the internal function. 
+
+\begin{DoxyReturn}{Returns}
+List of the types of function arguments 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classdisco_1_1function_afc8067a2688f9ac3a5e97548ad055dcf}{disco\+::function}}.
+
+\mbox{\Hypertarget{classdisco_1_1function__impl_afdc7fbe36f05e3d8c5865d6116925a83}\label{classdisco_1_1function__impl_afdc7fbe36f05e3d8c5865d6116925a83}} 
+\index{disco::function\_impl$<$ R, Ts $>$@{disco::function\_impl$<$ R, Ts $>$}!return\_type@{return\_type}}
+\index{return\_type@{return\_type}!disco::function\_impl$<$ R, Ts $>$@{disco::function\_impl$<$ R, Ts $>$}}
+\doxysubsubsection{\texorpdfstring{return\_type()}{return\_type()}}
+{\footnotesize\ttfamily template$<$typename R , typename... Ts$>$ \\
+virtual std\+::string\+\_\+view \mbox{\hyperlink{classdisco_1_1function__impl}{disco\+::function\+\_\+impl}}$<$ R, Ts $>$\+::return\+\_\+type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Converts type of return value to string\+\_\+view. 
+
+\begin{DoxyReturn}{Returns}
+String representation of the internal function call result 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classdisco_1_1function_ad9bcfcfa8ef2727b1e61bddde6fba90f}{disco\+::function}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/consolelib/function/\mbox{\hyperlink{function__impl_8h}{function\+\_\+impl.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,28 @@
+\hypertarget{foundation_8h_source}{}\doxysection{foundation.\+h}
+\label{foundation_8h_source}\index{lib/consolelib/common/foundation.h@{lib/consolelib/common/foundation.h}}
+\mbox{\hyperlink{foundation_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/* Copyright (C) 2021 Gleb Bezborodov -\/ All Rights Reserved}}
+\DoxyCodeLine{2 \textcolor{comment}{ * You may use, distribute and modify this code under the}}
+\DoxyCodeLine{3 \textcolor{comment}{ * terms of the MIT license.}}
+\DoxyCodeLine{4 \textcolor{comment}{ *}}
+\DoxyCodeLine{5 \textcolor{comment}{ * You should have received a copy of the MIT license with}}
+\DoxyCodeLine{6 \textcolor{comment}{ * this file. If not, please write to: bezborodoff.gleb@gmail.com, or visit : https://github.com/glensand/congenial-\/disco}}
+\DoxyCodeLine{7 \textcolor{comment}{ */}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#define DECLARE\_NON\_MOVABLE(Name) Name ( Name \&\&) = delete; \(\backslash\)}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{    Name \& operator=( Name \&\&) = delete}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#define DECLARE\_NON\_COPYABLE(Name) Name(const Name \&) = delete; \(\backslash\)}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{    Name \& operator=(const Name \&) = delete}}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#define DECLARE\_EXPLICIT\_DEFAULT\_MOVABLE(Name) Name ( Name \&\&) = default; \(\backslash\)}}
+\DoxyCodeLine{36 \textcolor{preprocessor}{    Name \& operator=( Name \&\&) = default}}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#define DECLARE\_EXPLICIT\_DEFAULT\_COPYABLE(Name) Name ( const Name \&) = default; \(\backslash\)}}
+\DoxyCodeLine{43 \textcolor{preprocessor}{    Name \& operator=( const Name \&) = default}}
+\DoxyCodeLine{44 }
+
+\end{DoxyCode}

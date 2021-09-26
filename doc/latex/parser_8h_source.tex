@@ -1,0 +1,138 @@
+\hypertarget{parser_8h_source}{}\doxysection{parser.\+h}
+\label{parser_8h_source}\index{lib/consolelib/generator/parser.h@{lib/consolelib/generator/parser.h}}
+\mbox{\hyperlink{parser_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/* Copyright (C) 2021 Gleb Bezborodov -\/ All Rights Reserved}}
+\DoxyCodeLine{2 \textcolor{comment}{ * You may use, distribute and modify this code under the}}
+\DoxyCodeLine{3 \textcolor{comment}{ * terms of the MIT license.}}
+\DoxyCodeLine{4 \textcolor{comment}{ *}}
+\DoxyCodeLine{5 \textcolor{comment}{ * You should have received a copy of the MIT license with}}
+\DoxyCodeLine{6 \textcolor{comment}{ * this file. If not, please write to: bezborodoff.gleb@gmail.com, or visit : https://github.com/glensand/congenial-\/disco}}
+\DoxyCodeLine{7 \textcolor{comment}{ */}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <string\_view>}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <algorithm>}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <charconv>}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <array>}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include <algorithm>}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#include "{}consolelib/exception/bad\_input.h"{}}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{keyword}{namespace }detail \{}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28     \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} EndLine = std::string\_view::npos;}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30     \textcolor{keyword}{constexpr}}
+\DoxyCodeLine{31     \textcolor{keyword}{auto} is\_delimiter = [](\textcolor{keyword}{const} \textcolor{keywordtype}{char} c) \textcolor{keyword}{noexcept} \{}
+\DoxyCodeLine{32         \textcolor{keywordflow}{return} std::string\_view(\textcolor{stringliteral}{"{} \(\backslash\)t\(\backslash\)n\(\backslash\)f\(\backslash\)r\(\backslash\)v,();"{}}).find\_first\_of(c) != EndLine;}
+\DoxyCodeLine{33     \};}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35     \textcolor{keyword}{constexpr}}
+\DoxyCodeLine{36     \textcolor{keyword}{auto} is\_string\_delimiter = [](\textcolor{keyword}{const} \textcolor{keywordtype}{char} c) \textcolor{keyword}{noexcept} \{}
+\DoxyCodeLine{37         \textcolor{keywordflow}{return} std::string\_view(\textcolor{stringliteral}{"{}\(\backslash\)"{}"{}}).find\_first\_of(c) != EndLine;}
+\DoxyCodeLine{38     \};}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40     \textcolor{keyword}{inline}}
+\DoxyCodeLine{41     \textcolor{keywordtype}{void} trim(std::string\_view\& arguments) \{}
+\DoxyCodeLine{42         \textcolor{keywordflow}{while} (is\_delimiter(arguments.front()))}
+\DoxyCodeLine{43             arguments = std::string\_view(arguments.data() + 1, arguments.size() -\/ 1);}
+\DoxyCodeLine{44     \}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46     \textcolor{keyword}{inline}}
+\DoxyCodeLine{47     std::size\_t delimiter\_position(std::string\_view \textcolor{keywordtype}{string}) \{}
+\DoxyCodeLine{48         \textcolor{keywordflow}{if} (\textcolor{keywordtype}{string}.empty())}
+\DoxyCodeLine{49             \textcolor{keywordflow}{throw} \mbox{\hyperlink{classdisco_1_1bad__input}{disco::bad\_input}}(\textcolor{stringliteral}{"{}Empty string"{}});}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51         \textcolor{keyword}{auto}\&\& delimiter\_it = std::find\_if(begin(\textcolor{keywordtype}{string}), end(\textcolor{keywordtype}{string}), is\_delimiter);}
+\DoxyCodeLine{52         \textcolor{keywordflow}{return} std::size\_t(std::distance(begin(\textcolor{keywordtype}{string}), delimiter\_it));}
+\DoxyCodeLine{53     \}}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55     \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{56     T parse(std::string\_view view) \{}
+\DoxyCodeLine{57         T value;}
+\DoxyCodeLine{58 \textcolor{preprocessor}{\#if defined \_MSC\_VER}}
+\DoxyCodeLine{59         \textcolor{keywordflow}{if} (\textcolor{keyword}{auto} \&\& [ptr, ec] = std::from\_chars((\textcolor{keyword}{const} \textcolor{keywordtype}{char}*)view.data(), (\textcolor{keyword}{const} \textcolor{keywordtype}{char}*)view.data() + view.size(), value); ec != std::errc())}
+\DoxyCodeLine{60             \textcolor{keywordflow}{throw} \mbox{\hyperlink{classdisco_1_1bad__input}{disco::bad\_input}}(view.data());}
+\DoxyCodeLine{61 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{62         \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr}(std::is\_same\_v<int, T>)}
+\DoxyCodeLine{63         \{}
+\DoxyCodeLine{64             \textcolor{keywordflow}{if} (\textcolor{keyword}{auto} \&\& [ptr, ec] = std::from\_chars((\textcolor{keyword}{const} \textcolor{keywordtype}{char}*)view.data(), (\textcolor{keyword}{const} \textcolor{keywordtype}{char}*)view.data() + view.size(), value); ec != std::errc())}
+\DoxyCodeLine{65                 \textcolor{keywordflow}{throw} \mbox{\hyperlink{classdisco_1_1bad__input}{disco::bad\_input}}(view.data());}
+\DoxyCodeLine{66         \}}
+\DoxyCodeLine{67         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{68         \{}
+\DoxyCodeLine{69             value = (T)atof(view.data());}
+\DoxyCodeLine{70         \}}
+\DoxyCodeLine{71 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{72         \textcolor{keywordflow}{return} value;}
+\DoxyCodeLine{73     \}}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75     \textcolor{keyword}{template}<>}
+\DoxyCodeLine{76     \textcolor{keyword}{inline} std::string\_view parse<std::string\_view>(std::string\_view view) \{}
+\DoxyCodeLine{77         \textcolor{keywordflow}{return} view;}
+\DoxyCodeLine{78     \}}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80     \textcolor{keyword}{template}<>}
+\DoxyCodeLine{81     \textcolor{keyword}{inline} std::string parse<std::string>(std::string\_view view) \{}
+\DoxyCodeLine{82         \textcolor{keywordflow}{return} std::string(view.data(), view.size());}
+\DoxyCodeLine{83     \}}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85     \textcolor{keyword}{template}<>}
+\DoxyCodeLine{86     \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} parse<bool>(std::string\_view view) \{}
+\DoxyCodeLine{87         std::array<char, 10> lower\_case; \textcolor{comment}{// assumed 10 chars is enough}}
+\DoxyCodeLine{88         std::transform(begin(view), end(view), begin(lower\_case),}
+\DoxyCodeLine{89             [](\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} c) \{ \textcolor{keywordflow}{return} std::tolower(c); \}}
+\DoxyCodeLine{90         );}
+\DoxyCodeLine{91         \textcolor{keyword}{auto}\&\& view\_lower\_case = std::string\_view(lower\_case.data(), view.size());}
+\DoxyCodeLine{92         \textcolor{keywordflow}{return} view\_lower\_case == \textcolor{stringliteral}{"{}1"{}} || view\_lower\_case == \textcolor{stringliteral}{"{}true"{}};}
+\DoxyCodeLine{93     \}}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95     \textcolor{keyword}{template}<\textcolor{keyword}{typename} T> }
+\DoxyCodeLine{96     T parse\_value(std::string\_view\& arguments) \{}
+\DoxyCodeLine{97         \textcolor{keyword}{auto}\&\& distance = delimiter\_position(arguments);}
+\DoxyCodeLine{98         \textcolor{keyword}{auto}\&\& value = detail::parse<T>(std::string\_view(arguments.data(), distance));}
+\DoxyCodeLine{99         arguments = std::string\_view(arguments.data() + distance + 1, arguments.size() -\/ distance);}
+\DoxyCodeLine{100         \textcolor{keywordflow}{return} value;}
+\DoxyCodeLine{101     \}}
+\DoxyCodeLine{102 }
+\DoxyCodeLine{103     \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{104     T parse\_string(std::string\_view\& arguments) \{}
+\DoxyCodeLine{105         \textcolor{keywordflow}{if} (arguments.empty() || arguments.front() != \textcolor{charliteral}{'"{}'})}
+\DoxyCodeLine{106             \textcolor{keywordflow}{throw} \mbox{\hyperlink{classdisco_1_1bad__input}{disco::bad\_input}}(\textcolor{stringliteral}{"{}String has to have braces, like this \(\backslash\)"{}You string\(\backslash\)"{}"{}});}
+\DoxyCodeLine{107 }
+\DoxyCodeLine{108         \textcolor{keyword}{auto}\&\& delimiter\_it = std::find\_if(begin(arguments) + 1, end(arguments), is\_string\_delimiter);}
+\DoxyCodeLine{109         \textcolor{keywordflow}{if} (delimiter\_it == end(arguments))}
+\DoxyCodeLine{110             \textcolor{keywordflow}{throw} \mbox{\hyperlink{classdisco_1_1bad__input}{disco::bad\_input}}(\textcolor{stringliteral}{"{}String has to have braces, like this \(\backslash\)"{}You string\(\backslash\)"{}"{}});}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{112         \textcolor{keyword}{auto}\&\& distance = std::distance(begin(arguments), delimiter\_it);}
+\DoxyCodeLine{113         \textcolor{keyword}{auto} value = T(arguments.data() + 1, distance -\/ 1);}
+\DoxyCodeLine{114         arguments = std::string\_view(arguments.data() + distance + 1, arguments.size() -\/ distance);}
+\DoxyCodeLine{115         \textcolor{keywordflow}{return} value;}
+\DoxyCodeLine{116     \}}
+\DoxyCodeLine{117 \}}
+\DoxyCodeLine{118 }
+\DoxyCodeLine{119 \textcolor{keyword}{namespace }disco  \{}
+\DoxyCodeLine{120 }
+\DoxyCodeLine{121     \textcolor{keyword}{inline}}
+\DoxyCodeLine{122     std::string\_view parse\_name(std::string\_view\& arguments) \{}
+\DoxyCodeLine{123         detail::trim(arguments);}
+\DoxyCodeLine{124         \textcolor{keywordflow}{return} detail::parse\_value<std::string\_view>(arguments);}
+\DoxyCodeLine{125     \}}
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127     \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{128     T parse(std::string\_view\& arguments) \{}
+\DoxyCodeLine{129         detail::trim(arguments);}
+\DoxyCodeLine{130         \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (!std::is\_same\_v<std::string, T> \&\& !std::is\_same\_v<std::string\_view, T>) \{}
+\DoxyCodeLine{131             \textcolor{keywordflow}{return} detail::parse\_value<T>(arguments);}
+\DoxyCodeLine{132         \}}
+\DoxyCodeLine{133         \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{134             \textcolor{keywordflow}{return} detail::parse\_string<T>(arguments);}
+\DoxyCodeLine{135         \}}
+\DoxyCodeLine{136     \}}
+\DoxyCodeLine{137 }
+\DoxyCodeLine{138 \}}
+\DoxyCodeLine{139 }
+
+\end{DoxyCode}

@@ -1,0 +1,64 @@
+\hypertarget{classdisco_1_1variable__proxy__impl}{}\doxysection{disco\+::variable\+\_\+proxy\+\_\+impl Class Reference}
+\label{classdisco_1_1variable__proxy__impl}\index{disco::variable\_proxy\_impl@{disco::variable\_proxy\_impl}}
+
+
+Provides safe operations on variable and input sequence, dispatch desired operation.  
+
+
+
+
+{\ttfamily \#include $<$variable\+\_\+proxy\+\_\+impl.\+h$>$}
+
+Inheritance diagram for disco\+::variable\+\_\+proxy\+\_\+impl\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classdisco_1_1variable__proxy__impl}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual std\+::string \mbox{\hyperlink{classdisco_1_1variable__proxy__impl_a9bf153e59c1abb44932d18f859e8f4c3}{apply}} (\mbox{\hyperlink{classdisco_1_1variable}{variable}} $\ast$var, std\+::string\+\_\+view arguments) const override
+\begin{DoxyCompactList}\small\item\em Tries to find out whether this operation get or set, trim input sequence and call desired method. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classdisco_1_1variable__proxy__impl_ad4f9c63b18c3dacac2407bdc1b56288b}\label{classdisco_1_1variable__proxy__impl_ad4f9c63b18c3dacac2407bdc1b56288b}} 
+{\bfseries DECLARE\+\_\+\+NON\+\_\+\+COPYABLE} (\mbox{\hyperlink{classdisco_1_1variable__proxy__impl}{variable\+\_\+proxy\+\_\+impl}})
+\item 
+\mbox{\Hypertarget{classdisco_1_1variable__proxy__impl_adbfc19e2843211dc16a0829dd996170a}\label{classdisco_1_1variable__proxy__impl_adbfc19e2843211dc16a0829dd996170a}} 
+{\bfseries DECLARE\+\_\+\+NON\+\_\+\+MOVABLE} (\mbox{\hyperlink{classdisco_1_1variable__proxy__impl}{variable\+\_\+proxy\+\_\+impl}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Provides safe operations on variable and input sequence, dispatch desired operation. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classdisco_1_1variable__proxy__impl_a9bf153e59c1abb44932d18f859e8f4c3}\label{classdisco_1_1variable__proxy__impl_a9bf153e59c1abb44932d18f859e8f4c3}} 
+\index{disco::variable\_proxy\_impl@{disco::variable\_proxy\_impl}!apply@{apply}}
+\index{apply@{apply}!disco::variable\_proxy\_impl@{disco::variable\_proxy\_impl}}
+\doxysubsubsection{\texorpdfstring{apply()}{apply()}}
+{\footnotesize\ttfamily std\+::string disco\+::variable\+\_\+proxy\+\_\+impl\+::apply (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classdisco_1_1variable}{variable}} $\ast$}]{var,  }\item[{std\+::string\+\_\+view}]{arguments }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Tries to find out whether this operation get or set, trim input sequence and call desired method. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em var} & Desired variable \\
+\hline
+{\em arguments} & Input sequence, if there is \textquotesingle{}=\textquotesingle{} present, the operation is set if there is no \textquotesingle{}=\textquotesingle{} the operation is get \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns current value of the variable on get and empty string on set 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classdisco_1_1variable__proxy_a624c593022328e8299f7235e78e3073e}{disco\+::variable\+\_\+proxy}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+lib/consolelib/variable/\mbox{\hyperlink{variable__proxy__impl_8h}{variable\+\_\+proxy\+\_\+impl.\+h}}\item 
+lib/consolelib/variable/variable\+\_\+proxy\+\_\+impl.\+hpp\end{DoxyCompactItemize}

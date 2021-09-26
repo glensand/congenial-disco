@@ -1,0 +1,87 @@
+\hypertarget{signature__builder_8hpp_source}{}\doxysection{signature\+\_\+builder.\+hpp}
+\label{signature__builder_8hpp_source}\index{lib/consolelib/generator/signature\_builder.hpp@{lib/consolelib/generator/signature\_builder.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{signature__builder_8h}{signature\_builder.h}}"{}}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{keyword}{namespace }disco \{}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7     \textcolor{keyword}{inline}}
+\DoxyCodeLine{8     \mbox{\hyperlink{classdisco_1_1signature__builder}{signature\_builder}} \mbox{\hyperlink{classdisco_1_1signature__builder_a4661684db7f64a2bdfb9b8f1449f8d8f}{signature\_builder::create}}(build\_policy policy) \textcolor{keyword}{noexcept} \{}
+\DoxyCodeLine{9         \textcolor{keywordflow}{return} \mbox{\hyperlink{classdisco_1_1signature__builder}{signature\_builder}}(policy);}
+\DoxyCodeLine{10     \}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12     \textcolor{keyword}{inline}}
+\DoxyCodeLine{13     \mbox{\hyperlink{classdisco_1_1signature__builder}{signature\_builder}}\& \mbox{\hyperlink{classdisco_1_1signature__builder_a07f27058c5495b959639c8cbaecdec1a}{signature\_builder::add\_return\_type}}(std::string\_view return\_type) \textcolor{keyword}{noexcept} \{}
+\DoxyCodeLine{14         m\_return\_type = return\_type;}
+\DoxyCodeLine{15         \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{16     \}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18     \textcolor{keyword}{inline}}
+\DoxyCodeLine{19     \mbox{\hyperlink{classdisco_1_1signature__builder}{signature\_builder}}\& \mbox{\hyperlink{classdisco_1_1signature__builder_af55f23ebb015e0abdaa8d8252042b165}{signature\_builder::add\_parameters}}(std::vector<std::string\_view>\&\& parameters) \textcolor{keyword}{noexcept} \{}
+\DoxyCodeLine{20         m\_parameter\_types = std::move(parameters);}
+\DoxyCodeLine{21         \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{22     \}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24     \textcolor{keyword}{inline}}
+\DoxyCodeLine{25     \mbox{\hyperlink{classdisco_1_1signature__builder}{signature\_builder}}\& \mbox{\hyperlink{classdisco_1_1signature__builder_a0ffa75e88215fc8f939eb9f72d1a7377}{signature\_builder::add\_name}}(std::string\_view name) \textcolor{keyword}{noexcept} \{}
+\DoxyCodeLine{26         m\_name = name;}
+\DoxyCodeLine{27         \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{28     \}}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30     \textcolor{keyword}{inline}}
+\DoxyCodeLine{31     std::string \mbox{\hyperlink{classdisco_1_1signature__builder_a0a1a253168f7d59af0f98acf77c333d1}{signature\_builder::get}}() \{}
+\DoxyCodeLine{32         std::string signature;}
+\DoxyCodeLine{33         signature.reserve(compute\_result\_size());}
+\DoxyCodeLine{34         signature += m\_return\_type;}
+\DoxyCodeLine{35         signature.push\_back(\textcolor{charliteral}{' '});}
+\DoxyCodeLine{36         signature += m\_name;}
+\DoxyCodeLine{37         fill\_arguments(signature);}
+\DoxyCodeLine{38         clear();}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40         \textcolor{keywordflow}{return} signature;}
+\DoxyCodeLine{41     \}}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43     \textcolor{keyword}{inline}}
+\DoxyCodeLine{44     \textcolor{keywordtype}{void} signature\_builder::clear() \{}
+\DoxyCodeLine{45         m\_return\_type = m\_name = \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{46         m\_parameter\_types.clear();}
+\DoxyCodeLine{47     \}}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49     \textcolor{keyword}{inline}}
+\DoxyCodeLine{50     std::size\_t signature\_builder::compute\_result\_size() const noexcept \{}
+\DoxyCodeLine{51         std::size\_t parameter\_bytes\_count = 0u;}
+\DoxyCodeLine{52         \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\&\& parameter : m\_parameter\_types)}
+\DoxyCodeLine{53             parameter\_bytes\_count += parameter.size() + 2; \textcolor{comment}{// size of specified string + 1 byte for ',' and 1 byte for space}}
+\DoxyCodeLine{54         \textcolor{keywordflow}{return} m\_return\_type.size() + parameter\_bytes\_count + m\_name.size();}
+\DoxyCodeLine{55     \}}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57     \textcolor{keyword}{inline}}
+\DoxyCodeLine{58     \textcolor{keywordtype}{void} signature\_builder::fill\_arguments(std::string\& signature)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{59         \textcolor{keywordflow}{if} (m\_build\_policy != build\_policy::function)}
+\DoxyCodeLine{60             \textcolor{keywordflow}{return};}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62         signature.push\_back(\textcolor{charliteral}{'('});}
+\DoxyCodeLine{63         \textcolor{keywordflow}{if}(!m\_parameter\_types.empty()) \{}
+\DoxyCodeLine{64             \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\&\& name : m\_parameter\_types) \{}
+\DoxyCodeLine{65                 signature += name;}
+\DoxyCodeLine{66                 signature += \textcolor{stringliteral}{"{}, "{}};}
+\DoxyCodeLine{67             \}}
+\DoxyCodeLine{68             signature.resize(signature.size() -\/ 2); \textcolor{comment}{// delete excessive symbols}}
+\DoxyCodeLine{69         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{70             signature += \textcolor{stringliteral}{"{}void"{}};}
+\DoxyCodeLine{71         \}}
+\DoxyCodeLine{72         signature.push\_back(\textcolor{charliteral}{')'});}
+\DoxyCodeLine{73     \}}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75     \textcolor{keyword}{inline}}
+\DoxyCodeLine{76     signature\_builder::signature\_builder(build\_policy policy)}
+\DoxyCodeLine{77         : m\_build\_policy(policy) \{}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79     \}}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81 \}}
+
+\end{DoxyCode}

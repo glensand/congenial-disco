@@ -6,6 +6,12 @@
  * this file. If not, please write to: bezborodoff.gleb@gmail.com, or visit : https://github.com/glensand/congenial-disco
  */
 
+/*! \defgroup <invoker> Invoker
+    @{
+    \file
+    \brief interface of the word completer, completer helps to find the function or variable by given prefix.
+*/
+
 #pragma once
 
 #include <string_view>
@@ -41,3 +47,5 @@ namespace disco {
     };
 
 }
+
+/*! @} */

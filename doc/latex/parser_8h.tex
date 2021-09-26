@@ -1,0 +1,89 @@
+\hypertarget{parser_8h}{}\doxysection{lib/consolelib/generator/parser.h File Reference}
+\label{parser_8h}\index{lib/consolelib/generator/parser.h@{lib/consolelib/generator/parser.h}}
+
+
+File contains parsers fot different types. NOTE\+: refactoring is needed.  
+
+
+{\ttfamily \#include $<$string\+\_\+view$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$charconv$>$}\newline
+{\ttfamily \#include $<$array$>$}\newline
+{\ttfamily \#include \char`\"{}consolelib/exception/bad\+\_\+input.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{parser_8h_a39a13dd778bb1f48b20a7e483ee1a45c}\label{parser_8h_a39a13dd778bb1f48b20a7e483ee1a45c}} 
+void {\bfseries detail\+::trim} (std\+::string\+\_\+view \&arguments)
+\item 
+\mbox{\Hypertarget{parser_8h_aeaf786ac13a3d00911f132d34dddede4}\label{parser_8h_aeaf786ac13a3d00911f132d34dddede4}} 
+std\+::size\+\_\+t {\bfseries detail\+::delimiter\+\_\+position} (std\+::string\+\_\+view string)
+\item 
+\mbox{\Hypertarget{parser_8h_af50dbf89116857a30f45c096d1cf3455}\label{parser_8h_af50dbf89116857a30f45c096d1cf3455}} 
+{\footnotesize template$<$typename T $>$ }\\T {\bfseries detail\+::parse} (std\+::string\+\_\+view view)
+\item 
+\mbox{\Hypertarget{parser_8h_aa07f9d7f29291ee4fd977214c2a0af6d}\label{parser_8h_aa07f9d7f29291ee4fd977214c2a0af6d}} 
+template$<$$>$ std\+::string\+\_\+view {\bfseries detail\+::parse$<$ std\+::string\+\_\+view $>$} (std\+::string\+\_\+view view)
+\item 
+\mbox{\Hypertarget{parser_8h_a9452e8d9cb45b3fe502f1f09845d714d}\label{parser_8h_a9452e8d9cb45b3fe502f1f09845d714d}} 
+template$<$$>$ std\+::string {\bfseries detail\+::parse$<$ std\+::string $>$} (std\+::string\+\_\+view view)
+\item 
+\mbox{\Hypertarget{parser_8h_a7d64f169d40410f57609fd4ba56e46d2}\label{parser_8h_a7d64f169d40410f57609fd4ba56e46d2}} 
+template$<$$>$ bool {\bfseries detail\+::parse$<$ bool $>$} (std\+::string\+\_\+view view)
+\item 
+\mbox{\Hypertarget{parser_8h_ae44d86ae451a028509ba36f95de03444}\label{parser_8h_ae44d86ae451a028509ba36f95de03444}} 
+{\footnotesize template$<$typename T $>$ }\\T {\bfseries detail\+::parse\+\_\+value} (std\+::string\+\_\+view \&arguments)
+\item 
+\mbox{\Hypertarget{parser_8h_ae5f8b4f10705d5a2c7e1cd6a39b6b137}\label{parser_8h_ae5f8b4f10705d5a2c7e1cd6a39b6b137}} 
+{\footnotesize template$<$typename T $>$ }\\T {\bfseries detail\+::parse\+\_\+string} (std\+::string\+\_\+view \&arguments)
+\item 
+\mbox{\Hypertarget{parser_8h_a925556e9066ef95c217659d68ee6c1ed}\label{parser_8h_a925556e9066ef95c217659d68ee6c1ed}} 
+std\+::string\+\_\+view {\bfseries disco\+::parse\+\_\+name} (std\+::string\+\_\+view \&arguments)
+\item 
+\mbox{\Hypertarget{parser_8h_ae6ebd18f84f6eed0f59e1a344c7005b5}\label{parser_8h_ae6ebd18f84f6eed0f59e1a344c7005b5}} 
+{\footnotesize template$<$typename T $>$ }\\T {\bfseries disco\+::parse} (std\+::string\+\_\+view \&arguments)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{parser_8h_afd35ced43d194baa1323ca0aaadf4591}\label{parser_8h_afd35ced43d194baa1323ca0aaadf4591}} 
+constexpr auto {\bfseries detail\+::\+End\+Line} = std\+::string\+\_\+view\+::npos
+\item 
+constexpr auto \mbox{\hyperlink{parser_8h_a0f083af977bc8f6e30f0377b88fc5acf}{detail\+::is\+\_\+delimiter}}
+\item 
+constexpr auto \mbox{\hyperlink{parser_8h_a2338acfb67df01f0f48ff9f9887380e7}{detail\+::is\+\_\+string\+\_\+delimiter}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+File contains parsers fot different types. NOTE\+: refactoring is needed. 
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{parser_8h_a0f083af977bc8f6e30f0377b88fc5acf}\label{parser_8h_a0f083af977bc8f6e30f0377b88fc5acf}} 
+\index{parser.h@{parser.h}!is\_delimiter@{is\_delimiter}}
+\index{is\_delimiter@{is\_delimiter}!parser.h@{parser.h}}
+\doxysubsubsection{\texorpdfstring{is\_delimiter}{is\_delimiter}}
+{\footnotesize\ttfamily constexpr auto detail\+::is\+\_\+delimiter\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= [](\textcolor{keyword}{const} \textcolor{keywordtype}{char} c) \textcolor{keyword}{noexcept} \{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} std::string\_view(\textcolor{stringliteral}{"{} \(\backslash\)t\(\backslash\)n\(\backslash\)f\(\backslash\)r\(\backslash\)v,();"{}}).find\_first\_of(c) != EndLine;}
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{parser_8h_a2338acfb67df01f0f48ff9f9887380e7}\label{parser_8h_a2338acfb67df01f0f48ff9f9887380e7}} 
+\index{parser.h@{parser.h}!is\_string\_delimiter@{is\_string\_delimiter}}
+\index{is\_string\_delimiter@{is\_string\_delimiter}!parser.h@{parser.h}}
+\doxysubsubsection{\texorpdfstring{is\_string\_delimiter}{is\_string\_delimiter}}
+{\footnotesize\ttfamily constexpr auto detail\+::is\+\_\+string\+\_\+delimiter\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= [](\textcolor{keyword}{const} \textcolor{keywordtype}{char} c) \textcolor{keyword}{noexcept} \{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} std::string\_view(\textcolor{stringliteral}{"{}\(\backslash\)"{}"{}}).find\_first\_of(c) != EndLine;}
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}

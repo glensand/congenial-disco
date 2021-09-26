@@ -1,0 +1,92 @@
+\hypertarget{function__impl_8h_source}{}\doxysection{function\+\_\+impl.\+h}
+\label{function__impl_8h_source}\index{lib/consolelib/function/function\_impl.h@{lib/consolelib/function/function\_impl.h}}
+\mbox{\hyperlink{function__impl_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/* Copyright (C) 2021 Gleb Bezborodov -\/ All Rights Reserved}}
+\DoxyCodeLine{2 \textcolor{comment}{ * You may use, distribute and modify this code under the}}
+\DoxyCodeLine{3 \textcolor{comment}{ * terms of the MIT license.}}
+\DoxyCodeLine{4 \textcolor{comment}{ *}}
+\DoxyCodeLine{5 \textcolor{comment}{ * You should have received a copy of the MIT license with}}
+\DoxyCodeLine{6 \textcolor{comment}{ * this file. If not, please write to: bezborodoff.gleb@gmail.com, or visit : https://github.com/glensand/congenial-\/disco}}
+\DoxyCodeLine{7 \textcolor{comment}{ */}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <functional>}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{for__each_8h}{consolelib/core/for\_each.h}}"{}}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{parser_8h}{consolelib/generator/parser.h}}"{}}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{generator_8h}{consolelib/generator/generator.h}}"{}}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{function_8h}{consolelib/function/function.h}}"{}}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{keyword}{namespace }disco \{}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26     \textcolor{keyword}{template}<\textcolor{keyword}{typename} R, \textcolor{keyword}{typename}... Ts>}
+\DoxyCodeLine{27     \textcolor{keyword}{class }\mbox{\hyperlink{classdisco_1_1function__impl}{function\_impl}} final : \textcolor{keyword}{public} \mbox{\hyperlink{classdisco_1_1function}{function}}}
+\DoxyCodeLine{28     \{}
+\DoxyCodeLine{29         \textcolor{keyword}{using} invoke\_args\_t = std::tuple<std::decay\_t<Ts>...>;}
+\DoxyCodeLine{30     \textcolor{keyword}{public}:}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32         \mbox{\hyperlink{classdisco_1_1function__impl}{function\_impl}}(std::function<R(Ts...)>\&\& func, std::string \mbox{\hyperlink{classdisco_1_1function__impl_a0a6a2fff44f6ad9702a6f604bbfcdacd}{description}})}
+\DoxyCodeLine{33             : m\_description(std::move(\mbox{\hyperlink{classdisco_1_1function__impl_a0a6a2fff44f6ad9702a6f604bbfcdacd}{description}}))}
+\DoxyCodeLine{34             , m\_function(std::move(func))\{ \}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36         \mbox{\hyperlink{classdisco_1_1function__impl}{function\_impl}}(\textcolor{keyword}{const} std::function<R(Ts...)>\& func, std::string \mbox{\hyperlink{classdisco_1_1function__impl_a0a6a2fff44f6ad9702a6f604bbfcdacd}{description}})}
+\DoxyCodeLine{37             : m\_description(std::move(\mbox{\hyperlink{classdisco_1_1function__impl_a0a6a2fff44f6ad9702a6f604bbfcdacd}{description}}))}
+\DoxyCodeLine{38             , m\_function(func) \{ \}}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40         \textcolor{keyword}{using} function::function;}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42         \textcolor{comment}{// function implementation}}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{50         \textcolor{keyword}{virtual} std::string \mbox{\hyperlink{classdisco_1_1function__impl_aec7e01e5c217ab55408a988f6f65c312}{invoke}}(std::string\_view arguments)\textcolor{keyword}{ override }\{}
+\DoxyCodeLine{51             std::string result;}
+\DoxyCodeLine{52             \textcolor{keyword}{auto}\&\& parsed\_arguments = parse\_arguments(arguments);}
+\DoxyCodeLine{53             \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<R, void>) \{}
+\DoxyCodeLine{54                 \mbox{\hyperlink{classdisco_1_1function__impl_aec7e01e5c217ab55408a988f6f65c312}{invoke}}(parsed\_arguments, std::make\_index\_sequence<\textcolor{keyword}{sizeof}... (Ts)>\{\});}
+\DoxyCodeLine{55             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{56                 \textcolor{keyword}{auto}\&\& call\_result = \mbox{\hyperlink{classdisco_1_1function__impl_aec7e01e5c217ab55408a988f6f65c312}{invoke}}(parsed\_arguments, std::make\_index\_sequence<\textcolor{keyword}{sizeof}... (Ts)>\{\});}
+\DoxyCodeLine{57                 \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_convertible\_v<R, std::string>)}
+\DoxyCodeLine{58                     result = call\_result;}
+\DoxyCodeLine{59                 \textcolor{keywordflow}{else}}
+\DoxyCodeLine{60                     result = std::to\_string(call\_result);}
+\DoxyCodeLine{61             \}}
+\DoxyCodeLine{62             \textcolor{keywordflow}{return} result;}
+\DoxyCodeLine{63         \}}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{69         \textcolor{keyword}{virtual} std::string\_view \mbox{\hyperlink{classdisco_1_1function__impl_afdc7fbe36f05e3d8c5865d6116925a83}{return\_type}}() const noexcept\textcolor{keyword}{ override }\{}
+\DoxyCodeLine{70             \textcolor{keywordflow}{return} type\_name<R>();}
+\DoxyCodeLine{71         \}}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{77         \textcolor{keyword}{virtual} std::vector<std::string\_view> \mbox{\hyperlink{classdisco_1_1function__impl_a9d32c42f9ec24ab6bde3b5ffd0950fe7}{parameter\_types}}()\textcolor{keyword}{ const override }\{}
+\DoxyCodeLine{78             std::vector<std::string\_view> types = \{ type\_name<Ts>()... \};}
+\DoxyCodeLine{79             \textcolor{keywordflow}{return} types;}
+\DoxyCodeLine{80         \}}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{86         \textcolor{keyword}{virtual} \textcolor{keyword}{const} std::string\& \mbox{\hyperlink{classdisco_1_1function__impl_a0a6a2fff44f6ad9702a6f604bbfcdacd}{description}}() const noexcept\textcolor{keyword}{ override }\{}
+\DoxyCodeLine{87             \textcolor{keywordflow}{return} m\_description;}
+\DoxyCodeLine{88         \}}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90     \textcolor{keyword}{private}:}
+\DoxyCodeLine{91         invoke\_args\_t parse\_arguments(std::string\_view arguments)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{92             invoke\_args\_t invoke\_args;}
+\DoxyCodeLine{93             core::for\_each(invoke\_args, [\&](\textcolor{keyword}{auto}\&\& argument) \{}
+\DoxyCodeLine{94                 \textcolor{keyword}{using} argument\_t = std::decay\_t<\textcolor{keyword}{decltype}(argument)>;}
+\DoxyCodeLine{95                 argument = parse<argument\_t>(arguments);}
+\DoxyCodeLine{96             \});}
+\DoxyCodeLine{97             \textcolor{keywordflow}{return} invoke\_args;}
+\DoxyCodeLine{98         \}}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100         \textcolor{keyword}{template}<std::size\_t... Is>}
+\DoxyCodeLine{101         \textcolor{keyword}{auto} \mbox{\hyperlink{classdisco_1_1function__impl_aec7e01e5c217ab55408a988f6f65c312}{invoke}}(\textcolor{keyword}{const} invoke\_args\_t\& args, std::index\_sequence<Is...>) \{}
+\DoxyCodeLine{102             \textcolor{keywordflow}{return} m\_function(std::get<Is>(args)...);}
+\DoxyCodeLine{103         \}}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105         std::string m\_description;}
+\DoxyCodeLine{106         std::function<R(Ts...)> m\_function;}
+\DoxyCodeLine{107     \};}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{109 \}}
+\DoxyCodeLine{110 }
+
+\end{DoxyCode}

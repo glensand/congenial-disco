@@ -1,0 +1,43 @@
+\hypertarget{function__traits_8h_source}{}\doxysection{function\+\_\+traits.\+h}
+\label{function__traits_8h_source}\index{lib/consolelib/core/function\_traits.h@{lib/consolelib/core/function\_traits.h}}
+\mbox{\hyperlink{function__traits_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/* Copyright (C) 2021 Gleb Bezborodov -\/ All Rights Reserved}}
+\DoxyCodeLine{2 \textcolor{comment}{ * You may use, distribute and modify this code under the}}
+\DoxyCodeLine{3 \textcolor{comment}{ * terms of the MIT license.}}
+\DoxyCodeLine{4 \textcolor{comment}{ *}}
+\DoxyCodeLine{5 \textcolor{comment}{ * You should have received a copy of the MIT license with}}
+\DoxyCodeLine{6 \textcolor{comment}{ * this file. If not, please write to: bezborodoff.gleb@gmail.com, or visit : https://github.com/glensand/congenial-\/disco}}
+\DoxyCodeLine{7 \textcolor{comment}{ */}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include "{}consolelib/core/typelist.h"{}}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{keyword}{namespace }disco::core \{}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22     \textcolor{keyword}{namespace }detail\{}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24         \textcolor{keyword}{template} <\textcolor{keyword}{typename} TClass, \textcolor{keyword}{typename} TReturn, \textcolor{keyword}{typename}... Ts>}
+\DoxyCodeLine{25         \textcolor{keyword}{struct }\mbox{\hyperlink{structdisco_1_1core_1_1detail_1_1function__traits}{function\_traits}} \{}
+\DoxyCodeLine{26             \textcolor{keyword}{using} result\_t = TReturn; }
+\DoxyCodeLine{27             \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \mbox{\hyperlink{structdisco_1_1core_1_1type__list}{type\_list}}<Ts...> \mbox{\hyperlink{structdisco_1_1core_1_1detail_1_1function__traits_a747155d8234a2ddde3c51e602a7f1b4d}{arg\_types}}\{\}; }
+\DoxyCodeLine{28             \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} \mbox{\hyperlink{structdisco_1_1core_1_1detail_1_1function__traits_a77e6448e57af5166f1be33b2d61319a5}{arity}} = \textcolor{keyword}{sizeof}...(Ts); }
+\DoxyCodeLine{29         \};}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31     \}}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{42     \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{43     \textcolor{keyword}{struct }\mbox{\hyperlink{structdisco_1_1core_1_1function__traits}{function\_traits}} final : \mbox{\hyperlink{structdisco_1_1core_1_1function__traits}{function\_traits}}<decltype(\&T::operator())> \{\};}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{56     \textcolor{keyword}{template} <\textcolor{keyword}{typename} TClass, \textcolor{keyword}{typename} TReturn, \textcolor{keyword}{typename}... Ts>}
+\DoxyCodeLine{57     \textcolor{keyword}{struct }\mbox{\hyperlink{structdisco_1_1core_1_1function__traits}{function\_traits}}<TReturn(TClass::*)(Ts...) const>}
+\DoxyCodeLine{58             : \mbox{\hyperlink{structdisco_1_1core_1_1detail_1_1function__traits}{detail::function\_traits}}<TClass, TReturn, Ts...>\{\};}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{71     \textcolor{keyword}{template} <\textcolor{keyword}{typename} TClass, \textcolor{keyword}{typename} TReturn, \textcolor{keyword}{typename}... Ts>}
+\DoxyCodeLine{72     \textcolor{keyword}{struct }\mbox{\hyperlink{structdisco_1_1core_1_1function__traits}{function\_traits}}<TReturn(TClass::*)(Ts...)>}
+\DoxyCodeLine{73             : \mbox{\hyperlink{structdisco_1_1core_1_1detail_1_1function__traits}{detail::function\_traits}}<TClass, TReturn, Ts...>\{\};}
+\DoxyCodeLine{74 \}}
+\DoxyCodeLine{75 }
+
+\end{DoxyCode}

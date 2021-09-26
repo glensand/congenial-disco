@@ -6,6 +6,13 @@
  * this file. If not, please write to: bezborodoff.gleb@gmail.com, or visit : https://github.com/glensand/congenial-disco
  */
 
+/*! \defgroup <variable> Variable
+    @{
+    \file
+    \brief Interface of the variable proxy, this interface is intended to make variable value change and variable
+    value query easier.
+*/
+
 #pragma once
 
 #include <string_view>
@@ -37,3 +44,5 @@ namespace disco  {
     };
 
 }
+
+/*! @} */

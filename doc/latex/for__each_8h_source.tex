@@ -1,0 +1,40 @@
+\hypertarget{for__each_8h_source}{}\doxysection{for\+\_\+each.\+h}
+\label{for__each_8h_source}\index{lib/consolelib/core/for\_each.h@{lib/consolelib/core/for\_each.h}}
+\mbox{\hyperlink{for__each_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/* Copyright (C) 2021 Gleb Bezborodov -\/ All Rights Reserved}}
+\DoxyCodeLine{2 \textcolor{comment}{ * You may use, distribute and modify this code under the}}
+\DoxyCodeLine{3 \textcolor{comment}{ * terms of the MIT license.}}
+\DoxyCodeLine{4 \textcolor{comment}{ *}}
+\DoxyCodeLine{5 \textcolor{comment}{ * You should have received a copy of the MIT license with}}
+\DoxyCodeLine{6 \textcolor{comment}{ * this file. If not, please write to: bezborodoff.gleb@gmail.com, or visit : https://github.com/glensand/congenial-\/disco}}
+\DoxyCodeLine{7 \textcolor{comment}{ */}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <tuple>}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{keyword}{namespace }disco::core \{}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21     \textcolor{keyword}{namespace }detail \{}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{26         \textcolor{keyword}{template}<\textcolor{keyword}{typename} TTuple, \textcolor{keyword}{typename} TFunction, std::size\_t... Is>}
+\DoxyCodeLine{27         \textcolor{keywordtype}{void} \mbox{\hyperlink{for__each_8h_a4f4395a9ca8af482d41ece7fbccd9ad7}{for\_each}}(std::index\_sequence<Is...>, TTuple\&\& tuple, TFunction\&\& func)\{}
+\DoxyCodeLine{28             (func(std::get<Is>(tuple)), ...);}
+\DoxyCodeLine{29         \}}
+\DoxyCodeLine{30     \}}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{38     \textcolor{keyword}{template}<\textcolor{keyword}{typename} TFunction, \textcolor{keyword}{typename}... Ts>}
+\DoxyCodeLine{39     \textcolor{keywordtype}{void} for\_each(std::tuple<Ts...>\& tuple, TFunction\&\& func)\{}
+\DoxyCodeLine{40         detail::for\_each(std::make\_index\_sequence<\textcolor{keyword}{sizeof}...(Ts)>(), tuple, func);}
+\DoxyCodeLine{41     \}}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{49     \textcolor{keyword}{template}<\textcolor{keyword}{typename} TFunction, \textcolor{keyword}{typename}... Ts>}
+\DoxyCodeLine{50     \textcolor{keywordtype}{void} for\_each(\textcolor{keyword}{const} std::tuple<Ts...>\& tuple, TFunction\&\& func)\{}
+\DoxyCodeLine{51         detail::for\_each(std::make\_index\_sequence<\textcolor{keyword}{sizeof}...(Ts)>(), tuple, func);}
+\DoxyCodeLine{52     \}}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54 \}}
+\DoxyCodeLine{55 }
+
+\end{DoxyCode}

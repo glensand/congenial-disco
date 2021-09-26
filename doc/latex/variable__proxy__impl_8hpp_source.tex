@@ -1,0 +1,33 @@
+\hypertarget{variable__proxy__impl_8hpp_source}{}\doxysection{variable\+\_\+proxy\+\_\+impl.\+hpp}
+\label{variable__proxy__impl_8hpp_source}\index{lib/consolelib/variable/variable\_proxy\_impl.hpp@{lib/consolelib/variable/variable\_proxy\_impl.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{variable__proxy__impl_8h}{variable\_proxy\_impl.h}}"{}}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{variable_8h}{consolelib/variable/variable.h}}"{}}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{parser_8h}{consolelib/generator/parser.h}}"{}}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{keyword}{namespace }disco\{}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10     \textcolor{keyword}{inline}}
+\DoxyCodeLine{11     std::string \mbox{\hyperlink{classdisco_1_1variable__proxy__impl_a9bf153e59c1abb44932d18f859e8f4c3}{variable\_proxy\_impl::apply}}(\mbox{\hyperlink{classdisco_1_1variable}{variable}}* var, std::string\_view arguments)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{12         \textcolor{keywordflow}{if} (\textcolor{keyword}{auto}\&\& pos = arguments.find(\textcolor{charliteral}{'='}); pos != std::string\_view::npos) \{}
+\DoxyCodeLine{13             trim(arguments, pos);}
+\DoxyCodeLine{14             var-\/>\mbox{\hyperlink{classdisco_1_1variable_a9ff86a25ff9921750f7c3145cb5f4ece}{set}}(arguments);}
+\DoxyCodeLine{15             \textcolor{keywordflow}{return} \{\};}
+\DoxyCodeLine{16         \}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18         \textcolor{keywordflow}{return} var-\/>\mbox{\hyperlink{classdisco_1_1variable_a84d74c37e8b2769d24d32db2af73eddc}{get}}();}
+\DoxyCodeLine{19     \}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21     \textcolor{keyword}{inline}}
+\DoxyCodeLine{22     \textcolor{keywordtype}{void} variable\_proxy\_impl::trim(std::string\_view\& arguments, std::size\_t equal\_pos) \{}
+\DoxyCodeLine{23         arguments = std::string\_view(arguments.data() + equal\_pos + 1, arguments.size() -\/ equal\_pos -\/ 1);}
+\DoxyCodeLine{24         \textcolor{keywordflow}{while}(detail::is\_delimiter(arguments.front()))}
+\DoxyCodeLine{25             arguments = std::string\_view(arguments.data() + 1, arguments.size() -\/ 1);}
+\DoxyCodeLine{26     \}}
+\DoxyCodeLine{27 \}}
+
+\end{DoxyCode}

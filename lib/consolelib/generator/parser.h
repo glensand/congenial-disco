@@ -6,6 +6,13 @@
  * this file. If not, please write to: bezborodoff.gleb@gmail.com, or visit : https://github.com/glensand/congenial-disco
  */
 
+/*! \defgroup <generator> Generator
+    @{
+    \file
+    \brief File contains parsers fot different types.
+    NOTE: refactoring is needed
+*/
+
 #pragma once
 
 #include <string_view>
@@ -129,3 +136,5 @@ namespace disco  {
     }
 
 }
+
+/*! @} */
