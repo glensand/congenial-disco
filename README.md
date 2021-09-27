@@ -67,6 +67,42 @@ int main() {
 In this app you may register client with string: 'register "client_name"' or 'register("client_name")'.
 See doccumentation for more details.
 
+## Motivating example #1
+Autocompletion
+```c++
+#include "consolelib/disco.h"
+
+int main() {
+    disco::completer_impl completer;
+    disco::string_command_executor invoker(new disco::function_proxy_impl, new disco::variable_proxy_impl,
+        [&](auto&& name) {completer.add_name(name); });
+
+    invoker.create_function("call", [] { });
+    invoker.create_function("call1", [] { });
+    invoker.create_function("call2", [] { });
+    
+    auto&& call_completion = completer.complete("call");
+    for (auto&& name : call_completion)
+        std::cout << name << " ";
+        
+    return 0;
+}
+```
+Output:```call call1 call2```
+
+## Opportunities
+* Bind variable, change the variable value, query the variable value
+* Bind static method, bind function, bind functional object, bind public method
+* Call registered function and pass values as strings
+* Query all the registered objects with given prefix
+
+## Technologies
+* Uses std::tuple to hold parsed values
+* Uses ADL to extend parsers and generators
+* Throws exception if any error accured
+* Uses function_traits to extract functions input paramters types (and return value type)
+* No placeholders and legacy std::bind is required
+
 ## Build
 - Clone repository: ``git clone https://github.com/glensand/congenial-disco``
 - Generate platform dependent project: ``cmake -S [root_clone/lib] -B [root_clone\install]``
