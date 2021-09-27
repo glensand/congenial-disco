@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>console-disco: Main Page</title>
+<title>console-disco: congenial - disco</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -61,10 +61,79 @@ $(function() {
 </iframe>
 </div>
 
-<div class="header">
-  <div class="headertitle"><div class="title">console-disco Documentation</div></div>
+<div><div class="header">
+  <div class="headertitle"><div class="title">congenial - disco </div></div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><p ><a class="anchor" id="md_README"></a><a href="https://github.com/glensand/congenial-disco/actions"><img src="https://github.com/glensand/congenial-disco/workflows/BuildAndTest/badge.svg" alt="Actions Status" style="pointer-events: none;" class="inline"/></a> <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT" style="pointer-events: none;" class="inline"/></a> <img src="https://img.shields.io/github/last-commit/glensand/congenial-disco?color=red&amp;style=plastic" alt="GitHub last commit" class="inline"/> <img src="https://img.shields.io/github/stars/glensand/congenial-disco?style=social" alt="GitHub stars" class="inline"/> <img src="https://img.shields.io/github/watchers/glensand/congenial-disco?style=social" alt="GitHub watchers" class="inline"/> <img src="https://img.shields.io/github/followers/glensand?style=social" alt="GitHub followers" class="inline"/></p>
+<h1><a class="anchor" id="autotoc_md1"></a>
+Console library</h1>
+<p >This library gives your the opportunity to call functions by their's registered names, and pass input values as string parameters. You may use it to build the interface of your console application or to build a console system in your game or another GUI project. This library is header only has no external dependencies, it is yeasy to use it as external project of your cmake project.</p>
+<h1><a class="anchor" id="autotoc_md2"></a>
+Motivating example #0</h1>
+<div class="fragment"><div class="line"> {c++}</div>
+<div class="line">#include &quot;consolelib/disco.h&quot;</div>
+<div class="line"> </div>
+<div class="line">int main() {</div>
+<div class="line">    disco::completer_impl completer;</div>
+<div class="line">    disco::string_command_executor invoker(new disco::function_proxy_impl, new disco::variable_proxy_impl,</div>
+<div class="line">        [&amp;](auto&amp;&amp; name) {completer.add_name(name); });</div>
+<div class="line"> </div>
+<div class="line">    invoker.create_function(&quot;call&quot;, [] { std::cout &lt;&lt; &quot;call&quot; &lt;&lt; std::endl; });</div>
+<div class="line">    bool debug_mode = false;</div>
+<div class="line">    invoker.create_variable(&quot;call2&quot;, debug_mode);</div>
+<div class="line">    </div>
+<div class="line">    invoker.invoke(&quot;call()&quot;); // call lambda funnction and print call</div>
+<div class="line">    invoker.invole(&quot;debug_mode = true&quot;); // change debug_mode variable and possible enables application&#39;s debug mode</div>
+<div class="line">    </div>
+<div class="line">    return 0;</div>
+<div class="line">}</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md3"></a>
+Motivating example #1</h1>
+<p >Small sample illustrates how to use console library to build console client to the app. </p><div class="fragment"><div class="line"> {c++}</div>
+<div class="line">#include &lt;iostream&gt;</div>
+<div class="line">#include &quot;consolelib/disco.h&quot;</div>
+<div class="line">#include &quot;console_client.h&quot; // imagine this header contains console client of the application</div>
+<div class="line"> </div>
+<div class="line">int main() {</div>
+<div class="line">    disco::completer_impl completer;</div>
+<div class="line">    disco::string_command_executor invoker(new disco::function_proxy_impl, new disco::variable_proxy_impl,</div>
+<div class="line">            [this](auto&amp;&amp; name) { completer.add_name(name); });</div>
+<div class="line">            </div>
+<div class="line">    console_client client;</div>
+<div class="line">    </div>
+<div class="line">    invoker.create_function(&quot;register&quot;, &amp;client, &amp;console_client::register_client);</div>
+<div class="line">    invoker.create_function(&quot;send&quot;, &amp;client, &amp;console_client::send_message);</div>
+<div class="line">    invoker.create_function(&quot;update&quot;, &amp;console_client::update);</div>
+<div class="line">    </div>
+<div class="line">    for (;;) {</div>
+<div class="line">        std::string query;</div>
+<div class="line">        std::getline(std::cin, query);</div>
+<div class="line"> </div>
+<div class="line">        try {</div>
+<div class="line">            std::cout &lt;&lt; invoker.invoke(query) &lt;&lt; std::endl;</div>
+<div class="line">        }</div>
+<div class="line">        catch(const disco::exception&amp; ex) {</div>
+<div class="line">            std::cout &lt;&lt; &quot;An exception occurred: &quot; &lt;&lt; ex.what() &lt;&lt; std::endl;</div>
+<div class="line">        }</div>
+<div class="line">    }</div>
+<div class="line">    </div>
+<div class="line">    // you may register client with this string: [register &quot;client_name&quot;] or register(&quot;client_name&quot;)</div>
+<div class="line">    // or something like that, but with another delimiters</div>
+<div class="line">    return 0;</div>
+<div class="line">}</div>
+</div><!-- fragment --><p> In this app you may register client with string: 'register "client_name"' or 'register("client_name")'. See doccumentation for more details.</p>
+<h1><a class="anchor" id="autotoc_md4"></a>
+Build</h1>
+<ul>
+<li>Clone repository: <code>git clone <a href="https://github.com/glensand/congenial-disco">https://github.com/glensand/congenial-disco</a></code></li>
+<li>Generate platform dependent project: <code>cmake -S [root_clone/lib] -B [root_clone\install]</code></li>
+<li>Go to <code>root_clone\install</code> and run <code>cmake --build . --target install --config [Config]</code>. The <code>Config</code> parameter might be Release or Debug</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md5"></a>
+License</h1>
+<p >Distributed under the <a href="https://github.com/glensand/congenial-disco/blob/main/LICENSE">MIT License</a> </p>
+</div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
