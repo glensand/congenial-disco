@@ -20,7 +20,7 @@ int main() {
 
     invoker.create_function("call", [] { std::cout << "call" << std::endl; });
     bool debug_mode = false;
-    invoker.create_variable("call2", debug_mode);
+    invoker.create_variable("debug_mode", debug_mode);
     
     invoker.invoke("call()"); // call lambda funnction and print call
     invoker.invole("debug_mode = true"); // change debug_mode variable and possible enables application's debug mode
@@ -67,7 +67,7 @@ int main() {
 In this app you may register client with string: 'register "client_name"' or 'register("client_name")'.
 See doccumentation for more details.
 
-## Motivating example #1
+## Motivating example #2
 Autocompletion
 ```c++
 #include "consolelib/disco.h"
