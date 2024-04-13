@@ -145,3 +145,4 @@
 /out/build/x64-Debug/lib/CMakeFiles/consolelib.dir/consolelib/generator/*.obj
 /out/build/x64-Debug/lib/CMakeFiles/consolelib.dir/consolelib/variable/*.obj
 /out/build/x64-Debug/test/CMakeFiles/cllibtest.dir/*.obj
+build/*
